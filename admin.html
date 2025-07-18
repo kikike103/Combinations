@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinations Admin Panel</title>
+    <style>
+        :root {
+            --primary: #5865F2;
+            --dark: #1e1f22;
+            --darker: #111214;
+            --light: #f2f3f5;
+            --danger: #ed4245;
+            --success: #3ba55c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--darker);
+            color: var(--light);
+        }
+        
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .login-form {
+            background-color: var(--dark);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            width: 350px;
+            text-align: center;
+        }
+        
+        .login-form h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #3a3c40;
+            background-color: #2b2d31;
+            color: var(--light);
+            font-size: 16px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #4752c4;
+        }
+        
+        .admin-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #3a3c40;
+        }
+        
+        .admin-header h1 {
+            color: var(--primary);
+            margin: 0;
+        }
+        
+        .logout-btn {
+            background-color: var(--danger);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background-color: var(--dark);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+        
+        .page-stats {
+            background-color: var(--dark);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .page-stats h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #3a3c40;
+        }
+        
+        th {
+            background-color: #2b2d31;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #2b2d31;
+        }
+        
+        .error-message {
+            color: var(--danger);
+            margin-top: 15px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginContainer">
+        <div class="login-form">
+            <h2>Admin Bejelentkezés</h2>
+            <div class="form-group">
+                <label for="username">Felhasználónév</label>
+                <input type="text" id="username" placeholder="Add meg a felhasználóneved">
+            </div>
+            <div class="form-group">
+                <label for="password">Jelszó</label>
+                <input type="password" id="password" placeholder="Add meg a jelszavad">
+            </div>
+            <button class="login-btn" onclick="login()">Bejelentkezés</button>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+    </div>
+    
+    <div class="admin-container" id="adminContainer">
+        <div class="admin-header">
+            <h1>Combinations Admin Panel</h1>
+            <button class="logout-btn" onclick="logout()">Kijelentkezés</button>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Összes látogató</h3>
+                <div class="stat-value" id="totalVisitors">0</div>
+                <p>Az összes oldallátogatás száma</p>
+            </div>
+            <div class="stat-card">
+                <h3>Egyedi látogatók</h3>
+                <div class="stat-value" id="uniqueVisitors">0</div>
+                <p>Különböző IP címek száma</p>
+            </div>
+            <div class="stat-card">
+                <h3>Ma</h3>
+                <div class="stat-value" id="todayVisitors">0</div>
+                <p>Mai látogatások száma</p>
+            </div>
+        </div>
+        
+        <div class="page-stats">
+            <h2>Oldal statisztikák</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Oldal</th>
+                        <th>Látogatások</th>
+                        <th>Utolsó látogatás</th>
+                    </tr>
+                </thead>
+                <tbody id="pageStatsBody">
+                    <!-- Data will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Admin credentials (in a real application, this should be server-side)
+        const ADMIN_CREDENTIALS = {
+            username: "admin",  // Change this to your desired username
+            password: "combinations123"  // Change this to your strong password
+        };
+        
+        // Visitor data storage (in a real app, use a database)
+        let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
+            totalVisits: 0,
+            uniqueVisitors: {},
+            pageVisits: {
+                'index.html': { count: 0, lastVisit: null },
+                'discord.html': { count: 0, lastVisit: null },
+                'skript.html': { count: 0, lastVisit: null },
+                'launcher.html': { count: 0, lastVisit: null }
+            },
+            dailyVisits: {}
+        };
+        
+        // Check if user is already logged in
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            showAdminPanel();
+            updateStats();
+        }
+        
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('errorMessage');
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                showAdminPanel();
+                updateStats();
+            } else {
+                errorElement.textContent = "Hibás felhasználónév vagy jelszó!";
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            document.getElementById('loginContainer').style.display = 'flex';
+            document.getElementById('adminContainer').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('errorMessage').textContent = '';
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('adminContainer').style.display = 'block';
+        }
+        
+        function updateStats() {
+            // Update summary stats
+            document.getElementById('totalVisitors').textContent = visitorData.totalVisits;
+            document.getElementById('uniqueVisitors').textContent = Object.keys(visitorData.uniqueVisitors).length;
+            
+            // Get today's date in YYYY-MM-DD format
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('todayVisitors').textContent = visitorData.dailyVisits[today] || 0;
+            
+            // Update page stats table
+            const tableBody = document.getElementById('pageStatsBody');
+            tableBody.innerHTML = '';
+            
+            for (const page in visitorData.pageVisits) {
+                const row = document.createElement('tr');
+                
+                const pageCell = document.createElement('td');
+                pageCell.textContent = page;
+                row.appendChild(pageCell);
+                
+                const countCell = document.createElement('td');
+                countCell.textContent = visitorData.pageVisits[page].count;
+                row.appendChild(countCell);
+                
+                const lastVisitCell = document.createElement('td');
+                lastVisitCell.textContent = visitorData.pageVisits[page].lastVisit ? 
+                    new Date(visitorData.pageVisits[page].lastVisit).toLocaleString() : 'Még nem';
+                row.appendChild(lastVisitCell);
+                
+                tableBody.appendChild(row);
+            }
+        }
+        
+        // Function to track visits (to be called on your other pages)
+        function trackVisit(pageName) {
+            // Get visitor IP (simplified for this example)
+            const visitorIp = 'simulated-ip'; // In a real app, get the actual IP
+            
+            // Update visitor data
+            visitorData.totalVisits++;
+            visitorData.uniqueVisitors[visitorIp] = true;
+            
+            // Update page-specific data
+            if (visitorData.pageVisits[pageName]) {
+                visitorData.pageVisits[pageName].count++;
+                visitorData.pageVisits[pageName].lastVisit = new Date().toISOString();
+            }
+            
+            // Update daily visits
+            const today = new Date().toISOString().split('T')[0];
+            visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
+            
+            // Save to localStorage
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+        }
+    </script>
+</body>
+</html>
