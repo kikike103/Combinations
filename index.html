@@ -376,5 +376,41 @@
       }, 1000);
     });
   </script>
+  <script>
+    // Track page view
+    document.addEventListener('DOMContentLoaded', function() {
+        // Replace 'index.html' with the current page's filename for each page
+        trackVisit('index.html'); 
+    });
+    
+    function trackVisit(pageName) {
+        let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
+            totalVisits: 0,
+            uniqueVisitors: {},
+            pageVisits: {
+                'index.html': { count: 0, lastVisit: null },
+                'discord.html': { count: 0, lastVisit: null },
+                'skript.html': { count: 0, lastVisit: null },
+                'launcher.html': { count: 0, lastVisit: null }
+            },
+            dailyVisits: {}
+        };
+        
+        const visitorIp = 'simulated-ip'; // Simplified - in production use a real IP tracking method
+        
+        visitorData.totalVisits++;
+        visitorData.uniqueVisitors[visitorIp] = true;
+        
+        if (visitorData.pageVisits[pageName]) {
+            visitorData.pageVisits[pageName].count++;
+            visitorData.pageVisits[pageName].lastVisit = new Date().toISOString();
+        }
+        
+        const today = new Date().toISOString().split('T')[0];
+        visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
+        
+        localStorage.setItem('visitorData', JSON.stringify(visitorData));
+    }
+  </script>
 </body>
 </html>
