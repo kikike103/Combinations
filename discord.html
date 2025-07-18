@@ -4,14 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Combinations Discord Bot</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary: #5865F2;
+      --dark: #1e1f22;
+      --darker: #111214;
+      --light: #f2f3f5;
+      --danger: #ed4245;
+      --success: #3ba55c;
+    }
+    
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background-color: var(--darker);
+      color: var(--light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
 
     .top-nav {
@@ -19,63 +29,234 @@
       top: 0;
       right: 0;
       padding: 20px;
+      z-index: 1000;
     }
 
     .top-nav a {
-      color: #fff;
-      margin-left: 15px;
+      color: var(--light);
+      margin-left: 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    .top-nav a:hover {
+      color: var(--primary);
+      background-color: rgba(88, 101, 242, 0.1);
     }
 
     .logo {
       position: fixed;
-      top: 0;
+      top: 20px;
       left: 20px;
-      padding: 20px;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
+      color: var(--primary);
+      z-index: 1000;
+    }
+
+    .hero {
+      background-color: var(--dark);
+      padding: 120px 20px 60px;
+      text-align: center;
+      background-image: url('https://via.placeholder.com/1920x1080'); /* IDE KELL A SAJÁT KÉP */
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin: 10px 5px;
+    }
+
+    .btn:hover {
+      background-color: #4752c4;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     .container {
-      max-width: 900px;
-      margin: 120px auto 50px auto;
-      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: var(--primary);
+      text-align: center;
     }
 
-    .description {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #ccc;
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 50px;
     }
 
-    .card {
-      background-color: #111;
-      padding: 20px;
-      margin-top: 30px;
+    .feature-card {
+      background-color: var(--dark);
+      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+      width: 350px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
 
-    .card a {
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    /* Betöltő animáció */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--darker);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid var(--primary);
+      border-bottom-color: transparent;
+      border-radius: 50%;
       display: inline-block;
-      margin-top: 10px;
-      color: #a066ff;
-      text-decoration: none;
-      font-weight: bold;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
     }
 
-    .card a:hover {
-      text-decoration: underline;
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* GYIK stílusok */
+    .faq {
+      background-color: var(--dark);
+      padding: 40px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #3a3c40;
+      padding-bottom: 20px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      transition: transform 0.3s;
+    }
+
+    .faq-question.active::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-answer.show {
+      max-height: 500px;
+    }
+
+    .footer {
+      background-color: var(--dark);
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Betöltő animáció -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+  </div>
+
   <div class="logo">Combinations</div>
   <nav class="top-nav">
     <a href="index.html">Kezdőlap</a>
@@ -84,16 +265,91 @@
     <a href="discord.html">Discord Bot</a>
   </nav>
 
-  <div class="container">
+  <section class="hero">
     <h1>Combinations Discord Bot</h1>
-    <p class="description">
-      A Combinations Discord Bot egy intelligens, fejlett funkciókkal rendelkező bot, amely segíti a szervered moderálását, parancsokkal, automatikus moderációval és sok mással. Célunk, hogy egy megbízható, egyszerűen használható, de testreszabható eszközt biztosítsunk a közösségek számára.
-    </p>
+    <p>Az intelligens megoldás minden Discord szervered számára. Fejlett moderáció, zene, fun parancsok és még sok más egy helyen!</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1360678768083206184&scope=bot&permissions=8" target="_blank" class="btn">Bot hozzáadása</a>
+  </section>
 
-    <div class="card">
-      <p><strong>Próbáld ki a botot most!</strong> A bot elérhető minden szerver számára, amely nyitott a fejlett lehetőségekre és egyedibb élményre vágyik.</p>
-      <a href="https://discord.com/oauth2/authorize?client_id=1360678768083206184&scope=bot&permissions=8" target="_blank">Meghívás a szerverre</a>
-    </div>
+  <div class="container">
+    <section>
+      <h2 class="section-title">Főbb funkciók</h2>
+      <div class="features">
+        <div class="feature-card economy">
+          <div class="feature-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3>Economy Rendszer</h3>
+          <p>Élénk gazdasági rendszerünk lehetővé teszi a felhasználóknak, hogy virtuális pénzt keressenek, boltokat hozzanak létre, és kereskedjenek egymással. Napi jutalmak, munka lehetőségek és egyedi tárgyak várják a szervered tagjait!</p>
+        </div>
+        
+        <div class="feature-card music">
+          <div class="feature-icon">
+            <i class="fas fa-compact-disc"></i>
+          </div>
+          <h3>Zenelejátszás</h3>
+          <p>Kiváló minőségű zenelejátszó rendszerünkkel a szervered tagjai zenehallgatással tölthetik az idejüket. Támogatja a YouTube, Spotify, SoundCloud és egyéb platformokat, sorban állítás, loop és sok más funkcióval.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Könnyű kezelés</h3>
+          <p>Egyszerű beállításokkal testre szabhatod a bot működését. Nincs szükség bonyolult konfigurációra, minden intuitív és könnyen kezelhető.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Gyakran Ismételt Kérdések</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question">Mire jó ez a bot?</div>
+          <div class="faq-answer">
+            <p>A Combinations botban több mint 200 parancs található. Ezek a parancsok moderációs, zenei, economy, szerver biztonság, fun és más hasznos parancsból áll.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Biztonságos a bot?</div>
+          <div class="faq-answer">
+            <p>A Combinations bot egy privát VPS-ről fut, amihez csak a fejlesztők férnek hozzá. A bot tokenje nincs eltárolva sehol máshol, a bot source kódja is csak ezen a VPS-en található meg. A válasz a kérdése: nagyon biztonságos.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Ingyenes a bot használata?</div>
+          <div class="faq-answer">
+            <p>A Combinations bot teljesen ingyenes! A prémium parancsok hamarosan fizetőssé válnak, de a bot alap parancsai ingyenesek, és a prémium funkciók is limitáltan fizetés nélkül elérhetők.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
+
+  <footer class="footer">
+    <p>&copy; 2023 Combinations. Minden jog fenntartva.</p>
+  </footer>
+
+  <script>
+    // Betöltő animáció eltüntetése
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 1000); // 1 másodperc múlva eltűnik
+    });
+
+    // GYIK lecsukható/megnyitható
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        question.classList.toggle('active');
+        answer.classList.toggle('show');
+      });
+    });
+  </script>
 </body>
 </html>
