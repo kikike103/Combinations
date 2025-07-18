@@ -4,14 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Combinations Minecraft Launcher</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary: #5865F2;
+      --dark: #1e1f22;
+      --darker: #111214;
+      --light: #f2f3f5;
+      --danger: #ed4245;
+      --success: #3ba55c;
+      --highlight: #a066ff;
+    }
+    
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background-color: var(--darker);
+      color: var(--light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
 
     .top-nav {
@@ -19,63 +30,235 @@
       top: 0;
       right: 0;
       padding: 20px;
+      z-index: 1000;
     }
 
     .top-nav a {
-      color: #fff;
-      margin-left: 15px;
+      color: var(--light);
+      margin-left: 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    .top-nav a:hover {
+      color: var(--primary);
+      background-color: rgba(88, 101, 242, 0.1);
     }
 
     .logo {
       position: fixed;
-      top: 0;
+      top: 20px;
       left: 20px;
-      padding: 20px;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
+      color: var(--primary);
+      z-index: 1000;
+    }
+
+    .hero {
+      background-color: #2b2d31;
+      padding: 120px 20px 60px;
+      text-align: center;
+      background-image: linear-gradient(rgba(43, 45, 49, 0.9), rgba(43, 45, 49, 0.9)), url('https://images.unsplash.com/photo-1587573089734-599851b0c8b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin: 10px 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #4752c4;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     .container {
-      max-width: 900px;
-      margin: 120px auto 50px auto;
-      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .description {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #ccc;
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: var(--primary);
+      text-align: center;
     }
 
     .card {
-      background-color: #111;
-      padding: 20px;
-      margin-top: 30px;
+      background-color: var(--dark);
+      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
 
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #a066ff;
-      text-decoration: none;
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      color: var(--highlight);
+      margin-top: 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .feature {
+      background-color: var(--dark);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .feature i {
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      color: var(--light);
+      margin-top: 0;
+    }
+
+    .footer {
+      background-color: var(--dark);
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    /* Modal stílus */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: var(--dark);
+      margin: 15% auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      text-align: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #aaa;
+      font-size: 24px;
       font-weight: bold;
+      cursor: pointer;
     }
 
-    .card a:hover {
-      text-decoration: underline;
+    .close-btn:hover {
+      color: var(--light);
+    }
+
+    /* Betöltő animáció */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--darker);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid var(--primary);
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Betöltő animáció -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+  </div>
+
   <div class="logo">Combinations</div>
   <nav class="top-nav">
     <a href="index.html">Kezdőlap</a>
@@ -84,16 +267,117 @@
     <a href="discord.html">Discord Bot</a>
   </nav>
 
-  <div class="container">
+  <section class="hero">
     <h1>Combinations Minecraft Launcher</h1>
-    <p class="description">
-      A Combinations Minecraft Launcher egy egyedi indítóprogram, amely lehetővé teszi a játék gyors és testreszabott elindítását. Letisztult felület, egyedi konfigurációs lehetőségek és közösségi integráció jellemzi.
-    </p>
+    <p>Egyedi indítóprogram a Minecrafthoz, amely új szintre emeli a játékélményt</p>
+    <button class="btn" id="downloadBtn">Launcher letöltése</button>
+  </section>
 
+  <div class="container">
     <div class="card">
-      <p><strong>Töltsd le a launchert most!</strong> Egy könnyű, mégis erőteljes eszköz, amely új szintre emeli a Minecraft élményt.</p>
-      <a href="#">Launcher letöltése</a>
+      <h2>A Combinations Launcherről</h2>
+      <p>A Combinations Minecraft Launcher egy egyedi indítóprogram, amely lehetővé teszi a játék gyors és testreszabott elindítását. Letisztult felület, egyedi konfigurációs lehetőségek és közösségi integráció jellemzi.</p>
+      <p>Könnyű kezelhetőség és hatékony működés egy modern csomagolásban, amely minden Minecraft rajongó számára nélkülözhetetlen eszközzé teszi.</p>
+    </div>
+
+    <h2 class="section-title">Főbb jellemzők</h2>
+    
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-rocket"></i>
+        <h3>Gyors indítás</h3>
+        <p>Az optimalizált rendszer lehetővé teszi a Minecraft gyorsabb betöltését és indítását, akár modokkal is.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-sliders-h"></i>
+        <h3>Testreszabható</h3>
+        <p>Számos beállítási lehetőség, hogy a saját igényeidnek megfelelően alakíthasd a játékélményt.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Biztonságos</h3>
+        <p>Hivatalos Minecraft API-t használ, így teljes mértékben biztonságos a használata.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-users"></i>
+        <h3>Közösségi integráció</h3>
+        <p>Könnyű kapcsolat a Combinations közösséggel, szerverekkel és egyéb játékosokkal.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-cloud-download-alt"></i>
+        <h3>Automatikus frissítés</h3>
+        <p>A launcher automatikusan frissül, így mindig a legújabb verziót használhatod.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-puzzle-piece"></i>
+        <h3>Mod kezelés</h3>
+        <p>Egyszerű modok kezelése és telepítése közvetlenül a launcherből.</p>
+      </div>
+    </div>
+    
+    <div class="card" style="text-align: center; margin-top: 50px;">
+      <h2>Készen állsz a fejlődésre?</h2>
+      <p style="margin-bottom: 30px;">Töltsd le a Combinations Minecraft Launchert még ma, és emeld új szintre a Minecraft élményt!</p>
+      <button class="btn" id="downloadBtn2">Launcher letöltése</button>
     </div>
   </div>
+
+  <!-- Modal ablak -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Figyelem!</h2>
+      <p>A Combinations Launcher jelenleg fejlesztés alatt áll.</p>
+      <p>Értesítést küldünk, amint elérhetővé válik!</p>
+      <button class="btn" style="margin-top: 20px;" id="closeModalBtn">Rendben</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Combinations. Minden jog fenntartva.</p>
+  </footer>
+
+  <script>
+    // Betöltő animáció eltüntetése
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 1000);
+    });
+
+    // Modal ablak kezelése
+    const downloadBtns = document.querySelectorAll('#downloadBtn, #downloadBtn2');
+    const modal = document.getElementById('infoModal');
+    const closeBtn = document.querySelector('.close-btn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    downloadBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        modal.style.display = 'block';
+      });
+    });
+
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    // Kattintás a modalon kívülre zárja a modalt
+    window.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
