@@ -14,6 +14,7 @@
       --danger: #ed4245;
       --success: #3ba55c;
       --highlight: #a066ff;
+      --gray-bg: #2b2d31;
     }
     
     body {
@@ -193,6 +194,32 @@
       }
     }
 
+    /* Nyelvválasztó stílusok */
+    .language-selector {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 1000;
+      background-color: var(--dark);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .language-selector select {
+      background-color: var(--darker);
+      color: var(--light);
+      border: 1px solid var(--primary);
+      padding: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--highlight);
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
       .hero h1 {
@@ -205,6 +232,11 @@
       
       .features {
         grid-template-columns: 1fr;
+      }
+      
+      .language-selector {
+        top: 70px;
+        right: 10px;
       }
     }
   </style>
@@ -222,69 +254,77 @@
     <a href="launcher.html">Minecraft Launcher</a>
     <a href="discord.html">Discord Bot</a>
   </nav>
+  
+  <!-- Nyelvválasztó -->
+  <div class="language-selector">
+    <select id="language-select">
+      <option value="hu">Magyar</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 
   <section class="hero">
-    <h1>Combinations Minecraft Skript</h1>
-    <p>Fejlett Minecraft skript megoldások, amelyek új dimenziót adnak a szerverednek</p>
-    <a href="https://www.spigotmc.org/resources/%E2%AD%90-ultimate-economy-system-gui-1-18-%E2%AD%90.122740/" class="btn">Letöltés most</a>
+    <h1 id="hero-title">Combinations Minecraft Skript</h1>
+    <p id="hero-text">Fejlett Minecraft skript megoldások, amelyek új dimenziót adnak a szerverednek</p>
+    <a href="https://www.spigotmc.org/resources/%E2%AD%90-ultimate-economy-system-gui-1-18-%E2%AD%90.122740/" class="btn" id="download-btn">Letöltés most</a>
   </section>
 
   <div class="container">
     <div class="card">
-      <h2>A Combinations Skriptről</h2>
-      <p>A Combinations Skript egy egyedi Minecraft szerverre készült kiegészítő, amely megkönnyíti az adminisztrációt, javítja a játékélményt, és új lehetőségeket nyit meg a játékosok számára. Könnyen szerkeszthető, és kompatibilis a legtöbb 1.20-as szerverrel.</p>
-      <p>Tökéletes választás kezdő és haladó szerverüzemeltetők számára is, akik valami extra funkciót szeretnének a szerverükön, anélkül, hogy bonyolult pluginokat kellene telepíteniük.</p>
+      <h2 id="about-title">A Combinations Skriptről</h2>
+      <p id="about-text-1">A Combinations Skript egy egyedi Minecraft szerverre készült kiegészítő, amely megkönnyíti az adminisztrációt, javítja a játékélményt, és új lehetőségeket nyit meg a játékosok számára. Könnyen szerkeszthető, és kompatibilis a legtöbb 1.20-as szerverrel.</p>
+      <p id="about-text-2">Tökéletes választás kezdő és haladó szerverüzemeltetők számára is, akik valami extra funkciót szeretnének a szerverükön, anélkül, hogy bonyolult pluginokat kellene telepíteniük.</p>
     </div>
 
-    <h2 class="section-title">Főbb jellemzők</h2>
+    <h2 class="section-title" id="features-title">Főbb jellemzők</h2>
     
     <div class="features">
       <div class="feature">
         <i class="fas fa-cogs"></i>
-        <h3>Könnyű testreszabás</h3>
-        <p>Az egyszerű konfigurációs fájlok segítségével teljesen testre szabhatod a skript viselkedését, anélkül, hogy programozási ismeretekre lenne szükséged.</p>
+        <h3 id="feature-1-title">Könnyű testreszabás</h3>
+        <p id="feature-1-text">Az egyszerű konfigurációs fájlok segítségével teljesen testre szabhatod a skript viselkedését, anélkül, hogy programozási ismeretekre lenne szükséged.</p>
       </div>
       
       <div class="feature">
         <i class="fas fa-tachometer-alt"></i>
-        <h3>Optimalizált teljesítmény</h3>
-        <p>Különös gondot fordítottunk a hatékony kódírásra, hogy a skript minimális terhelést gyakoroljon a szerveredre.</p>
+        <h3 id="feature-2-title">Optimalizált teljesítmény</h3>
+        <p id="feature-2-text">Különös gondot fordítottunk a hatékony kódírásra, hogy a skript minimális terhelést gyakoroljon a szerveredre.</p>
       </div>
       
       <div class="feature">
         <i class="fas fa-shield-alt"></i>
-        <h3>Biztonságos működés</h3>
-        <p>Rendszeresen frissítjük a skriptet, hogy biztosítsuk a kompatibilitást és kiküszöböljük az esetleges biztonsági réseket.</p>
+        <h3 id="feature-3-title">Biztonságos működés</h3>
+        <p id="feature-3-text">Rendszeresen frissítjük a skriptet, hogy biztosítsuk a kompatibilitást és kiküszöböljük az esetleges biztonsági réseket.</p>
       </div>
       
       <div class="feature">
         <i class="fas fa-users"></i>
-        <h3>Közösség által támogatva</h3>
-        <p>A skript fejlesztésében aktívan részt vesz a Minecraft közösség, így mindig a legnépszerűbb és leghasznosabb funkciók kerülnek beépítésre.</p>
+        <h3 id="feature-4-title">Közösség által támogatva</h3>
+        <p id="feature-4-text">A skript fejlesztésében aktívan részt vesz a Minecraft közösség, így mindig a legnépszerűbb és leghasznosabb funkciók kerülnek beépítésre.</p>
       </div>
       
       <div class="feature">
         <i class="fas fa-book"></i>
-        <h3>Részletes dokumentáció</h3>
-        <p>Teljes körű dokumentációval és példákkal látjuk el a skriptet, hogy mindenki könnyen használni tudja.</p>
+        <h3 id="feature-5-title">Részletes dokumentáció</h3>
+        <p id="feature-5-text">Teljes körű dokumentációval és példákkal látjuk el a skriptet, hogy mindenki könnyen használni tudja.</p>
       </div>
       
       <div class="feature">
         <i class="fas fa-comments"></i>
-        <h3>Gyors támogatás</h3>
-        <p>Discord szerverünkön gyors segítséget kaphatsz, ha bármilyen kérdésed vagy problémád adódna a skript használata során.</p>
+        <h3 id="feature-6-title">Gyors támogatás</h3>
+        <p id="feature-6-text">Discord szerverünkön gyors segítséget kaphatsz, ha bármilyen kérdésed vagy problémád adódna a skript használata során.</p>
       </div>
     </div>
     
     <div class="card" style="text-align: center; margin-top: 50px;">
-      <h2>Készen állsz a fejlődésre?</h2>
-      <p style="margin-bottom: 30px;">Töltsd le a Combinations Minecraft Skriptet még ma, és emeld új szintre a szerveredet!</p>
-      <a href="https://www.spigotmc.org/resources/%E2%AD%90-ultimate-economy-system-gui-1-18-%E2%AD%90.122740/" class="btn">Letöltés most</a>
+      <h2 id="cta-title">Készen állsz a fejlődésre?</h2>
+      <p id="cta-text" style="margin-bottom: 30px;">Töltsd le a Combinations Minecraft Skriptet még ma, és emeld új szintre a szerveredet!</p>
+      <a href="https://www.spigotmc.org/resources/%E2%AD%90-ultimate-economy-system-gui-1-18-%E2%AD%90.122740/" class="btn" id="cta-btn">Letöltés most</a>
     </div>
   </div>
 
   <footer class="footer">
-    <p>&copy; 2024 Combinations. Minden jog fenntartva.</p>
+    <p id="footer-text">&copy; 2024 Combinations. Minden jog fenntartva.</p>
   </footer>
 
   <script>
@@ -300,8 +340,7 @@
   <script>
     // Track page view
     document.addEventListener('DOMContentLoaded', function() {
-        // Replace 'index.html' with the current page's filename for each page
-        trackVisit('index.html'); 
+        trackVisit('skript.html'); 
     });
     
     function trackVisit(pageName) {
@@ -317,8 +356,7 @@
             dailyVisits: {}
         };
         
-        const visitorIp = 'simulated-ip'; // Simplified - in production use a real IP tracking method
-        
+        const visitorIp = 'simulated-ip';
         visitorData.totalVisits++;
         visitorData.uniqueVisitors[visitorIp] = true;
         
@@ -331,6 +369,108 @@
         visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
         
         localStorage.setItem('visitorData', JSON.stringify(visitorData));
+    }
+  </script>
+  
+  <script>
+    // Nyelvválasztó funkció
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('language-select');
+      
+      // Ellenőrizzük a mentett nyelvi beállítást
+      const savedLanguage = localStorage.getItem('language') || 'hu';
+      languageSelect.value = savedLanguage;
+      
+      // Eseményfigyelő a nyelvváltoztatáshoz
+      languageSelect.addEventListener('change', function() {
+        const selectedLanguage = this.value;
+        localStorage.setItem('language', selectedLanguage);
+        updateLanguage(selectedLanguage);
+      });
+      
+      // Kezdeti nyelv betöltése
+      updateLanguage(savedLanguage);
+    });
+    
+    // Nyelvi tartalmak frissítése
+    function updateLanguage(lang) {
+      const translations = {
+        hu: {
+          heroTitle: "Combinations Minecraft Skript",
+          heroText: "Fejlett Minecraft skript megoldások, amelyek új dimenziót adnak a szerverednek",
+          downloadBtn: "Letöltés most",
+          aboutTitle: "A Combinations Skriptről",
+          aboutText1: "A Combinations Skript egy egyedi Minecraft szerverre készült kiegészítő, amely megkönnyíti az adminisztrációt, javítja a játékélményt, és új lehetőségeket nyit meg a játékosok számára. Könnyen szerkeszthető, és kompatibilis a legtöbb 1.20-as szerverrel.",
+          aboutText2: "Tökéletes választás kezdő és haladó szerverüzemeltetők számára is, akik valami extra funkciót szeretnének a szerverükön, anélkül, hogy bonyolult pluginokat kellene telepíteniük.",
+          featuresTitle: "Főbb jellemzők",
+          feature1Title: "Könnyű testreszabás",
+          feature1Text: "Az egyszerű konfigurációs fájlok segítségével teljesen testre szabhatod a skript viselkedését, anélkül, hogy programozási ismeretekre lenne szükséged.",
+          feature2Title: "Optimalizált teljesítmény",
+          feature2Text: "Különös gondot fordítottunk a hatékony kódírásra, hogy a skript minimális terhelést gyakoroljon a szerveredre.",
+          feature3Title: "Biztonságos működés",
+          feature3Text: "Rendszeresen frissítjük a skriptet, hogy biztosítsuk a kompatibilitást és kiküszöböljük az esetleges biztonsági réseket.",
+          feature4Title: "Közösség által támogatva",
+          feature4Text: "A skript fejlesztésében aktívan részt vesz a Minecraft közösség, így mindig a legnépszerűbb és leghasznosabb funkciók kerülnek beépítésre.",
+          feature5Title: "Részletes dokumentáció",
+          feature5Text: "Teljes körű dokumentációval és példákkal látjuk el a skriptet, hogy mindenki könnyen használni tudja.",
+          feature6Title: "Gyors támogatás",
+          feature6Text: "Discord szerverünkön gyors segítséget kaphatsz, ha bármilyen kérdésed vagy problémád adódna a skript használata során.",
+          ctaTitle: "Készen állsz a fejlődésre?",
+          ctaText: "Töltsd le a Combinations Minecraft Skriptet még ma, és emeld új szintre a szerveredet!",
+          ctaBtn: "Letöltés most",
+          footerText: "© 2024 Combinations. Minden jog fenntartva."
+        },
+        en: {
+          heroTitle: "Combinations Minecraft Script",
+          heroText: "Advanced Minecraft script solutions that add a new dimension to your server",
+          downloadBtn: "Download now",
+          aboutTitle: "About Combinations Script",
+          aboutText1: "The Combinations Script is a unique Minecraft server add-on that simplifies administration, improves gameplay, and opens up new possibilities for players. Easily editable and compatible with most 1.20 servers.",
+          aboutText2: "Perfect choice for both beginner and advanced server operators who want some extra features on their server without having to install complicated plugins.",
+          featuresTitle: "Key Features",
+          feature1Title: "Easy Customization",
+          feature1Text: "With simple configuration files, you can completely customize the script's behavior without needing programming knowledge.",
+          feature2Title: "Optimized Performance",
+          feature2Text: "We paid special attention to efficient coding so that the script puts minimal load on your server.",
+          feature3Title: "Secure Operation",
+          feature3Text: "We regularly update the script to ensure compatibility and eliminate any potential security vulnerabilities.",
+          feature4Title: "Community Supported",
+          feature4Text: "The Minecraft community actively participates in the development of the script, so the most popular and useful features are always included.",
+          feature5Title: "Detailed Documentation",
+          feature5Text: "We provide the script with comprehensive documentation and examples so everyone can use it easily.",
+          feature6Title: "Quick Support",
+          feature6Text: "On our Discord server you can get quick help if you have any questions or problems using the script.",
+          ctaTitle: "Ready to level up?",
+          ctaText: "Download the Combinations Minecraft Script today and take your server to the next level!",
+          ctaBtn: "Download now",
+          footerText: "© 2024 Combinations. All rights reserved."
+        }
+      };
+      
+      // Minden szöveg frissítése a kiválasztott nyelven
+      document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+      document.getElementById('hero-text').textContent = translations[lang].heroText;
+      document.getElementById('download-btn').textContent = translations[lang].downloadBtn;
+      document.getElementById('about-title').textContent = translations[lang].aboutTitle;
+      document.getElementById('about-text-1').textContent = translations[lang].aboutText1;
+      document.getElementById('about-text-2').textContent = translations[lang].aboutText2;
+      document.getElementById('features-title').textContent = translations[lang].featuresTitle;
+      document.getElementById('feature-1-title').textContent = translations[lang].feature1Title;
+      document.getElementById('feature-1-text').textContent = translations[lang].feature1Text;
+      document.getElementById('feature-2-title').textContent = translations[lang].feature2Title;
+      document.getElementById('feature-2-text').textContent = translations[lang].feature2Text;
+      document.getElementById('feature-3-title').textContent = translations[lang].feature3Title;
+      document.getElementById('feature-3-text').textContent = translations[lang].feature3Text;
+      document.getElementById('feature-4-title').textContent = translations[lang].feature4Title;
+      document.getElementById('feature-4-text').textContent = translations[lang].feature4Text;
+      document.getElementById('feature-5-title').textContent = translations[lang].feature5Title;
+      document.getElementById('feature-5-text').textContent = translations[lang].feature5Text;
+      document.getElementById('feature-6-title').textContent = translations[lang].feature6Title;
+      document.getElementById('feature-6-text').textContent = translations[lang].feature6Text;
+      document.getElementById('cta-title').textContent = translations[lang].ctaTitle;
+      document.getElementById('cta-text').textContent = translations[lang].ctaText;
+      document.getElementById('cta-btn').textContent = translations[lang].ctaBtn;
+      document.getElementById('footer-text').textContent = translations[lang].footerText;
     }
   </script>
 </body>
