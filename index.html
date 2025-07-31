@@ -265,6 +265,32 @@
       }
     }
 
+    /* Nyelvválasztó stílusok */
+    .language-selector {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 1000;
+      background-color: var(--dark);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .language-selector select {
+      background-color: var(--darker);
+      color: var(--light);
+      border: 1px solid var(--primary);
+      padding: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--highlight);
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
       .hero h1 {
@@ -293,6 +319,11 @@
         left: 0;
         text-align: left;
       }
+      
+      .language-selector {
+        top: 70px;
+        right: 10px;
+      }
     }
   </style>
 </head>
@@ -309,61 +340,69 @@
     <a href="launcher.html">Minecraft Launcher</a>
     <a href="discord.html">Discord Bot</a>
   </nav>
+  
+  <!-- Nyelvválasztó -->
+  <div class="language-selector">
+    <select id="language-select">
+      <option value="hu">Magyar</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 
   <section class="hero">
-    <h1>A Combinations kezdete</h1>
-    <p>2024-ben egy személyes vágyból indult útjára a Combinations, hogy minőségi digitális eszközöket kínáljak a játékosok és közösségek számára.</p>
+    <h1 id="hero-title">A Combinations kezdete</h1>
+    <p id="hero-text">2024-ben egy személyes vágyból indult útjára a Combinations, hogy minőségi digitális eszközöket kínáljak a játékosok és közösségek számára.</p>
   </section>
 
   <div class="container">
     <section class="story-section">
-      <h2>Egy álom valósággá válik</h2>
-      <p>A Combinations egy személyes vállalkozás, amely azzal a céllal jött létre, hogy minőségi és hasznos digitális eszközöket biztosítsak a Minecraft közösség, valamint a Discord szerverek számára. A projekt 2024-ben indult egy egyszerű, de szenvedélyes ötletből: mi lenne, ha egyetlen név alatt több kreatív megoldást is kínálhatnék? Innen indult a Combinations története.</p>
+      <h2 id="story-title">Egy álom valósággá válik</h2>
+      <p id="story-text-1">A Combinations egy személyes vállalkozás, amely azzal a céllal jött létre, hogy minőségi és hasznos digitális eszközöket biztosítsak a Minecraft közösség, valamint a Discord szerverek számára. A projekt 2024-ben indult egy egyszerű, de szenvedélyes ötletből: mi lenne, ha egyetlen név alatt több kreatív megoldást is kínálhatnék? Innen indult a Combinations története.</p>
       
-      <div class="creator-quote">
+      <div class="creator-quote" id="quote-text">
         "Mindig is szerettem volna valami egyedit alkotni, ami segíti a játékosokat és közösségeket. A Combinations ezen álom beteljesülése."
       </div>
 
-      <p>Célom, hogy innovatív megoldásokat kínáljak, amelyek valódi értéket adnak a felhasználóimnak. Minden termék mögött órányi egyéni fejlesztés és tesztelés áll, hogy garantáljam a zökkenőmentes felhasználói élményt.</p>
+      <p id="story-text-2">Célom, hogy innovatív megoldásokat kínáljak, amelyek valódi értéket adnak a felhasználóimnak. Minden termék mögött órányi egyéni fejlesztés és tesztelés áll, hogy garantáljam a zökkenőmentes felhasználói élményt.</p>
     </section>
 
-    <h2 class="section-title">Az út idővonalon</h2>
+    <h2 class="section-title" id="timeline-title">Az út idővonalon</h2>
     <div class="timeline">
       <div class="timeline-item left">
         <div class="timeline-content">
-          <h3>2024. január - Az ötlet születése</h3>
-          <p>Egy éjszaka merült fel bennem az ötlet, hogy létrehozzak egy többfunkciós platformot, ami egyesíti a legjobb Minecraft és Discord eszközöket.</p>
+          <h3 id="timeline-1-title">2024. január - Az ötlet születése</h3>
+          <p id="timeline-1-text">Egy éjszaka merült fel bennem az ötlet, hogy létrehozzak egy többfunkciós platformot, ami egyesíti a legjobb Minecraft és Discord eszközöket.</p>
         </div>
       </div>
       <div class="timeline-item right">
         <div class="timeline-content">
-          <h3>2024. március - Első lépések</h3>
-          <p>Megírtam az első Minecraft skriptjeimet, amelyeket saját szerveremen teszteltem. Ezek a skriptek váltak a későbbi alapjává a projektnek.</p>
+          <h3 id="timeline-2-title">2024. március - Első lépések</h3>
+          <p id="timeline-2-text">Megírtam az első Minecraft skriptjeimet, amelyeket saját szerveremen teszteltem. Ezek a skriptek váltak a későbbi alapjává a projektnek.</p>
         </div>
       </div>
       <div class="timeline-item left">
         <div class="timeline-content">
-          <h3>2024. június - Discord bot fejlesztés</h3>
-          <p>Elkezdtem fejleszteni a Combinations Discord botot, ami kezdetben csak néhány alapvető funkciót tartalmazott.</p>
+          <h3 id="timeline-3-title">2024. június - Discord bot fejlesztés</h3>
+          <p id="timeline-3-text">Elkezdtem fejleszteni a Combinations Discord botot, ami kezdetben csak néhány alapvető funkciót tartalmazott.</p>
         </div>
       </div>
       <div class="timeline-item right">
         <div class="timeline-content">
-          <h3>2024. szeptember - Launcher ötlet</h3>
-          <p>Felismertem, hogy a játékosoknak szüksége van egy egyszerű megoldásra a modok kezelésére, így elkezdtem dolgozni a saját Minecraft Launcher ötletemen.</p>
+          <h3 id="timeline-4-title">2024. szeptember - Launcher ötlet</h3>
+          <p id="timeline-4-text">Felismertem, hogy a játékosoknak szüksége van egy egyszerű megoldásra a modok kezelésére, így elkezdtem dolgozni a saját Minecraft Launcher ötletemen.</p>
         </div>
       </div>
       <div class="timeline-item left">
         <div class="timeline-content">
-          <h3>2025 - A jövő</h3>
-          <p>További innovatív projekteken dolgozom, hogy még több értéket nyújthassak. Nagyobb, jobb és kreatívabb megoldások várnak!</p>
+          <h3 id="timeline-5-title">2025 - A jövő</h3>
+          <p id="timeline-5-text">További innovatív projekteken dolgozom, hogy még több értéket nyújthassak. Nagyobb, jobb és kreatívabb megoldások várnak!</p>
         </div>
       </div>
     </div>
   </div>
 
   <footer class="footer">
-    <p>&copy; 2024 Combinations. Minden jog fenntartva.</p>
+    <p id="footer-text">&copy; 2024 Combinations. Minden jog fenntartva.</p>
   </footer>
 
   <script>
@@ -410,6 +449,93 @@
         visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
         
         localStorage.setItem('visitorData', JSON.stringify(visitorData));
+    }
+  </script>
+  
+  <script>
+    // Nyelvválasztó funkció
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('language-select');
+      
+      // Ellenőrizzük a mentett nyelvi beállítást
+      const savedLanguage = localStorage.getItem('language') || 'hu';
+      languageSelect.value = savedLanguage;
+      
+      // Eseményfigyelő a nyelvváltoztatáshoz
+      languageSelect.addEventListener('change', function() {
+        const selectedLanguage = this.value;
+        localStorage.setItem('language', selectedLanguage);
+        updateLanguage(selectedLanguage);
+      });
+      
+      // Kezdeti nyelv betöltése
+      updateLanguage(savedLanguage);
+    });
+    
+    // Nyelvi tartalmak frissítése
+    function updateLanguage(lang) {
+      const translations = {
+        hu: {
+          heroTitle: "A Combinations kezdete",
+          heroText: "2024-ben egy személyes vágyból indult útjára a Combinations, hogy minőségi digitális eszközöket kínáljak a játékosok és közösségek számára.",
+          storyTitle: "Egy álom valósággá válik",
+          storyText1: "A Combinations egy személyes vállalkozás, amely azzal a céllal jött létre, hogy minőségi és hasznos digitális eszközöket biztosítsak a Minecraft közösség, valamint a Discord szerverek számára. A projekt 2024-ben indult egy egyszerű, de szenvedélyes ötletből: mi lenne, ha egyetlen név alatt több kreatív megoldást is kínálhatnék? Innen indult a Combinations története.",
+          quoteText: "\"Mindig is szerettem volna valami egyedit alkotni, ami segíti a játékosokat és közösségeket. A Combinations ezen álom beteljesülése.\"",
+          storyText2: "Célom, hogy innovatív megoldásokat kínáljak, amelyek valódi értéket adnak a felhasználóimnak. Minden termék mögött órányi egyéni fejlesztés és tesztelés áll, hogy garantáljam a zökkenőmentes felhasználói élményt.",
+          timelineTitle: "Az út idővonalon",
+          timeline1Title: "2024. január - Az ötlet születése",
+          timeline1Text: "Egy éjszaka merült fel bennem az ötlet, hogy létrehozzak egy többfunkciós platformot, ami egyesíti a legjobb Minecraft és Discord eszközöket.",
+          timeline2Title: "2024. március - Első lépések",
+          timeline2Text: "Megírtam az első Minecraft skriptjeimet, amelyeket saját szerveremen teszteltem. Ezek a skriptek váltak a későbbi alapjává a projektnek.",
+          timeline3Title: "2024. június - Discord bot fejlesztés",
+          timeline3Text: "Elkezdtem fejleszteni a Combinations Discord botot, ami kezdetben csak néhány alapvető funkciót tartalmazott.",
+          timeline4Title: "2024. szeptember - Launcher ötlet",
+          timeline4Text: "Felismertem, hogy a játékosoknak szüksége van egy egyszerű megoldásra a modok kezelésére, így elkezdtem dolgozni a saját Minecraft Launcher ötletemen.",
+          timeline5Title: "2025 - A jövő",
+          timeline5Text: "További innovatív projekteken dolgozom, hogy még több értéket nyújthassak. Nagyobb, jobb és kreatívabb megoldások várnak!",
+          footerText: "© 2024 Combinations. Minden jog fenntartva."
+        },
+        en: {
+          heroTitle: "The Beginning of Combinations",
+          heroText: "In 2024, Combinations started from a personal desire to provide quality digital tools for gamers and communities.",
+          storyTitle: "A Dream Becoming Reality",
+          storyText1: "Combinations is a personal venture created with the goal of providing quality and useful digital tools for the Minecraft community and Discord servers. The project started in 2024 from a simple but passionate idea: what if I could offer multiple creative solutions under one name? This is how the story of Combinations began.",
+          quoteText: "\"I've always wanted to create something unique that helps players and communities. Combinations is the fulfillment of this dream.\"",
+          storyText2: "My goal is to offer innovative solutions that provide real value to my users. Behind each product are hours of individual development and testing to ensure a seamless user experience.",
+          timelineTitle: "Our Journey Timeline",
+          timeline1Title: "January 2024 - The Idea is Born",
+          timeline1Text: "One night, the idea came to me to create a multifunctional platform that combines the best Minecraft and Discord tools.",
+          timeline2Title: "March 2024 - First Steps",
+          timeline2Text: "I wrote my first Minecraft scripts, which I tested on my own server. These scripts later became the foundation of the project.",
+          timeline3Title: "June 2024 - Discord Bot Development",
+          timeline3Text: "I started developing the Combinations Discord bot, which initially only included a few basic features.",
+          timeline4Title: "September 2024 - Launcher Idea",
+          timeline4Text: "I realized that players needed a simple solution for managing mods, so I started working on my own Minecraft Launcher idea.",
+          timeline5Title: "2025 - The Future",
+          timeline5Text: "I'm working on more innovative projects to provide even more value. Bigger, better and more creative solutions are coming!",
+          footerText: "© 2024 Combinations. All rights reserved."
+        }
+      };
+      
+      // Minden szöveg frissítése a kiválasztott nyelven
+      document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+      document.getElementById('hero-text').textContent = translations[lang].heroText;
+      document.getElementById('story-title').textContent = translations[lang].storyTitle;
+      document.getElementById('story-text-1').textContent = translations[lang].storyText1;
+      document.getElementById('quote-text').textContent = translations[lang].quoteText;
+      document.getElementById('story-text-2').textContent = translations[lang].storyText2;
+      document.getElementById('timeline-title').textContent = translations[lang].timelineTitle;
+      document.getElementById('timeline-1-title').textContent = translations[lang].timeline1Title;
+      document.getElementById('timeline-1-text').textContent = translations[lang].timeline1Text;
+      document.getElementById('timeline-2-title').textContent = translations[lang].timeline2Title;
+      document.getElementById('timeline-2-text').textContent = translations[lang].timeline2Text;
+      document.getElementById('timeline-3-title').textContent = translations[lang].timeline3Title;
+      document.getElementById('timeline-3-text').textContent = translations[lang].timeline3Text;
+      document.getElementById('timeline-4-title').textContent = translations[lang].timeline4Title;
+      document.getElementById('timeline-4-text').textContent = translations[lang].timeline4Text;
+      document.getElementById('timeline-5-title').textContent = translations[lang].timeline5Title;
+      document.getElementById('timeline-5-text').textContent = translations[lang].timeline5Text;
+      document.getElementById('footer-text').textContent = translations[lang].footerText;
     }
   </script>
 </body>
