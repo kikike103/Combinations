@@ -54,8 +54,8 @@
     }
     .lang-switcher {
       position: fixed;
-      top: 20px;
-      right: 160px;
+      top: 60px;
+      right: 20px;
       z-index: 1000;
     }
     .hero {
@@ -88,18 +88,6 @@
       margin-bottom: 30px;
       color: var(--primary);
       text-align: center;
-    }
-    .story-section {
-      background-color: var(--dark);
-      padding: 40px;
-      border-radius: 10px;
-      margin-bottom: 40px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .story-section h2 {
-      color: var(--highlight);
-      margin-top: 0;
-      font-size: 28px;
     }
     .timeline {
       position: relative;
@@ -135,14 +123,8 @@
       border-radius: 50%;
       z-index: 1;
     }
-    .left {
-      left: 0;
-      text-align: right;
-    }
-    .right {
-      left: 50%;
-      text-align: left;
-    }
+    .left { left: 0; text-align: right; }
+    .right { left: 50%; text-align: left; }
     .timeline-content {
       padding: 20px 30px;
       background-color: var(--dark);
@@ -169,103 +151,99 @@
   </style>
 </head>
 <body>
+  <div class="logo">Combinations</div>
+  <nav class="top-nav">
+    <a href="index.html" data-i18n="navHome">Kezdőlap</a>
+    <a href="skript.html" data-i18n="navSkript">Minecraft Skript</a>
+    <a href="launcher.html" data-i18n="navLauncher">Minecraft Launcher</a>
+    <a href="discord.html" data-i18n="navDiscord">Discord Bot</a>
+  </nav>
 
-<!-- NYELVVÁLTÁS -->
-<div class="lang-switcher">
-  <select id="languageSelect">
-    <option value="hu">Magyar</option>
-    <option value="en">English</option>
-  </select>
-</div>
-
-<div class="logo">Combinations</div>
-
-<nav class="top-nav">
-  <a href="index.html" data-i18n="navHome">Kezdőlap</a>
-  <a href="skript.html" data-i18n="navSkript">Minecraft Skript</a>
-  <a href="launcher.html" data-i18n="navLauncher">Minecraft Launcher</a>
-  <a href="discord.html" data-i18n="navDiscord">Discord Bot</a>
-</nav>
-
-<section class="hero">
-  <h1 data-i18n="title">A Combinations kezdete</h1>
-  <p data-i18n="description">2024-ben egy személyes vágyból indult útjára a Combinations...</p>
-</section>
-
-<div class="container">
-  <h2 class="section-title" data-i18n="sectionTitle">Az út idővonalon</h2>
-  <div class="timeline">
-    <div class="timeline-item left"><div class="timeline-content"><h3 data-i18n="timeline1">2024. január - Az ötlet születése</h3></div></div>
-    <div class="timeline-item right"><div class="timeline-content"><h3 data-i18n="timeline2">2024. március - Első lépések</h3></div></div>
-    <div class="timeline-item left"><div class="timeline-content"><h3 data-i18n="timeline3">2024. június - Discord bot fejlesztés</h3></div></div>
-    <div class="timeline-item right"><div class="timeline-content"><h3 data-i18n="timeline4">2024. szeptember - Launcher ötlet</h3></div></div>
-    <div class="timeline-item left"><div class="timeline-content"><h3 data-i18n="timeline5">2025 - A jövő</h3></div></div>
+  <div class="lang-switcher">
+    <select id="languageSelect">
+      <option value="hu">Magyar</option>
+      <option value="en">English</option>
+    </select>
   </div>
-</div>
 
-<footer class="footer">
-  <p data-i18n="footer">&copy; 2024 Combinations. Minden jog fenntartva.</p>
-</footer>
+  <section class="hero">
+    <h1 data-i18n="title">A Combinations kezdete</h1>
+    <p data-i18n="description">2024-ben egy személyes vágyból indult útjára a Combinations...</p>
+  </section>
 
-<!-- NYELVVÁLTÁS SCRIPT -->
-<script>
-const translations = {
-  hu: {
-    title: "A Combinations kezdete",
-    description: "2024-ben egy személyes vágyból indult útjára a Combinations...",
-    navHome: "Kezdőlap",
-    navSkript: "Minecraft Skript",
-    navLauncher: "Minecraft Launcher",
-    navDiscord: "Discord Bot",
-    sectionTitle: "Az út idővonalon",
-    timeline1: "2024. január - Az ötlet születése",
-    timeline2: "2024. március - Első lépések",
-    timeline3: "2024. június - Discord bot fejlesztés",
-    timeline4: "2024. szeptember - Launcher ötlet",
-    timeline5: "2025 - A jövő",
-    footer: "&copy; 2024 Combinations. Minden jog fenntartva."
-  },
-  en: {
-    title: "The Beginning of Combinations",
-    description: "In 2024, Combinations was born from a personal desire...",
-    navHome: "Home",
-    navSkript: "Minecraft Skript",
-    navLauncher: "Minecraft Launcher",
-    navDiscord: "Discord Bot",
-    sectionTitle: "Timeline of Progress",
-    timeline1: "January 2024 - The Idea is Born",
-    timeline2: "March 2024 - First Steps",
-    timeline3: "June 2024 - Discord Bot Development",
-    timeline4: "September 2024 - Launcher Idea",
-    timeline5: "2025 - The Future",
-    footer: "&copy; 2024 Combinations. All rights reserved."
-  }
-};
+  <div class="container">
+    <h2 class="section-title" data-i18n="sectionTitle">Az út idővonalon</h2>
+    <div class="timeline">
+      <div class="timeline-item left"><div class="timeline-content"><h3 data-i18n="timeline1">2024. január - Az ötlet születése</h3></div></div>
+      <div class="timeline-item right"><div class="timeline-content"><h3 data-i18n="timeline2">2024. március - Első lépések</h3></div></div>
+      <div class="timeline-item left"><div class="timeline-content"><h3 data-i18n="timeline3">2024. június - Discord bot fejlesztés</h3></div></div>
+      <div class="timeline-item right"><div class="timeline-content"><h3 data-i18n="timeline4">2024. szeptember - Launcher ötlet</h3></div></div>
+      <div class="timeline-item left"><div class="timeline-content"><h3 data-i18n="timeline5">2025 - A jövő</h3></div></div>
+    </div>
+  </div>
 
-function setLanguage(lang) {
-  localStorage.setItem('language', lang);
-  const t = translations[lang];
-  if (!t) return;
-  for (const key in t) {
-    const el = document.querySelector(`[data-i18n="${key}"]`);
-    if (el) {
-      if (el.tagName.toLowerCase() === 'p' || el.tagName.toLowerCase() === 'footer')
-        el.innerHTML = t[key];
-      else
-        el.textContent = t[key];
+  <footer class="footer">
+    <p data-i18n="footer">&copy; 2024 Combinations. Minden jog fenntartva.</p>
+  </footer>
+
+  <script>
+    const translations = {
+      hu: {
+        title: "A Combinations kezdete",
+        description: "2024-ben egy személyes vágyból indult útjára a Combinations...",
+        navHome: "Kezdőlap",
+        navSkript: "Minecraft Skript",
+        navLauncher: "Minecraft Launcher",
+        navDiscord: "Discord Bot",
+        sectionTitle: "Az út idővonalon",
+        timeline1: "2024. január - Az ötlet születése",
+        timeline2: "2024. március - Első lépések",
+        timeline3: "2024. június - Discord bot fejlesztés",
+        timeline4: "2024. szeptember - Launcher ötlet",
+        timeline5: "2025 - A jövő",
+        footer: "&copy; 2024 Combinations. Minden jog fenntartva."
+      },
+      en: {
+        title: "The Beginning of Combinations",
+        description: "In 2024, Combinations was born from a personal desire...",
+        navHome: "Home",
+        navSkript: "Minecraft Skript",
+        navLauncher: "Minecraft Launcher",
+        navDiscord: "Discord Bot",
+        sectionTitle: "Timeline of Progress",
+        timeline1: "January 2024 - The Idea is Born",
+        timeline2: "March 2024 - First Steps",
+        timeline3: "June 2024 - Discord Bot Development",
+        timeline4: "September 2024 - Launcher Idea",
+        timeline5: "2025 - The Future",
+        footer: "&copy; 2024 Combinations. All rights reserved."
+      }
+    };
+
+    function setLanguage(lang) {
+      localStorage.setItem('language', lang);
+      const t = translations[lang];
+      if (!t) return;
+      for (const key in t) {
+        const el = document.querySelector(`[data-i18n="${key}"]`);
+        if (el) {
+          if (el.tagName.toLowerCase() === 'p' || el.tagName.toLowerCase() === 'footer')
+            el.innerHTML = t[key];
+          else
+            el.textContent = t[key];
+        }
+      }
     }
-  }
-}
 
-document.getElementById('languageSelect').addEventListener('change', (e) => {
-  setLanguage(e.target.value);
-});
+    document.getElementById('languageSelect').addEventListener('change', (e) => {
+      setLanguage(e.target.value);
+    });
 
-window.addEventListener('DOMContentLoaded', () => {
-  const lang = localStorage.getItem('language') || 'hu';
-  document.getElementById('languageSelect').value = lang;
-  setLanguage(lang);
-});
-</script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('language') || 'hu';
+      document.getElementById('languageSelect').value = lang;
+      setLanguage(lang);
+    });
+  </script>
 </body>
 </html>
