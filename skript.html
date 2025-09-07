@@ -26,12 +26,19 @@
       line-height: 1.6;
     }
 
+    /* Mobilbarát navigáció */
     .top-nav {
       position: fixed;
       top: 0;
       right: 0;
       padding: 20px;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
     }
 
     .top-nav a {
@@ -49,6 +56,27 @@
       background-color: rgba(88, 101, 242, 0.1);
     }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 20px;
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--light);
+      border-radius: 2px;
+      transition: all 0.3s linear;
+    }
+
     .logo {
       position: fixed;
       top: 20px;
@@ -60,19 +88,19 @@
     }
 
     .hero {
-      background-color: var(--gray-bg); /* Csak szürke háttér */
-      padding: 120px 20px 60px;
+      background-color: var(--gray-bg);
+      padding: 140px 20px 60px;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: 48px;
+      font-size: 2.5rem;
       margin-bottom: 20px;
       color: white;
     }
 
     .hero p {
-      font-size: 20px;
+      font-size: 1.1rem;
       max-width: 800px;
       margin: 0 auto 30px;
       color: rgba(255,255,255,0.9);
@@ -103,7 +131,7 @@
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: 2rem;
       margin-bottom: 30px;
       color: var(--primary);
       text-align: center;
@@ -111,7 +139,7 @@
 
     .card {
       background-color: var(--dark);
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
       margin-bottom: 30px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -125,20 +153,22 @@
     .card h2 {
       color: var(--highlight);
       margin-top: 0;
+      font-size: 1.6rem;
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      gap: 25px;
       margin-top: 40px;
     }
 
     .feature {
       background-color: var(--dark);
-      padding: 25px;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
     .feature i {
@@ -150,6 +180,7 @@
     .feature h3 {
       color: var(--light);
       margin-top: 0;
+      font-size: 1.2rem;
     }
 
     .footer {
@@ -221,22 +252,125 @@
     }
 
     /* Responsive design */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .hero h1 {
-        font-size: 36px;
+        font-size: 2.2rem;
       }
       
       .hero p {
-        font-size: 18px;
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .card h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background-color: var(--dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .top-nav a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+      }
+      
+      .hero {
+        padding: 120px 15px 50px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 30px 15px;
+      }
+      
+      .card {
+        padding: 20px;
       }
       
       .features {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .feature {
+        padding: 20px 15px;
       }
       
       .language-selector {
         top: 70px;
         right: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .logo {
+        font-size: 20px;
+        top: 15px;
+        left: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 0.95rem;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .card h2 {
+        font-size: 1.4rem;
+      }
+      
+      .feature i {
+        font-size: 35px;
+      }
+      
+      .feature h3 {
+        font-size: 1.1rem;
+      }
+      
+      .language-selector {
+        top: 65px;
+        right: 5px;
+        padding: 8px;
       }
     }
   </style>
@@ -249,10 +383,17 @@
 
   <div class="logo">Combinations</div>
   <nav class="top-nav">
-    <a href="index.html">Kezdőlap</a>
-    <a href="skript.html">Minecraft Skript</a>
-    <a href="launcher.html">Minecraft Launcher</a>
-    <a href="discord.html">Discord Bot</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Kezdőlap</a>
+      <a href="skript.html">Minecraft Skript</a>
+      <a href="launcher.html">Minecraft Launcher</a>
+      <a href="discord.html">Discord Bot</a>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
   
   <!-- Nyelvválasztó -->
@@ -335,6 +476,23 @@
         loader.style.opacity = '0';
         loader.style.visibility = 'hidden';
       }, 1000);
+    });
+
+    // Hamburger menü kezelése
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Kattintás a menüpontokra bezárja a menüt mobilon
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
     });
   </script>
   <script>
