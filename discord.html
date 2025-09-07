@@ -24,12 +24,19 @@
       line-height: 1.6;
     }
 
+    /* Mobilbarát navigáció */
     .top-nav {
       position: fixed;
       top: 0;
       right: 0;
       padding: 20px;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
     }
 
     .top-nav a {
@@ -47,6 +54,27 @@
       background-color: rgba(88, 101, 242, 0.1);
     }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 20px;
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--light);
+      border-radius: 2px;
+      transition: all 0.3s linear;
+    }
+
     .logo {
       position: fixed;
       top: 20px;
@@ -59,22 +87,22 @@
 
     .hero {
       background-color: var(--dark);
-      padding: 120px 20px 60px;
+      padding: 140px 20px 60px;
       text-align: center;
-      background-image: url('https://via.placeholder.com/1920x1080'); /* IDE KELL A SAJÁT KÉP */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080');
       background-size: cover;
       background-position: center;
       background-blend-mode: overlay;
     }
 
     .hero h1 {
-      font-size: 48px;
+      font-size: 2.5rem;
       margin-bottom: 20px;
       color: white;
     }
 
     .hero p {
-      font-size: 20px;
+      font-size: 1.1rem;
       max-width: 800px;
       margin: 0 auto 30px;
       color: rgba(255,255,255,0.9);
@@ -105,36 +133,35 @@
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: 2rem;
       margin-bottom: 30px;
       color: var(--primary);
       text-align: center;
     }
 
     .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
       margin-bottom: 50px;
     }
 
     .feature-card {
       background-color: var(--dark);
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
-      width: 350px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
 
     .feature-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-5px);
     }
 
     .feature-card h3 {
       color: var(--primary);
       margin-top: 0;
+      font-size: 1.3rem;
     }
 
     .feature-icon {
@@ -181,7 +208,7 @@
     /* GYIK stílusok */
     .faq {
       background-color: var(--dark);
-      padding: 40px;
+      padding: 30px;
       border-radius: 10px;
       margin-top: 40px;
     }
@@ -197,7 +224,7 @@
     }
 
     .faq-question {
-      font-size: 20px;
+      font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 10px;
       color: var(--primary);
@@ -234,19 +261,147 @@
       margin-top: 60px;
     }
 
+    /* Nyelvválasztó stílusok */
+    .language-selector {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 1000;
+      background-color: var(--dark);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .language-selector select {
+      background-color: var(--darker);
+      color: var(--light);
+      border: 1px solid var(--primary);
+      padding: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
     /* Responsive design */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .hero h1 {
-        font-size: 36px;
+        font-size: 2.2rem;
       }
       
       .hero p {
-        font-size: 18px;
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background-color: var(--dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .top-nav a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+      }
+      
+      .hero {
+        padding: 120px 15px 50px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 30px 15px;
       }
       
       .features {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
+      }
+      
+      .feature-card {
+        padding: 20px;
+      }
+      
+      .faq {
+        padding: 20px;
+      }
+      
+      .faq-question {
+        font-size: 1.1rem;
+      }
+      
+      .language-selector {
+        top: 70px;
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .logo {
+        font-size: 20px;
+        top: 15px;
+        left: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 0.95rem;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .feature-card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .feature-icon {
+        font-size: 35px;
+      }
+      
+      .language-selector {
+        top: 65px;
+        right: 5px;
+        padding: 8px;
       }
     }
   </style>
@@ -259,69 +414,84 @@
 
   <div class="logo">Combinations</div>
   <nav class="top-nav">
-    <a href="index.html">Kezdőlap</a>
-    <a href="skript.html">Minecraft Skript</a>
-    <a href="launcher.html">Minecraft Launcher</a>
-    <a href="discord.html">Discord Bot</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Kezdőlap</a>
+      <a href="skript.html">Minecraft Skript</a>
+      <a href="launcher.html">Minecraft Launcher</a>
+      <a href="discord.html">Discord Bot</a>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+  
+  <!-- Nyelvválasztó -->
+  <div class="language-selector">
+    <select id="language-select">
+      <option value="hu">Magyar</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 
   <section class="hero">
-    <h1>Combinations Discord Bot</h1>
-    <p>Az intelligens megoldás minden Discord szervered számára. Fejlett moderáció, zene, fun parancsok és még sok más egy helyen!</p>
-    <a href="https://discord.com/oauth2/authorize?client_id=1360678768083206184&scope=bot&permissions=8" target="_blank" class="btn">Bot hozzáadása</a>
+    <h1 id="hero-title">Combinations Discord Bot</h1>
+    <p id="hero-text">Az intelligens megoldás minden Discord szervered számára. Fejlett moderáció, zene, fun parancsok és még sok más egy helyen!</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1360678768083206184&scope=bot&permissions=8" target="_blank" class="btn" id="invite-btn">Bot hozzáadása</a>
   </section>
 
   <div class="container">
     <section>
-      <h2 class="section-title">Főbb funkciók</h2>
+      <h2 class="section-title" id="features-title">Főbb funkciók</h2>
       <div class="features">
         <div class="feature-card economy">
           <div class="feature-icon">
             <i class="fas fa-dollar-sign"></i>
           </div>
-          <h3>Economy Rendszer</h3>
-          <p>Élénk gazdasági rendszerünk lehetővé teszi a felhasználóknak, hogy virtuális pénzt keressenek, boltokat hozzanak létre, és kereskedjenek egymással. Napi jutalmak, munka lehetőségek és egyedi tárgyak várják a szervered tagjait!</p>
+          <h3 id="feature-1-title">Economy Rendszer</h3>
+          <p id="feature-1-text">Élénk gazdasági rendszerünk lehetővé teszi a felhasználóknak, hogy virtuális pénzt keressenek, boltokat hozzanak létre, és kereskedjenek egymással. Napi jutalmak, munka lehetőségek és egyedi tárgyak várják a szervered tagjait!</p>
         </div>
         
         <div class="feature-card music">
           <div class="feature-icon">
             <i class="fas fa-compact-disc"></i>
           </div>
-          <h3>Zenelejátszás</h3>
-          <p>Kiváló minőségű zenelejátszó rendszerünkkel a szervered tagjai zenehallgatással tölthetik az idejüket. Támogatja a YouTube, Spotify, SoundCloud és egyéb platformokat, sorban állítás, loop és sok más funkcióval.</p>
+          <h3 id="feature-2-title">Zenelejátszás</h3>
+          <p id="feature-2-text">Kiváló minőségű zenelejátszó rendszerünkkel a szervered tagjai zenehallgatással tölthetik az idejüket. Támogatja a YouTube, Spotify, SoundCloud és egyéb platformokat, sorban állítás, loop és sok más funkcióval.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-cogs"></i>
           </div>
-          <h3>Könnyű kezelés</h3>
-          <p>Egyszerű beállításokkal testre szabhatod a bot működését. Nincs szükség bonyolult konfigurációra, minden intuitív és könnyen kezelhető.</p>
+          <h3 id="feature-3-title">Könnyű kezelés</h3>
+          <p id="feature-3-text">Egyszerű beállításokkal testre szabhatod a bot működését. Nincs szükség bonyolult konfigurációra, minden intuitív és könnyen kezelhető.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Gyakran Ismételt Kérdések</h2>
+      <h2 class="section-title" id="faq-title">Gyakran Ismételt Kérdések</h2>
       <div class="faq">
         <div class="faq-item">
-          <div class="faq-question">Mire jó ez a bot?</div>
+          <div class="faq-question" id="faq-1-question">Mire jó ez a bot?</div>
           <div class="faq-answer">
-            <p>A Combinations botban több mint 50 parancs van jelenleg, de ez folyamatosan frissül és csak növekszik, jelenleg zenei, moderációs, adminisztrációs parancsok várnak rád!</p>
+            <p id="faq-1-answer">A Combinations botban több mint 50 parancs van jelenleg, de ez folyamatosan frissül és csak növekszik, jelenleg zenei, moderációs, adminisztrációs parancsok várnak rád!</p>
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">Biztonságos a bot?</div>
+          <div class="faq-question" id="faq-2-question">Biztonságos a bot?</div>
           <div class="faq-answer">
-            <p>A Combinations bot egy privát VPS-ről fut, amihez csak a tulajdonos fér hozzá. A bot tokenje nincs eltárolva sehol máshol, a bot source kódja is csak ezen a VPS-en található meg. A válasz a kérdése: nagyon biztonságos.</p>
+            <p id="faq-2-answer">A Combinations bot egy privát VPS-ről fut, amihez csak a tulajdonos fér hozzá. A bot tokenje nincs eltárolva sehol máshol, a bot source kódja is csak ezen a VPS-en található meg. A válasz a kérdése: nagyon biztonságos.</p>
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">Ingyenes a bot használata?</div>
+          <div class="faq-question" id="faq-3-question">Ingyenes a bot használata?</div>
           <div class="faq-answer">
-            <p>A Combinations bot teljesen ingyenes! A prémium parancsok hamarosan fizetőssé válnak, de a bot alap parancsai ingyenesek, és a prémium funkciók is limitáltan fizetés nélkül elérhetők.</p>
+            <p id="faq-3-answer">A Combinations bot teljesen ingyenes! A prémium parancsok hamarosan fizetőssé válnak, de a bot alap parancsai ingyenesek, és a prémium funkciók is limitáltan fizetés nélkül elérhetők.</p>
           </div>
         </div>
       </div>
@@ -329,7 +499,7 @@
   </div>
 
   <footer class="footer">
-    <p>&copy; 2024 Combinations. Minden jog fenntartva.</p>
+    <p id="footer-text">&copy; 2024 Combinations. Minden jog fenntartva.</p>
   </footer>
 
   <script>
@@ -339,7 +509,24 @@
       setTimeout(() => {
         loader.style.opacity = '0';
         loader.style.visibility = 'hidden';
-      }, 1000); // 1 másodperc múlva eltűnik
+      }, 1000);
+    });
+
+    // Hamburger menü kezelése
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Kattintás a menüpontokra bezárja a menüt mobilon
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
     });
 
     // GYIK lecsukható/megnyitható
@@ -354,8 +541,7 @@
   <script>
     // Track page view
     document.addEventListener('DOMContentLoaded', function() {
-        // Replace 'index.html' with the current page's filename for each page
-        trackVisit('index.html'); 
+        trackVisit('discord.html'); 
     });
     
     function trackVisit(pageName) {
@@ -371,8 +557,7 @@
             dailyVisits: {}
         };
         
-        const visitorIp = 'simulated-ip'; // Simplified - in production use a real IP tracking method
-        
+        const visitorIp = 'simulated-ip';
         visitorData.totalVisits++;
         visitorData.uniqueVisitors[visitorIp] = true;
         
@@ -385,6 +570,93 @@
         visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
         
         localStorage.setItem('visitorData', JSON.stringify(visitorData));
+    }
+  </script>
+  
+  <script>
+    // Nyelvválasztó funkció
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('language-select');
+      
+      // Ellenőrizzük a mentett nyelvi beállítást
+      const savedLanguage = localStorage.getItem('language') || 'hu';
+      languageSelect.value = savedLanguage;
+      
+      // Eseményfigyelő a nyelvváltoztatáshoz
+      languageSelect.addEventListener('change', function() {
+        const selectedLanguage = this.value;
+        localStorage.setItem('language', selectedLanguage);
+        updateLanguage(selectedLanguage);
+      });
+      
+      // Kezdeti nyelv betöltése
+      updateLanguage(savedLanguage);
+    });
+    
+    // Nyelvi tartalmak frissítése
+    function updateLanguage(lang) {
+      const translations = {
+        hu: {
+          heroTitle: "Combinations Discord Bot",
+          heroText: "Az intelligens megoldás minden Discord szervered számára. Fejlett moderáció, zene, fun parancsok és még sok más egy helyen!",
+          inviteBtn: "Bot hozzáadása",
+          featuresTitle: "Főbb funkciók",
+          feature1Title: "Economy Rendszer",
+          feature1Text: "Élénk gazdasági rendszerünk lehetővé teszi a felhasználóknak, hogy virtuális pénzt keressenek, boltokat hozzanak létre, és kereskedjenek egymással. Napi jutalmak, munka lehetőségek és egyedi tárgyak várják a szervered tagjait!",
+          feature2Title: "Zenelejátszás",
+          feature2Text: "Kiváló minőségű zenelejátszó rendszerünkkel a szervered tagjai zenehallgatással tölthetik az idejüket. Támogatja a YouTube, Spotify, SoundCloud és egyéb platformokat, sorban állítás, loop és sok más funkcióval.",
+          feature3Title: "Könnyű kezelés",
+          feature3Text: "Egyszerű beállításokkal testre szabhatod a bot működését. Nincs szükség bonyolult konfigurációra, minden intuitív és könnyen kezelhető.",
+          faqTitle: "Gyakran Ismételt Kérdések",
+          faq1Question: "Mire jó ez a bot?",
+          faq1Answer: "A Combinations botban több mint 50 parancs van jelenleg, de ez folyamatosan frissül és csak növekszik, jelenleg zenei, moderációs, adminisztrációs parancsok várnak rád!",
+          faq2Question: "Biztonságos a bot?",
+          faq2Answer: "A Combinations bot egy privát VPS-ről fut, amihez csak a tulajdonos fér hozzá. A bot tokenje nincs eltárolva sehol máshol, a bot source kódja is csak ezen a VPS-en található meg. A válasz a kérdése: nagyon biztonságos.",
+          faq3Question: "Ingyenes a bot használata?",
+          faq3Answer: "A Combinations bot teljesen ingyenes! A prémium parancsok hamarosan fizetőssé válnak, de a bot alap parancsai ingyenesek, és a prémium funkciók is limitáltan fizetés nélkül elérhetők.",
+          footerText: "© 2024 Combinations. Minden jog fenntartva."
+        },
+        en: {
+          heroTitle: "Combinations Discord Bot",
+          heroText: "The intelligent solution for all your Discord servers. Advanced moderation, music, fun commands and much more in one place!",
+          inviteBtn: "Add Bot",
+          featuresTitle: "Main Features",
+          feature1Title: "Economy System",
+          feature1Text: "Our vibrant economy system allows users to earn virtual money, create shops, and trade with each other. Daily rewards, job opportunities and unique items await your server members!",
+          feature2Title: "Music Playback",
+          feature2Text: "With our high-quality music player system, your server members can spend their time listening to music. Supports YouTube, Spotify, SoundCloud and other platforms, with queue, loop and many other features.",
+          feature3Title: "Easy Management",
+          feature3Text: "With simple settings you can customize the bot's operation. No complicated configuration required, everything is intuitive and easy to manage.",
+          faqTitle: "Frequently Asked Questions",
+          faq1Question: "What is this bot good for?",
+          faq1Answer: "The Combinations bot currently has more than 50 commands, but this is constantly updated and only growing. Currently, music, moderation, and administrative commands await you!",
+          faq2Question: "Is the bot secure?",
+          faq2Answer: "The Combinations bot runs from a private VPS, which only the owner has access to. The bot token is not stored anywhere else, the bot source code is also only found on this VPS. The answer to the question: very secure.",
+          faq3Question: "Is using the bot free?",
+          faq3Answer: "The Combinations bot is completely free! Premium commands will soon become paid, but the bot's basic commands are free, and premium features are also available to a limited extent without payment.",
+          footerText: "© 2024 Combinations. All rights reserved."
+        }
+      };
+      
+      // Minden szöveg frissítése a kiválasztott nyelven
+      document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+      document.getElementById('hero-text').textContent = translations[lang].heroText;
+      document.getElementById('invite-btn').textContent = translations[lang].inviteBtn;
+      document.getElementById('features-title').textContent = translations[lang].featuresTitle;
+      document.getElementById('feature-1-title').textContent = translations[lang].feature1Title;
+      document.getElementById('feature-1-text').textContent = translations[lang].feature1Text;
+      document.getElementById('feature-2-title').textContent = translations[lang].feature2Title;
+      document.getElementById('feature-2-text').textContent = translations[lang].feature2Text;
+      document.getElementById('feature-3-title').textContent = translations[lang].feature3Title;
+      document.getElementById('feature-3-text').textContent = translations[lang].feature3Text;
+      document.getElementById('faq-title').textContent = translations[lang].faqTitle;
+      document.getElementById('faq-1-question').textContent = translations[lang].faq1Question;
+      document.getElementById('faq-1-answer').textContent = translations[lang].faq1Answer;
+      document.getElementById('faq-2-question').textContent = translations[lang].faq2Question;
+      document.getElementById('faq-2-answer').textContent = translations[lang].faq2Answer;
+      document.getElementById('faq-3-question').textContent = translations[lang].faq3Question;
+      document.getElementById('faq-3-answer').textContent = translations[lang].faq3Answer;
+      document.getElementById('footer-text').textContent = translations[lang].footerText;
     }
   </script>
 </body>
