@@ -115,6 +115,8 @@
       font-weight: 600;
       transition: all 0.3s;
       margin: 10px 5px;
+      border: none;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -312,6 +314,78 @@
       border-color: var(--primary);
     }
 
+    /* Popup stílusok */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup {
+      background-color: var(--dark);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+      transform: scale(0.9);
+      transition: transform 0.3s;
+    }
+
+    .popup-overlay.active .popup {
+      transform: scale(1);
+    }
+
+    .popup-icon {
+      font-size: 50px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .popup h3 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .popup p {
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .popup-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .popup-btn:hover {
+      background-color: #4752c4;
+    }
+
     /* Responsive design */
     @media (max-width: 992px) {
       .hero h1 {
@@ -390,6 +464,11 @@
         top: 70px;
         right: 10px;
       }
+      
+      .popup {
+        padding: 20px;
+        width: 85%;
+      }
     }
 
     @media (max-width: 576px) {
@@ -438,6 +517,18 @@
     <div class="loader"></div>
   </div>
 
+  <!-- Popup overlay -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup">
+      <div class="popup-icon">
+        <i class="fas fa-tools"></i>
+      </div>
+      <h3 id="popup-title">Fejlesztés alatt</h3>
+      <p id="popup-text">A Combinations Launcher jelenleg fejlesztés alatt áll. Hamarosan elérhető lesz! Kövesd a fejlesztést a Discord szerverünkön.</p>
+      <button class="popup-btn" id="popup-close-btn">Értettem</button>
+    </div>
+  </div>
+
   <div class="logo">Combinations</div>
   <nav class="top-nav">
     <div class="nav-links" id="navLinks">
@@ -464,7 +555,7 @@
   <section class="hero">
     <h1 id="hero-title">Combinations Minecraft Launcher</h1>
     <p id="hero-text">Egy innovatív Minecraft Launcher, amely egyszerűsíti a játékélményt és új szintre emeli a modok kezelését.</p>
-    <a href="#" class="btn" id="download-btn">Letöltés most</a>
+    <button class="btn" id="download-btn">Letöltés most</button>
   </section>
 
   <div class="container">
@@ -616,6 +707,26 @@
         answer.classList.toggle('show');
       });
     });
+
+    // Popup kezelése
+    const downloadBtn = document.getElementById('download-btn');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupCloseBtn = document.getElementById('popup-close-btn');
+    
+    downloadBtn.addEventListener('click', () => {
+      popupOverlay.classList.add('active');
+    });
+    
+    popupCloseBtn.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+    });
+    
+    // Kattintás a popup overlay-re is bezárja a popup-ot
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+      }
+    });
   </script>
   <script>
     // Track page view
@@ -707,7 +818,10 @@
           faq2Question: "Kompatibilis a régebbi Minecraft verziókkal?",
           faq2Answer: "Igen, a launcher támogatja a legtöbb Minecraft verziót, beleértve a régebbi kiadásokat is. Egyszerűen válaszd ki a kívánt verziót a beállításokban.",
           faq3Question: "Biztonságos a launcher használata?",
-          faq3Answer: "Abszolút. A Combinations Launcher teljesen biztonságos, nem sérti a Minecraft felhasználási feltételeit, és nem tartalmaz kártékony kódot. Minden mod automatikus vírusellenőrzésen megy keresztül telepítés előtt.",
+          faq3Answer: "Abszolút. A Combinations Launcher teljesen biztonságous, nem sérti a Minecraft felhasználási feltételeit, és nem tartalmaz kártékony kódot. Minden mod automatikus vírusellenőrzésen megy keresztül telepítés előtt.",
+          popupTitle: "Fejlesztés alatt",
+          popupText: "A Combinations Launcher jelenleg fejlesztés alatt áll. Hamarosan elérhető lesz! Kövesd a fejlesztést a Discord szerverünkön.",
+          popupCloseBtn: "Értettem",
           footerText: "© 2024 Combinations. Minden jog fenntartva."
         },
         en: {
@@ -743,6 +857,9 @@
           faq2Answer: "Yes, the launcher supports most Minecraft versions, including older releases. Simply select the desired version in the settings.",
           faq3Question: "Is the launcher safe to use?",
           faq3Answer: "Absolutely. The Combinations Launcher is completely safe, does not violate Minecraft's terms of use, and does not contain malicious code. Every mod goes through automatic virus scanning before installation.",
+          popupTitle: "Under Development",
+          popupText: "The Combinations Launcher is currently under development. It will be available soon! Follow the development on our Discord server.",
+          popupCloseBtn: "I understand",
           footerText: "© 2024 Combinations. All rights reserved."
         }
       };
@@ -780,6 +897,9 @@
       document.getElementById('faq-2-answer').textContent = translations[lang].faq2Answer;
       document.getElementById('faq-3-question').textContent = translations[lang].faq3Question;
       document.getElementById('faq-3-answer').textContent = translations[lang].faq3Answer;
+      document.getElementById('popup-title').textContent = translations[lang].popupTitle;
+      document.getElementById('popup-text').textContent = translations[lang].popupText;
+      document.getElementById('popup-close-btn').textContent = translations[lang].popupCloseBtn;
       document.getElementById('footer-text').textContent = translations[lang].footerText;
     }
   </script>
