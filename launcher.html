@@ -25,12 +25,19 @@
       line-height: 1.6;
     }
 
+    /* Mobilbarát navigáció */
     .top-nav {
       position: fixed;
       top: 0;
       right: 0;
       padding: 20px;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
     }
 
     .top-nav a {
@@ -48,6 +55,27 @@
       background-color: rgba(88, 101, 242, 0.1);
     }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 20px;
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--light);
+      border-radius: 2px;
+      transition: all 0.3s linear;
+    }
+
     .logo {
       position: fixed;
       top: 20px;
@@ -60,21 +88,18 @@
 
     .hero {
       background-color: #2b2d31;
-      padding: 120px 20px 60px;
+      padding: 140px 20px 60px;
       text-align: center;
-      background-image: linear-gradient(rgba(43, 45, 49, 0.9), rgba(43, 45, 49, 0.9)), url('https://images.unsplash.com/photo-1587573089734-599851b0c8b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-      background-size: cover;
-      background-position: center;
     }
 
     .hero h1 {
-      font-size: 48px;
+      font-size: 2.5rem;
       margin-bottom: 20px;
       color: white;
     }
 
     .hero p {
-      font-size: 20px;
+      font-size: 1.1rem;
       max-width: 800px;
       margin: 0 auto 30px;
       color: rgba(255,255,255,0.9);
@@ -90,9 +115,6 @@
       font-weight: 600;
       transition: all 0.3s;
       margin: 10px 5px;
-      cursor: pointer;
-      border: none;
-      font-size: 16px;
     }
 
     .btn:hover {
@@ -108,98 +130,69 @@
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: 2rem;
       margin-bottom: 30px;
       color: var(--primary);
       text-align: center;
-    }
-
-    .card {
-      background-color: var(--dark);
-      padding: 30px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h2 {
-      color: var(--highlight);
-      margin-top: 0;
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      gap: 25px;
+      margin-bottom: 50px;
     }
 
-    .feature {
+    .feature-card {
       background-color: var(--dark);
       padding: 25px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      text-align: center;
     }
 
-    .feature i {
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .feature-icon {
       font-size: 40px;
       color: var(--primary);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
-    .feature h3 {
-      color: var(--light);
-      margin-top: 0;
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
     }
 
-    .footer {
+    .step {
       background-color: var(--dark);
-      padding: 30px 0;
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    /* Modal stílus */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .modal-content {
-      background-color: var(--dark);
-      margin: 15% auto;
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       text-align: center;
-      position: relative;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      color: #aaa;
-      font-size: 24px;
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
       font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close-btn:hover {
-      color: var(--light);
+      margin-bottom: 15px;
     }
 
     /* Betöltő animáció */
@@ -237,18 +230,204 @@
       }
     }
 
+    /* GYIK stílusok */
+    .faq {
+      background-color: var(--dark);
+      padding: 30px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #3a3c40;
+      padding-bottom: 20px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      transition: transform 0.3s;
+    }
+
+    .faq-question.active::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-answer.show {
+      max-height: 500px;
+    }
+
+    .footer {
+      background-color: var(--dark);
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    /* Nyelvválasztó stílusok */
+    .language-selector {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 1000;
+      background-color: var(--dark);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .language-selector select {
+      background-color: var(--darker);
+      color: var(--light);
+      border: 1px solid var(--primary);
+      padding: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
     /* Responsive design */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .hero h1 {
-        font-size: 36px;
+        font-size: 2.2rem;
       }
       
       .hero p {
-        font-size: 18px;
+        font-size: 1rem;
       }
       
-      .features {
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background-color: var(--dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .top-nav a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+      }
+      
+      .hero {
+        padding: 120px 15px 50px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 30px 15px;
+      }
+      
+      .features, .steps {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .feature-card, .step {
+        padding: 20px;
+      }
+      
+      .faq {
+        padding: 20px;
+      }
+      
+      .faq-question {
+        font-size: 1.1rem;
+      }
+      
+      .language-selector {
+        top: 70px;
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .logo {
+        font-size: 20px;
+        top: 15px;
+        left: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 0.95rem;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .feature-card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .feature-icon {
+        font-size: 35px;
+      }
+      
+      .language-selector {
+        top: 65px;
+        right: 5px;
+        padding: 8px;
       }
     }
   </style>
@@ -261,85 +440,145 @@
 
   <div class="logo">Combinations</div>
   <nav class="top-nav">
-    <a href="index.html">Kezdőlap</a>
-    <a href="skript.html">Minecraft Skript</a>
-    <a href="launcher.html">Minecraft Launcher</a>
-    <a href="discord.html">Discord Bot</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Kezdőlap</a>
+      <a href="skript.html">Minecraft Skript</a>
+      <a href="launcher.html">Minecraft Launcher</a>
+      <a href="discord.html">Discord Bot</a>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+  
+  <!-- Nyelvválasztó -->
+  <div class="language-selector">
+    <select id="language-select">
+      <option value="hu">Magyar</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 
   <section class="hero">
-    <h1>Combinations Minecraft Launcher</h1>
-    <p>Egyedi indítóprogram a Minecrafthoz, amely új szintre emeli a játékélményt</p>
-    <button class="btn" id="downloadBtn">Launcher letöltése</button>
+    <h1 id="hero-title">Combinations Minecraft Launcher</h1>
+    <p id="hero-text">Egy innovatív Minecraft Launcher, amely egyszerűsíti a játékélményt és új szintre emeli a modok kezelését.</p>
+    <a href="#" class="btn" id="download-btn">Letöltés most</a>
   </section>
 
   <div class="container">
-    <div class="card">
-      <h2>A Combinations Launcherről</h2>
-      <p>A Combinations Minecraft Launcher egy egyedi indítóprogram, amely lehetővé teszi a játék gyors és testreszabott elindítását. Letisztult felület, egyedi konfigurációs lehetőségek és közösségi integráció jellemzi.</p>
-      <p>Könnyű kezelhetőség és hatékony működés egy modern csomagolásban, amely minden Minecraft rajongó számára nélkülözhetetlen eszközzé teszi.</p>
-    </div>
+    <section>
+      <h2 class="section-title" id="features-title">Főbb jellemzők</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-puzzle-piece"></i>
+          </div>
+          <h3 id="feature-1-title">Egyszerű Modkezelés</h3>
+          <p id="feature-1-text">Könnyedén telepítsd, töröld és kezeld a modokat egy intuitív felületen. Nincs szükség fájlok másolgatására vagy bonyolult beállításokra.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 id="feature-2-title">Gyors Indítás</h3>
+          <p id="feature-2-text">Optimalizált indítási folyamat garantálja, hogy a lehető leggyorsabban eljuss a játékig, anélkül, hogy kompromisszumot kötnél a teljesítményben.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3 id="feature-3-title">Fokozott Biztonság</h3>
+          <p id="feature-3-text">Beépített védelem a káros modok és szkriptek ellen. Automatikus vírusellenőrzés minden letöltött tartalomra.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h3 id="feature-4-title">Automatikus Frissítések</h3>
+          <p id="feature-4-text">Mindig a legfrissebb verziót használod. A launcher automatikusan frissíti magát és a modokat, így soha nem maradsz le az újdonságokról.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 id="feature-5-title">Több Fiók Kezelése</h3>
+          <p id="feature-5-text">Könnyedén válthatsz különböző Minecraft fiókok között anélkül, hogy mindig újra be kellene jelentkezned.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3 id="feature-6-title">Testreszabható Felület</h3>
+          <p id="feature-6-text">Szabd testre a launcher kinézetét és működését az igényeidnek megfelelően. Temák, háttérképek és egyedi beállítások.</p>
+        </div>
+      </div>
+    </section>
 
-    <h2 class="section-title">Főbb jellemzők</h2>
-    
-    <div class="features">
-      <div class="feature">
-        <i class="fas fa-rocket"></i>
-        <h3>Gyors indítás</h3>
-        <p>Az optimalizált rendszer lehetővé teszi a Minecraft gyorsabb betöltését és indítását, akár modokkal is.</p>
+    <section>
+      <h2 class="section-title" id="how-to-title">Hogyan használd?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3 id="step-1-title">Letöltés és telepítés</h3>
+          <p id="step-1-text">Töltsd le a Combinations Launcher-t, majd telepítsd a számítógépedre.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3 id="step-2-title">Bejelentkezés</h3>
+          <p id="step-2-text">Jelentkezz be Minecraft fiókoddal, hogy hozzáférj a játékhoz.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3 id="step-3-title">Modok tallózása</h3>
+          <p id="step-3-text">Tallózz a beépített mod katalógusban, és válaszd ki melyiket szeretnéd használni.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3 id="step-4-title">Játék indítása</h3>
+          <p id="step-4-text">Indítsd el a játékot, és élvezd a fejlesztett Minecraft élményt!</p>
+        </div>
       </div>
-      
-      <div class="feature">
-        <i class="fas fa-sliders-h"></i>
-        <h3>Testreszabható</h3>
-        <p>Számos beállítási lehetőség, hogy a saját igényeidnek megfelelően alakíthasd a játékélményt.</p>
-      </div>
-      
-      <div class="feature">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Biztonságos</h3>
-        <p>Hivatalos Minecraft API-t használ, így teljes mértékben biztonságos a használata.</p>
-      </div>
-      
-      <div class="feature">
-        <i class="fas fa-users"></i>
-        <h3>Közösségi integráció</h3>
-        <p>Könnyű kapcsolat a Combinations közösséggel, szerverekkel és egyéb játékosokkal.</p>
-      </div>
-      
-      <div class="feature">
-        <i class="fas fa-cloud-download-alt"></i>
-        <h3>Automatikus frissítés</h3>
-        <p>A launcher automatikusan frissül, így mindig a legújabb verziót használhatod.</p>
-      </div>
-      
-      <div class="feature">
-        <i class="fas fa-puzzle-piece"></i>
-        <h3>Mod kezelés</h3>
-        <p>Egyszerű modok kezelése és telepítése közvetlenül a launcherből.</p>
-      </div>
-    </div>
-    
-    <div class="card" style="text-align: center; margin-top: 50px;">
-      <h2>Készen állsz a fejlődésre?</h2>
-      <p style="margin-bottom: 30px;">Töltsd le a Combinations Minecraft Launchert még ma, és emeld új szintre a Minecraft élményt!</p>
-      <button class="btn" id="downloadBtn2">Launcher letöltése</button>
-    </div>
-  </div>
+    </section>
 
-  <!-- Modal ablak -->
-  <div id="infoModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h2>Figyelem!</h2>
-      <p>A Combinations Launcher jelenleg fejlesztés alatt áll.</p>
-      <p>Értesítést küldünk, amint elérhetővé válik!</p>
-      <button class="btn" style="margin-top: 20px;" id="closeModalBtn">Rendben</button>
-    </div>
+    <section>
+      <h2 class="section-title" id="faq-title">Gyakran Ismételt Kérdések</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question" id="faq-1-question">Ingyenes a Combinations Launcher?</div>
+          <div class="faq-answer">
+            <p id="faq-1-answer">Igen, a Combinations Launcher teljesen ingyenesen használható. A prémium funkciók hamarosan elérhetőek lesznek, de az alapvető funkcionalitás mindig ingyenes marad.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" id="faq-2-question">Kompatibilis a régebbi Minecraft verziókkal?</div>
+          <div class="faq-answer">
+            <p id="faq-2-answer">Igen, a launcher támogatja a legtöbb Minecraft verziót, beleértve a régebbi kiadásokat is. Egyszerűen válaszd ki a kívánt verziót a beállításokban.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" id="faq-3-question">Biztonságos a launcher használata?</div>
+          <div class="faq-answer">
+            <p id="faq-3-answer">Abszolút. A Combinations Launcher teljesen biztonságos, nem sérti a Minecraft felhasználási feltételeit, és nem tartalmaz kártékony kódot. Minden mod automatikus vírusellenőrzésen megy keresztül telepítés előtt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer class="footer">
-    <p>&copy; 2024 Combinations. Minden jog fenntartva.</p>
+    <p id="footer-text">&copy; 2024 Combinations. Minden jog fenntartva.</p>
   </footer>
 
   <script>
@@ -352,38 +591,36 @@
       }, 1000);
     });
 
-    // Modal ablak kezelése
-    const downloadBtns = document.querySelectorAll('#downloadBtn, #downloadBtn2');
-    const modal = document.getElementById('infoModal');
-    const closeBtn = document.querySelector('.close-btn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
+    // Hamburger menü kezelése
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
 
-    downloadBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        modal.style.display = 'block';
+    // Kattintás a menüpontokra bezárja a menüt mobilon
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
       });
     });
 
-    closeBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
-
-    closeModalBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
-
-    // Kattintás a modalon kívülre zárja a modalt
-    window.addEventListener('click', function(event) {
-      if (event.target === modal) {
-        modal.style.display = 'none';
-      }
+    // GYIK lecsukható/megnyitható
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        question.classList.toggle('active');
+        answer.classList.toggle('show');
+      });
     });
   </script>
   <script>
     // Track page view
     document.addEventListener('DOMContentLoaded', function() {
-        // Replace 'index.html' with the current page's filename for each page
-        trackVisit('index.html'); 
+        trackVisit('launcher.html'); 
     });
     
     function trackVisit(pageName) {
@@ -399,8 +636,7 @@
             dailyVisits: {}
         };
         
-        const visitorIp = 'simulated-ip'; // Simplified - in production use a real IP tracking method
-        
+        const visitorIp = 'simulated-ip';
         visitorData.totalVisits++;
         visitorData.uniqueVisitors[visitorIp] = true;
         
@@ -413,6 +649,138 @@
         visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
         
         localStorage.setItem('visitorData', JSON.stringify(visitorData));
+    }
+  </script>
+  
+  <script>
+    // Nyelvválasztó funkció
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('language-select');
+      
+      // Ellenőrizzük a mentett nyelvi beállítást
+      const savedLanguage = localStorage.getItem('language') || 'hu';
+      languageSelect.value = savedLanguage;
+      
+      // Eseményfigyelő a nyelvváltoztatáshoz
+      languageSelect.addEventListener('change', function() {
+        const selectedLanguage = this.value;
+        localStorage.setItem('language', selectedLanguage);
+        updateLanguage(selectedLanguage);
+      });
+      
+      // Kezdeti nyelv betöltése
+      updateLanguage(savedLanguage);
+    });
+    
+    // Nyelvi tartalmak frissítése
+    function updateLanguage(lang) {
+      const translations = {
+        hu: {
+          heroTitle: "Combinations Minecraft Launcher",
+          heroText: "Egy innovatív Minecraft Launcher, amely egyszerűsíti a játékélményt és új szintre emeli a modok kezelését.",
+          downloadBtn: "Letöltés most",
+          featuresTitle: "Főbb jellemzők",
+          feature1Title: "Egyszerű Modkezelés",
+          feature1Text: "Könnyedén telepítsd, töröld és kezeld a modokat egy intuitív felületen. Nincs szükség fájlok másolgatására vagy bonyolult beállításokra.",
+          feature2Title: "Gyors Indítás",
+          feature2Text: "Optimalizált indítási folyamat garantálja, hogy a lehető leggyorsabban eljuss a játékig, anélkül, hogy kompromisszumot kötnél a teljesítményben.",
+          feature3Title: "Fokozott Biztonság",
+          feature3Text: "Beépített védelem a káros modok és szkriptek ellen. Automatikus vírusellenőrzés minden letöltött tartalomra.",
+          feature4Title: "Automatikus Frissítések",
+          feature4Text: "Mindig a legfrissebb verziót használod. A launcher automatikusan frissíti magát és a modokat, így soha nem maradsz le az újdonságokról.",
+          feature5Title: "Több Fiók Kezelése",
+          feature5Text: "Könnyedén válthatsz különböző Minecraft fiókok között anélkül, hogy mindig újra be kellene jelentkezned.",
+          feature6Title: "Testreszabható Felület",
+          feature6Text: "Szabd testre a launcher kinézetét és működését az igényeidnek megfelelően. Temák, háttérképek és egyedi beállítások.",
+          howToTitle: "Hogyan használd?",
+          step1Title: "Letöltés és telepítés",
+          step1Text: "Töltsd le a Combinations Launcher-t, majd telepítsd a számítógépedre.",
+          step2Title: "Bejelentkezés",
+          step2Text: "Jelentkezz be Minecraft fiókoddal, hogy hozzáférj a játékhoz.",
+          step3Title: "Modok tallózása",
+          step3Text: "Tallózz a beépített mod katalógusban, és válaszd ki melyiket szeretnéd használni.",
+          step4Title: "Játék indítása",
+          step4Text: "Indítsd el a játékot, és élvezd a fejlesztett Minecraft élményt!",
+          faqTitle: "Gyakran Ismételt Kérdések",
+          faq1Question: "Ingyenes a Combinations Launcher?",
+          faq1Answer: "Igen, a Combinations Launcher teljesen ingyenesen használható. A prémium funkciók hamarosan elérhetőek lesznek, de az alapvető funkcionalitás mindig ingyenes marad.",
+          faq2Question: "Kompatibilis a régebbi Minecraft verziókkal?",
+          faq2Answer: "Igen, a launcher támogatja a legtöbb Minecraft verziót, beleértve a régebbi kiadásokat is. Egyszerűen válaszd ki a kívánt verziót a beállításokban.",
+          faq3Question: "Biztonságos a launcher használata?",
+          faq3Answer: "Abszolút. A Combinations Launcher teljesen biztonságos, nem sérti a Minecraft felhasználási feltételeit, és nem tartalmaz kártékony kódot. Minden mod automatikus vírusellenőrzésen megy keresztül telepítés előtt.",
+          footerText: "© 2024 Combinations. Minden jog fenntartva."
+        },
+        en: {
+          heroTitle: "Combinations Minecraft Launcher",
+          heroText: "An innovative Minecraft Launcher that simplifies the gaming experience and takes mod management to the next level.",
+          downloadBtn: "Download now",
+          featuresTitle: "Main Features",
+          feature1Title: "Easy Mod Management",
+          feature1Text: "Easily install, delete and manage mods on an intuitive interface. No need for file copying or complicated settings.",
+          feature2Title: "Fast Startup",
+          feature2Text: "Optimized startup process ensures you get to the game as quickly as possible without compromising performance.",
+          feature3Title: "Enhanced Security",
+          feature3Text: "Built-in protection against harmful mods and scripts. Automatic virus scanning for all downloaded content.",
+          feature4Title: "Automatic Updates",
+          feature4Text: "You always use the latest version. The launcher automatically updates itself and mods, so you never miss out on new features.",
+          feature5Title: "Multiple Account Management",
+          feature5Text: "Easily switch between different Minecraft accounts without having to log in again each time.",
+          feature6Title: "Customizable Interface",
+          feature6Text: "Customize the launcher's appearance and operation to your needs. Themes, backgrounds and custom settings.",
+          howToTitle: "How to use?",
+          step1Title: "Download and install",
+          step1Text: "Download the Combinations Launcher, then install it on your computer.",
+          step2Title: "Login",
+          step2Text: "Log in with your Minecraft account to access the game.",
+          step3Title: "Browse mods",
+          step3Text: "Browse the built-in mod catalog and choose which one you want to use.",
+          step4Title: "Start the game",
+          step4Text: "Start the game and enjoy the enhanced Minecraft experience!",
+          faqTitle: "Frequently Asked Questions",
+          faq1Question: "Is Combinations Launcher free?",
+          faq1Answer: "Yes, the Combinations Launcher is completely free to use. Premium features will be available soon, but basic functionality will always remain free.",
+          faq2Question: "Is it compatible with older Minecraft versions?",
+          faq2Answer: "Yes, the launcher supports most Minecraft versions, including older releases. Simply select the desired version in the settings.",
+          faq3Question: "Is the launcher safe to use?",
+          faq3Answer: "Absolutely. The Combinations Launcher is completely safe, does not violate Minecraft's terms of use, and does not contain malicious code. Every mod goes through automatic virus scanning before installation.",
+          footerText: "© 2024 Combinations. All rights reserved."
+        }
+      };
+      
+      // Minden szöveg frissítése a kiválasztott nyelven
+      document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+      document.getElementById('hero-text').textContent = translations[lang].heroText;
+      document.getElementById('download-btn').textContent = translations[lang].downloadBtn;
+      document.getElementById('features-title').textContent = translations[lang].featuresTitle;
+      document.getElementById('feature-1-title').textContent = translations[lang].feature1Title;
+      document.getElementById('feature-1-text').textContent = translations[lang].feature1Text;
+      document.getElementById('feature-2-title').textContent = translations[lang].feature2Title;
+      document.getElementById('feature-2-text').textContent = translations[lang].feature2Text;
+      document.getElementById('feature-3-title').textContent = translations[lang].feature3Title;
+      document.getElementById('feature-3-text').textContent = translations[lang].feature3Text;
+      document.getElementById('feature-4-title').textContent = translations[lang].feature4Title;
+      document.getElementById('feature-4-text').textContent = translations[lang].feature4Text;
+      document.getElementById('feature-5-title').textContent = translations[lang].feature5Title;
+      document.getElementById('feature-5-text').textContent = translations[lang].feature5Text;
+      document.getElementById('feature-6-title').textContent = translations[lang].feature6Title;
+      document.getElementById('feature-6-text').textContent = translations[lang].feature6Text;
+      document.getElementById('how-to-title').textContent = translations[lang].howToTitle;
+      document.getElementById('step-1-title').textContent = translations[lang].step1Title;
+      document.getElementById('step-1-text').textContent = translations[lang].step1Text;
+      document.getElementById('step-2-title').textContent = translations[lang].step2Title;
+      document.getElementById('step-2-text').textContent = translations[lang].step2Text;
+      document.getElementById('step-3-title').textContent = translations[lang].step3Title;
+      document.getElementById('step-3-text').textContent = translations[lang].step3Text;
+      document.getElementById('step-4-title').textContent = translations[lang].step4Title;
+      document.getElementById('step-4-text').textContent = translations[lang].step4Text;
+      document.getElementById('faq-title').textContent = translations[lang].faqTitle;
+      document.getElementById('faq-1-question').textContent = translations[lang].faq1Question;
+      document.getElementById('faq-1-answer').textContent = translations[lang].faq1Answer;
+      document.getElementById('faq-2-question').textContent = translations[lang].faq2Question;
+      document.getElementById('faq-2-answer').textContent = translations[lang].faq2Answer;
+      document.getElementById('faq-3-question').textContent = translations[lang].faq3Question;
+      document.getElementById('faq-3-answer').textContent = translations[lang].faq3Answer;
+      document.getElementById('footer-text').textContent = translations[lang].footerText;
     }
   </script>
 </body>
