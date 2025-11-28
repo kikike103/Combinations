@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Combinations Minecraft Launcher</title>
+  <title>Combinations Host - Minecraft Szerver Hosting</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
@@ -232,6 +232,126 @@
       }
     }
 
+    /* Árkalkulátor */
+    .calculator {
+      background-color: var(--dark);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+
+    .calc-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .calc-group {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .calc-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .cpu-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cpu-btn {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      background-color: transparent;
+      color: var(--light);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.25s, transform 0.15s, box-shadow 0.15s;
+    }
+
+    .cpu-btn:hover {
+      background-color: rgba(88, 101, 242, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .cpu-btn.active {
+      background-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin: 10px 0;
+      -webkit-appearance: none;
+      background: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px;
+      background: #3a3c40;
+      border-radius: 3px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      margin-top: -6px;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-track {
+      height: 6px;
+      background: #3a3c40;
+      border-radius: 3px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+    }
+
+    .calc-value {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .calc-result {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #3a3c40;
+      text-align: center;
+    }
+
+    .calc-price {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 10px 0 5px;
+      color: var(--success);
+    }
+
+    .calc-note {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
     /* GYIK stílusok */
     .faq {
       background-color: var(--dark);
@@ -314,7 +434,7 @@
       border-color: var(--primary);
     }
 
-    /* Popup stílusok */
+    /* Popup stílusok – opcionális infóablak megrendeléshez */
     .popup-overlay {
       position: fixed;
       top: 0;
@@ -448,7 +568,7 @@
         gap: 20px;
       }
       
-      .feature-card, .step {
+      .feature-card, .step, .calculator {
         padding: 20px;
       }
       
@@ -517,24 +637,24 @@
     <div class="loader"></div>
   </div>
 
-  <!-- Popup overlay -->
+  <!-- Popup overlay – opcionális infó megrendeléshez -->
   <div class="popup-overlay" id="popup-overlay">
     <div class="popup">
       <div class="popup-icon">
-        <i class="fas fa-tools"></i>
+        <i class="fas fa-server"></i>
       </div>
-      <h3 id="popup-title">Fejlesztés alatt</h3>
-      <p id="popup-text">A Combinations Launcher jelenleg fejlesztés alatt áll. Hamarosan elérhető lesz! Kövesd a fejlesztést a Discord szerverünkön.</p>
-      <button class="popup-btn" id="popup-close-btn">Értettem</button>
+      <h3 id="popup-title">Megrendelés menete</h3>
+      <p id="popup-text">A szerverek megrendelése jelenleg Discordon vagy privát üzenetben történik. Válaszd ki a konfigurációdat az árkalkulátorral, majd vedd fel velünk a kapcsolatot a pontos egyeztetéshez.</p>
+      <button class="popup-btn" id="popup-close-btn">Rendben</button>
     </div>
   </div>
 
-  <div class="logo">Combinations</div>
+  <div class="logo">Combinations Host</div>
   <nav class="top-nav">
     <div class="nav-links" id="navLinks">
       <a href="index.html">Kezdőlap</a>
       <a href="skript.html">Minecraft Skript</a>
-      <a href="launcher.html">Minecraft Launcher</a>
+      <a href="launcher.html">Minecraft Host</a>
       <a href="discord.html">Discord Bot</a>
     </div>
     <button class="hamburger" id="hamburger">
@@ -553,90 +673,126 @@
   </div>
 
   <section class="hero">
-    <h1 id="hero-title">Combinations Minecraft Launcher</h1>
-    <p id="hero-text">Egy innovatív Minecraft Launcher, amely egyszerűsíti a játékélményt és új szintre emeli a modok kezelését.</p>
-    <button class="btn" id="download-btn">Letöltés most</button>
+    <h1 id="hero-title">Combinations Host - Minecraft szerver hosting</h1>
+    <p id="hero-text">Magyarország egyik legolcsóbb és legmegbízhatóbb Minecraft hostja – erős hardverrel, villámgyors válaszidővel és segítőkész magyar supporttal.</p>
+    <button class="btn" id="download-btn">Árkalkulátor megnyitása</button>
+    <button class="btn" id="order-info-btn">Hogyan tudok rendelni?</button>
   </section>
 
   <div class="container">
+    <!-- Árkalkulátor -->
+    <section id="pricing">
+      <h2 class="section-title" id="calculator-title">Árkalkulátor</h2>
+      <div class="calculator">
+        <div class="calc-row">
+          <div class="calc-group">
+            <label id="cpu-label">CPU választás</label>
+            <div class="cpu-buttons">
+              <button class="cpu-btn active" data-cpu="7900x" id="cpu-7900x-btn">AMD Ryzen 9 7900X 4.7GHz</button>
+              <button class="cpu-btn" data-cpu="9900x" id="cpu-9900x-btn">AMD Ryzen 9 9900X 4.4GHz</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-row">
+          <div class="calc-group">
+            <label for="ram-slider" id="ram-label">RAM mennyiség</label>
+            <input type="range" id="ram-slider" min="4" max="16" step="4" value="4">
+            <div class="calc-value" id="ram-value">4 GB RAM</div>
+          </div>
+          <div class="calc-group">
+            <label for="storage-slider" id="storage-label">Tárhely</label>
+            <input type="range" id="storage-slider" min="10" max="40" step="10" value="10">
+            <div class="calc-value" id="storage-value">10 GB STORAGE</div>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <p id="price-label">Havi díj:</p>
+          <p class="calc-price" id="price-value">3500 HUF</p>
+          <p class="calc-note" id="price-note">Az ár tájékoztató jellegű havidíj, magyarországi ügyfelek számára.</p>
+        </div>
+      </div>
+    </section>
+
     <section>
-      <h2 class="section-title" id="features-title">Főbb jellemzők</h2>
+      <h2 class="section-title" id="features-title">Miért a Combinations Host?</h2>
       <div class="features">
         <div class="feature-card">
           <div class="feature-icon">
-            <i class="fas fa-puzzle-piece"></i>
+            <i class="fas fa-shield-alt"></i>
           </div>
-          <h3 id="feature-1-title">Egyszerű Modkezelés</h3>
-          <p id="feature-1-text">Könnyedén telepítsd, töröld és kezeld a modokat egy intuitív felületen. Nincs szükség fájlok másolgatására vagy bonyolult beállításokra.</p>
+          <h3 id="feature-1-title">Megbízható infrastruktúra</h3>
+          <p id="feature-1-text">Modern, stabil szerverek AMD Ryzen processzorokkal, folyamatos monitorozással – hogy a Minecraft szervered akkor is fusson, amikor te épp nem vagy gépnél.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-bolt"></i>
           </div>
-          <h3 id="feature-2-title">Gyors Indítás</h3>
-          <p id="feature-2-text">Optimalizált indítási folyamat garantálja, hogy a lehető leggyorsabban eljuss a játékig, anélkül, hogy kompromisszumot kötnél a teljesítményben.</p>
+          <h3 id="feature-2-title">Villámgyors válaszidő</h3>
+          <p id="feature-2-text">Alacsony ping, gyors hálózat és optimalizált rendszer – ideális PVP, minigame és survival szerverekhez egyaránt.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
-            <i class="fas fa-user-shield"></i>
+            <i class="fas fa-headset"></i>
           </div>
-          <h3 id="feature-3-title">Fokozott Biztonság</h3>
-          <p id="feature-3-text">Beépített védelem a káros modok és szkriptek ellen. Automatikus vírusellenőrzés minden letöltött tartalomra.</p>
+          <h3 id="feature-3-title">Magyar, segítőkész support</h3>
+          <p id="feature-3-text">Nem hagyunk egyedül: ha elakadsz, konfigurációban vagy pluginben kérdésed van, segítünk, amilyen gyorsan csak tudunk.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
-            <i class="fas fa-sync-alt"></i>
+            <i class="fas fa-lock"></i>
           </div>
-          <h3 id="feature-4-title">Automatikus Frissítések</h3>
-          <p id="feature-4-text">Mindig a legfrissebb verziót használod. A launcher automatikusan frissíti magát és a modokat, így soha nem maradsz le az újdonságokról.</p>
+          <h3 id="feature-4-title">Biztonság és védelem</h3>
+          <p id="feature-4-text">DDoS védelem, rendszeres mentések és biztonságos környezet – hogy a szervered és a játékosaid adatai biztonságban legyenek.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-sliders-h"></i>
           </div>
-          <h3 id="feature-5-title">Több Fiók Kezelése</h3>
-          <p id="feature-5-text">Könnyedén válthatsz különböző Minecraft fiókok között anélkül, hogy mindig újra be kellene jelentkezned.</p>
+          <h3 id="feature-5-title">Rugalmas erőforrások</h3>
+          <p id="feature-5-text">Ha kinövöd a jelenlegi csomagod, egyszerűen válthatsz több RAM-ra vagy tárhelyre – nincs szükség költözésre.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
-            <i class="fas fa-cogs"></i>
+            <i class="fas fa-rocket"></i>
           </div>
-          <h3 id="feature-6-title">Testreszabható Felület</h3>
-          <p id="feature-6-text">Szabd testre a launcher kinézetét és működését az igényeidnek megfelelően. Temák, háttérképek és egyedi beállítások.</p>
+          <h3 id="feature-6-title">Gyors indulás</h3>
+          <p id="feature-6-text">Konfiguráció kiválasztása, megrendelés, és máris készül a szervered – a cél, hogy minél előbb játszhass a barátaiddal.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title" id="how-to-title">Hogyan használd?</h2>
+      <h2 class="section-title" id="how-to-title">Hogyan működik?</h2>
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
-          <h3 id="step-1-title">Letöltés és telepítés</h3>
-          <p id="step-1-text">Töltsd le a Combinations Launcher-t, majd telepítsd a számítógépedre.</p>
+          <h3 id="step-1-title">Válaszd ki a konfigurációt</h3>
+          <p id="step-1-text">Használd az árkalkulátort: válaszd ki a CPU-t, a RAM-ot és a tárhelyet, így pontosan látod a várható havi díjat.</p>
         </div>
         
         <div class="step">
           <div class="step-number">2</div>
-          <h3 id="step-2-title">Bejelentkezés</h3>
-          <p id="step-2-text">Jelentkezz be Minecraft fiókoddal, hogy hozzáférj a játékhoz.</p>
+          <h3 id="step-2-title">Vedd fel velünk a kapcsolatot</h3>
+          <p id="step-2-text">Írj nekünk Discordon vagy az oldalunkon keresztül, és egyeztetjük a részleteket, számlázást, fizetést.</p>
         </div>
         
         <div class="step">
           <div class="step-number">3</div>
-          <h3 id="step-3-title">Modok tallózása</h3>
-          <p id="step-3-text">Tallózz a beépített mod katalógusban, és válaszd ki melyiket szeretnéd használni.</p>
+          <h3 id="step-3-title">Szerver beállítása</h3>
+          <p id="step-3-text">Elkészítjük és bekonfiguráljuk a szerveredet – verzió, pluginok, egyedi igények szerint.</p>
         </div>
         
         <div class="step">
           <div class="step-number">4</div>
-          <h3 id="step-4-title">Játék indítása</h3>
-          <p id="step-4-text">Indítsd el a játékot, és élvezd a fejlesztett Minecraft élményt!</p>
+          <h3 id="step-4-title">Játékra fel!</h3>
+          <p id="step-4-text">Megkapod a belépési adatokat, IP címet, és már hívhatod is a barátaidat, játékosaidat a szerverre.</p>
         </div>
       </div>
     </section>
@@ -645,23 +801,23 @@
       <h2 class="section-title" id="faq-title">Gyakran Ismételt Kérdések</h2>
       <div class="faq">
         <div class="faq-item">
-          <div class="faq-question" id="faq-1-question">Ingyenes a Combinations Launcher?</div>
+          <div class="faq-question" id="faq-1-question">Mennyire megbízható a Combinations Host?</div>
           <div class="faq-answer">
-            <p id="faq-1-answer">Igen, a Combinations Launcher teljesen ingyenesen használható. A prémium funkciók hamarosan elérhetőek lesznek, de az alapvető funkcionalitás mindig ingyenes marad.</p>
+            <p id="faq-1-answer">A szervereink folyamatosan monitorozva vannak, stabil hardveren futnak, és célunk a magas rendelkezésre állás. Ha mégis gond adódna, gyorsan reagálunk, hogy minél előbb újra minden működjön.</p>
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question" id="faq-2-question">Kompatibilis a régebbi Minecraft verziókkal?</div>
+          <div class="faq-question" id="faq-2-question">Kapok segítséget, ha elakadok a szerver beállításával?</div>
           <div class="faq-answer">
-            <p id="faq-2-answer">Igen, a launcher támogatja a legtöbb Minecraft verziót, beleértve a régebbi kiadásokat is. Egyszerűen válaszd ki a kívánt verziót a beállításokban.</p>
+            <p id="faq-2-answer">Igen. Ha problémád van pluginnal, verzióval vagy bármilyen beállítással, kereshetsz minket, és igyekszünk minél hamarabb megoldást találni.</p>
           </div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question" id="faq-3-question">Biztonságos a launcher használata?</div>
+          <div class="faq-question" id="faq-3-question">Mekkora szervert tudok futtatni nálatok?</div>
           <div class="faq-answer">
-            <p id="faq-3-answer">Abszolút. A Combinations Launcher teljesen biztonságos, nem sérti a Minecraft felhasználási feltételeit, és nem tartalmaz kártékony kódot. Minden mod automatikus vírusellenőrzésen megy keresztül telepítés előtt.</p>
+            <p id="faq-3-answer">A kis baráti survival szervertől a nagyobb, több szerveres hálózatig (network) tudunk segíteni. Ha speciális igényed van, írj nekünk, és ajánlunk megfelelő konfigurációt.</p>
           </div>
         </div>
       </div>
@@ -669,7 +825,7 @@
   </div>
 
   <footer class="footer">
-    <p id="footer-text">&copy; 2024 Combinations. Minden jog fenntartva.</p>
+    <p id="footer-text">&copy; 2024 Combinations Host. Minden jog fenntartva.</p>
   </footer>
 
   <script>
@@ -708,26 +864,91 @@
       });
     });
 
-    // Popup kezelése
-    const downloadBtn = document.getElementById('download-btn');
+    // Árkalkulátor logika – a táblázatod alapján
+    const pricingTable = {
+      "7900x": {
+        4: {10: 3500, 20: 4000, 30: 4500, 40: 5000},
+        8: {10: 5500, 20: 6000, 30: 6500, 40: 7000},
+        12:{10: 7500, 20: 8000, 30: 8500, 40: 9000},
+        16:{10: 9500, 20: 10000, 30: 10500, 40: 11000}
+      },
+      "9900x": {
+        4: {10: 4500, 20: 5000, 30: 5500, 40: 6000},
+        8: {10: 6500, 20: 7000, 30: 7500, 40: 8000},
+        12:{10: 8500, 20: 9000, 30: 9500, 40: 10000},
+        16:{10: 10500,20: 11000,30: 11500,40: 12000}
+      }
+    };
+
+    const ramSlider = document.getElementById('ram-slider');
+    const storageSlider = document.getElementById('storage-slider');
+    const ramValueEl = document.getElementById('ram-value');
+    const storageValueEl = document.getElementById('storage-value');
+    const priceValueEl = document.getElementById('price-value');
+    const cpuButtons = document.querySelectorAll('.cpu-btn');
+
+    let currentCpu = '7900x';
+
+    function updateCalculatorDisplay() {
+      const ram = parseInt(ramSlider.value, 10);
+      const storage = parseInt(storageSlider.value, 10);
+
+      ramValueEl.textContent = ram + ' GB RAM';
+      storageValueEl.textContent = storage + ' GB STORAGE';
+
+      const cpuData = pricingTable[currentCpu];
+      let price = null;
+      if (cpuData && cpuData[ram] && cpuData[ram][storage]) {
+        price = cpuData[ram][storage];
+      }
+
+      if (price !== null) {
+        priceValueEl.textContent = price + ' HUF';
+      } else {
+        priceValueEl.textContent = 'N/A';
+      }
+    }
+
+    ramSlider.addEventListener('input', updateCalculatorDisplay);
+    storageSlider.addEventListener('input', updateCalculatorDisplay);
+
+    cpuButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        cpuButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCpu = btn.dataset.cpu;
+        updateCalculatorDisplay();
+      });
+    });
+
+    updateCalculatorDisplay();
+
+    // Hero gombok: görgetés az árkalkulátorhoz, popup nyitás
+    const pricingSection = document.getElementById('pricing');
+    const calculatorBtn = document.getElementById('download-btn');
+    calculatorBtn.addEventListener('click', () => {
+      pricingSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const orderInfoBtn = document.getElementById('order-info-btn');
     const popupOverlay = document.getElementById('popup-overlay');
     const popupCloseBtn = document.getElementById('popup-close-btn');
-    
-    downloadBtn.addEventListener('click', () => {
+
+    orderInfoBtn.addEventListener('click', () => {
       popupOverlay.classList.add('active');
     });
-    
+
     popupCloseBtn.addEventListener('click', () => {
       popupOverlay.classList.remove('active');
     });
-    
-    // Kattintás a popup overlay-re is bezárja a popup-ot
+
     popupOverlay.addEventListener('click', (e) => {
       if (e.target === popupOverlay) {
         popupOverlay.classList.remove('active');
       }
     });
   </script>
+
   <script>
     // Track page view
     document.addEventListener('DOMContentLoaded', function() {
@@ -787,80 +1008,98 @@
     function updateLanguage(lang) {
       const translations = {
         hu: {
-          heroTitle: "Combinations Minecraft Launcher",
-          heroText: "Egy innovatív Minecraft Launcher, amely egyszerűsíti a játékélményt és új szintre emeli a modok kezelését.",
-          downloadBtn: "Letöltés most",
-          featuresTitle: "Főbb jellemzők",
-          feature1Title: "Egyszerű Modkezelés",
-          feature1Text: "Könnyedén telepítsd, töröld és kezeld a modokat egy intuitív felületen. Nincs szükség fájlok másolgatására vagy bonyolult beállításokra.",
-          feature2Title: "Gyors Indítás",
-          feature2Text: "Optimalizált indítási folyamat garantálja, hogy a lehető leggyorsabban eljuss a játékig, anélkül, hogy kompromisszumot kötnél a teljesítményben.",
-          feature3Title: "Fokozott Biztonság",
-          feature3Text: "Beépített védelem a káros modok és szkriptek ellen. Automatikus vírusellenőrzés minden letöltött tartalomra.",
-          feature4Title: "Automatikus Frissítések",
-          feature4Text: "Mindig a legfrissebb verziót használod. A launcher automatikusan frissíti magát és a modokat, így soha nem maradsz le az újdonságokról.",
-          feature5Title: "Több Fiók Kezelése",
-          feature5Text: "Könnyedén válthatsz különböző Minecraft fiókok között anélkül, hogy mindig újra be kellene jelentkezned.",
-          feature6Title: "Testreszabható Felület",
-          feature6Text: "Szabd testre a launcher kinézetét és működését az igényeidnek megfelelően. Temák, háttérképek és egyedi beállítások.",
-          howToTitle: "Hogyan használd?",
-          step1Title: "Letöltés és telepítés",
-          step1Text: "Töltsd le a Combinations Launcher-t, majd telepítsd a számítógépedre.",
-          step2Title: "Bejelentkezés",
-          step2Text: "Jelentkezz be Minecraft fiókoddal, hogy hozzáférj a játékhoz.",
-          step3Title: "Modok tallózása",
-          step3Text: "Tallózz a beépített mod katalógusban, és válaszd ki melyiket szeretnéd használni.",
-          step4Title: "Játék indítása",
-          step4Text: "Indítsd el a játékot, és élvezd a fejlesztett Minecraft élményt!",
+          heroTitle: "Combinations Host - Minecraft szerver hosting",
+          heroText: "Magyarország egyik legolcsóbb és legmegbízhatóbb Minecraft hostja – erős hardverrel, villámgyors válaszidővel és segítőkész magyar supporttal.",
+          downloadBtn: "Árkalkulátor megnyitása",
+          orderInfoBtn: "Hogyan tudok rendelni?",
+          calculatorTitle: "Árkalkulátor",
+          cpuLabel: "CPU választás",
+          cpu7900: "AMD Ryzen 9 7900X 4.7GHz",
+          cpu9900: "AMD Ryzen 9 9900X 4.4GHz",
+          ramLabel: "RAM mennyiség",
+          storageLabel: "Tárhely",
+          priceLabel: "Havi díj:",
+          priceNote: "Az ár tájékoztató jellegű havidíj, magyarországi ügyfelek számára.",
+          featuresTitle: "Miért a Combinations Host?",
+          feature1Title: "Megbízható infrastruktúra",
+          feature1Text: "Modern, stabil szerverek AMD Ryzen processzorokkal, folyamatos monitorozással – hogy a Minecraft szervered akkor is fusson, amikor te épp nem vagy gépnél.",
+          feature2Title: "Villámgyors válaszidő",
+          feature2Text: "Alacsony ping, gyors hálózat és optimalizált rendszer – ideális PVP, minigame és survival szerverekhez egyaránt.",
+          feature3Title: "Magyar, segítőkész support",
+          feature3Text: "Nem hagyunk egyedül: ha elakadsz, konfigurációban vagy pluginben kérdésed van, segítünk, amilyen gyorsan csak tudunk.",
+          feature4Title: "Biztonság és védelem",
+          feature4Text: "DDoS védelem, rendszeres mentések és biztonságos környezet – hogy a szervered és a játékosaid adatai biztonságban legyenek.",
+          feature5Title: "Rugalmas erőforrások",
+          feature5Text: "Ha kinövöd a jelenlegi csomagod, egyszerűen válthatsz több RAM-ra vagy tárhelyre – nincs szükség költözésre.",
+          feature6Title: "Gyors indulás",
+          feature6Text: "Konfiguráció kiválasztása, megrendelés, és máris készül a szervered – a cél, hogy minél előbb játszhass a barátaiddal.",
+          howToTitle: "Hogyan működik?",
+          step1Title: "Válaszd ki a konfigurációt",
+          step1Text: "Használd az árkalkulátort: válaszd ki a CPU-t, a RAM-ot és a tárhelyet, így pontosan látod a várható havi díjat.",
+          step2Title: "Vedd fel velünk a kapcsolatot",
+          step2Text: "Írj nekünk Discordon vagy az oldalunkon keresztül, és egyeztetjük a részleteket, számlázást, fizetést.",
+          step3Title: "Szerver beállítása",
+          step3Text: "Elkészítjük és bekonfiguráljuk a szerveredet – verzió, pluginok, egyedi igények szerint.",
+          step4Title: "Játékra fel!",
+          step4Text: "Megkapod a belépési adatokat, IP címet, és már hívhatod is a barátaidat, játékosaidat a szerverre.",
           faqTitle: "Gyakran Ismételt Kérdések",
-          faq1Question: "Ingyenes a Combinations Launcher?",
-          faq1Answer: "Igen, a Combinations Launcher teljesen ingyenesen használható. A prémium funkciók hamarosan elérhetőek lesznek, de az alapvető funkcionalitás mindig ingyenes marad.",
-          faq2Question: "Kompatibilis a régebbi Minecraft verziókkal?",
-          faq2Answer: "Igen, a launcher támogatja a legtöbb Minecraft verziót, beleértve a régebbi kiadásokat is. Egyszerűen válaszd ki a kívánt verziót a beállításokban.",
-          faq3Question: "Biztonságos a launcher használata?",
-          faq3Answer: "Abszolút. A Combinations Launcher teljesen biztonságous, nem sérti a Minecraft felhasználási feltételeit, és nem tartalmaz kártékony kódot. Minden mod automatikus vírusellenőrzésen megy keresztül telepítés előtt.",
-          popupTitle: "Fejlesztés alatt",
-          popupText: "A Combinations Launcher jelenleg fejlesztés alatt áll. Hamarosan elérhető lesz! Kövesd a fejlesztést a Discord szerverünkön.",
-          popupCloseBtn: "Értettem",
-          footerText: "© 2024 Combinations. Minden jog fenntartva."
+          faq1Question: "Mennyire megbízható a Combinations Host?",
+          faq1Answer: "A szervereink folyamatosan monitorozva vannak, stabil hardveren futnak, és célunk a magas rendelkezésre állás. Ha mégis gond adódna, gyorsan reagálunk, hogy minél előbb újra minden működjön.",
+          faq2Question: "Kapok segítséget, ha elakadok a szerver beállításával?",
+          faq2Answer: "Igen. Ha problémád van pluginnal, verzióval vagy bármilyen beállítással, kereshetsz minket, és igyekszünk minél hamarabb megoldást találni.",
+          faq3Question: "Mekkora szervert tudok futtatni nálatok?",
+          faq3Answer: "A kis baráti survival szervertől a nagyobb, több szerveres hálózatig (network) tudunk segíteni. Ha speciális igényed van, írj nekünk, és ajánlunk megfelelő konfigurációt.",
+          popupTitle: "Megrendelés menete",
+          popupText: "A szerverek megrendelése jelenleg Discordon vagy privát üzenetben történik. Válaszd ki a konfigurációdat az árkalkulátorral, majd vedd fel velünk a kapcsolatot a pontos egyeztetéshez.",
+          popupCloseBtn: "Rendben",
+          footerText: "© 2024 Combinations Host. Minden jog fenntartva."
         },
         en: {
-          heroTitle: "Combinations Minecraft Launcher",
-          heroText: "An innovative Minecraft Launcher that simplifies the gaming experience and takes mod management to the next level.",
-          downloadBtn: "Download now",
-          featuresTitle: "Main Features",
-          feature1Title: "Easy Mod Management",
-          feature1Text: "Easily install, delete and manage mods on an intuitive interface. No need for file copying or complicated settings.",
-          feature2Title: "Fast Startup",
-          feature2Text: "Optimized startup process ensures you get to the game as quickly as possible without compromising performance.",
-          feature3Title: "Enhanced Security",
-          feature3Text: "Built-in protection against harmful mods and scripts. Automatic virus scanning for all downloaded content.",
-          feature4Title: "Automatic Updates",
-          feature4Text: "You always use the latest version. The launcher automatically updates itself and mods, so you never miss out on new features.",
-          feature5Title: "Multiple Account Management",
-          feature5Text: "Easily switch between different Minecraft accounts without having to log in again each time.",
-          feature6Title: "Customizable Interface",
-          feature6Text: "Customize the launcher's appearance and operation to your needs. Themes, backgrounds and custom settings.",
-          howToTitle: "How to use?",
-          step1Title: "Download and install",
-          step1Text: "Download the Combinations Launcher, then install it on your computer.",
-          step2Title: "Login",
-          step2Text: "Log in with your Minecraft account to access the game.",
-          step3Title: "Browse mods",
-          step3Text: "Browse the built-in mod catalog and choose which one you want to use.",
-          step4Title: "Start the game",
-          step4Text: "Start the game and enjoy the enhanced Minecraft experience!",
+          heroTitle: "Combinations Host - Minecraft server hosting",
+          heroText: "One of Hungary's most affordable and reliable Minecraft hosting providers – powerful hardware, fast response time and friendly Hungarian support.",
+          downloadBtn: "Open price calculator",
+          orderInfoBtn: "How can I order?",
+          calculatorTitle: "Price Calculator",
+          cpuLabel: "CPU selection",
+          cpu7900: "AMD Ryzen 9 7900X 4.7GHz",
+          cpu9900: "AMD Ryzen 9 9900X 4.4GHz",
+          ramLabel: "RAM amount",
+          storageLabel: "Storage",
+          priceLabel: "Monthly price:",
+          priceNote: "The price is an indicative monthly fee for customers in Hungary.",
+          featuresTitle: "Why Combinations Host?",
+          feature1Title: "Reliable infrastructure",
+          feature1Text: "Modern, stable servers with AMD Ryzen processors and continuous monitoring – so your Minecraft server runs even when you are offline.",
+          feature2Title: "Lightning-fast response time",
+          feature2Text: "Low ping, fast network and optimized system – perfect for PVP, minigame and survival servers alike.",
+          feature3Title: "Helpful Hungarian support",
+          feature3Text: "We don't leave you alone: if you get stuck with configuration or plugins, we'll help you as quickly as possible.",
+          feature4Title: "Security and protection",
+          feature4Text: "DDoS protection, regular backups and a secure environment – keeping your server and players' data safe.",
+          feature5Title: "Flexible resources",
+          feature5Text: "If you outgrow your current plan, you can easily upgrade RAM or storage – no need to migrate.",
+          feature6Title: "Fast start",
+          feature6Text: "Choose your configuration, place your order and we prepare your server – the goal is that you can start playing as soon as possible.",
+          howToTitle: "How does it work?",
+          step1Title: "Choose your configuration",
+          step1Text: "Use the price calculator: choose CPU, RAM and storage so you can see your expected monthly price.",
+          step2Title: "Contact us",
+          step2Text: "Write us on Discord or via our website and we’ll discuss details, billing and payment.",
+          step3Title: "Server setup",
+          step3Text: "We create and configure your server – version, plugins, and custom requirements.",
+          step4Title: "Time to play!",
+          step4Text: "You receive the login information and IP, and you can invite your friends or players to the server.",
           faqTitle: "Frequently Asked Questions",
-          faq1Question: "Is Combinations Launcher free?",
-          faq1Answer: "Yes, the Combinations Launcher is completely free to use. Premium features will be available soon, but basic functionality will always remain free.",
-          faq2Question: "Is it compatible with older Minecraft versions?",
-          faq2Answer: "Yes, the launcher supports most Minecraft versions, including older releases. Simply select the desired version in the settings.",
-          faq3Question: "Is the launcher safe to use?",
-          faq3Answer: "Absolutely. The Combinations Launcher is completely safe, does not violate Minecraft's terms of use, and does not contain malicious code. Every mod goes through automatic virus scanning before installation.",
-          popupTitle: "Under Development",
-          popupText: "The Combinations Launcher is currently under development. It will be available soon! Follow the development on our Discord server.",
-          popupCloseBtn: "I understand",
-          footerText: "© 2024 Combinations. All rights reserved."
+          faq1Question: "How reliable is Combinations Host?",
+          faq1Answer: "Our servers are constantly monitored, run on stable hardware and our goal is high uptime. If an issue does occur, we react quickly so everything is back online as soon as possible.",
+          faq2Question: "Will I get help if I get stuck with server setup?",
+          faq2Answer: "Yes. If you have any problem with plugins, versions or settings, you can contact us and we will try to help as soon as possible.",
+          faq3Question: "What size server can I run with you?",
+          faq3Answer: "From small survival servers for friends to larger multi-server networks. If you have special needs, write to us and we'll recommend a suitable configuration.",
+          popupTitle: "How to order",
+          popupText: "Ordering servers is currently done via Discord or private message. Choose your configuration with the price calculator and then contact us for exact details.",
+          popupCloseBtn: "Got it",
+          footerText: "© 2024 Combinations Host. All rights reserved."
         }
       };
       
@@ -868,6 +1107,17 @@
       document.getElementById('hero-title').textContent = translations[lang].heroTitle;
       document.getElementById('hero-text').textContent = translations[lang].heroText;
       document.getElementById('download-btn').textContent = translations[lang].downloadBtn;
+      document.getElementById('order-info-btn').textContent = translations[lang].orderInfoBtn;
+
+      document.getElementById('calculator-title').textContent = translations[lang].calculatorTitle;
+      document.getElementById('cpu-label').textContent = translations[lang].cpuLabel;
+      document.getElementById('cpu-7900x-btn').textContent = translations[lang].cpu7900;
+      document.getElementById('cpu-9900x-btn').textContent = translations[lang].cpu9900;
+      document.getElementById('ram-label').textContent = translations[lang].ramLabel;
+      document.getElementById('storage-label').textContent = translations[lang].storageLabel;
+      document.getElementById('price-label').textContent = translations[lang].priceLabel;
+      document.getElementById('price-note').textContent = translations[lang].priceNote;
+
       document.getElementById('features-title').textContent = translations[lang].featuresTitle;
       document.getElementById('feature-1-title').textContent = translations[lang].feature1Title;
       document.getElementById('feature-1-text').textContent = translations[lang].feature1Text;
@@ -881,6 +1131,7 @@
       document.getElementById('feature-5-text').textContent = translations[lang].feature5Text;
       document.getElementById('feature-6-title').textContent = translations[lang].feature6Title;
       document.getElementById('feature-6-text').textContent = translations[lang].feature6Text;
+
       document.getElementById('how-to-title').textContent = translations[lang].howToTitle;
       document.getElementById('step-1-title').textContent = translations[lang].step1Title;
       document.getElementById('step-1-text').textContent = translations[lang].step1Text;
@@ -890,6 +1141,7 @@
       document.getElementById('step-3-text').textContent = translations[lang].step3Text;
       document.getElementById('step-4-title').textContent = translations[lang].step4Title;
       document.getElementById('step-4-text').textContent = translations[lang].step4Text;
+
       document.getElementById('faq-title').textContent = translations[lang].faqTitle;
       document.getElementById('faq-1-question').textContent = translations[lang].faq1Question;
       document.getElementById('faq-1-answer').textContent = translations[lang].faq1Answer;
@@ -897,9 +1149,11 @@
       document.getElementById('faq-2-answer').textContent = translations[lang].faq2Answer;
       document.getElementById('faq-3-question').textContent = translations[lang].faq3Question;
       document.getElementById('faq-3-answer').textContent = translations[lang].faq3Answer;
+
       document.getElementById('popup-title').textContent = translations[lang].popupTitle;
       document.getElementById('popup-text').textContent = translations[lang].popupText;
       document.getElementById('popup-close-btn').textContent = translations[lang].popupCloseBtn;
+
       document.getElementById('footer-text').textContent = translations[lang].footerText;
     }
   </script>
