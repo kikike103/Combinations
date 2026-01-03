@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Combinations Wiki - PermiX Dokumentáció</title>
+  <title>Combinations Wiki - Tudásbázis</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
@@ -23,8 +23,8 @@
       /* Callout Colors */
       --info-bg: rgba(88, 101, 242, 0.1);
       --info-border: #5865F2;
-      --warn-bg: rgba(250, 166, 26, 0.1);
-      --warn-border: #faa61a;
+      --warn-bg: rgba(237, 66, 69, 0.1);
+      --warn-border: #ed4245;
       --tip-bg: rgba(59, 165, 92, 0.1);
       --tip-border: #3ba55c;
     }
@@ -36,18 +36,19 @@
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     a { text-decoration: none; color: inherit; transition: color 0.2s; }
     ul { list-style: none; }
     
-    /* --- Navbar (Ugyanaz mint a főoldalon) --- */
+    /* --- Navbar --- */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 70px; /* Kicsit vékonyabb a Wikin */
+      height: 70px;
       background-color: var(--sidebar-bg);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -80,16 +81,16 @@
     
     .discord-btn-nav:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(160, 102, 255, 0.4); }
 
-    /* --- LAYOUT: 3 Oszlopos Rendszer --- */
+    /* --- LAYOUT --- */
     .wiki-container {
       display: grid;
-      grid-template-columns: 260px 1fr 240px; /* Bal menü - Tartalom - Jobb TOC */
+      grid-template-columns: 260px 1fr 240px;
       max-width: 1600px;
-      margin: 70px auto 0; /* Navbar magassága */
+      margin: 70px auto 0;
       min-height: calc(100vh - 70px);
     }
 
-    /* 1. Oszlop: Bal oldali Navigáció */
+    /* 1. Bal oldali Navigáció */
     .sidebar-left {
       background-color: var(--sidebar-bg);
       border-right: 1px solid var(--border);
@@ -117,6 +118,7 @@
       color: var(--text-muted);
       font-size: 0.95rem;
       margin-bottom: 2px;
+      cursor: pointer;
     }
 
     .sidebar-link:hover { background-color: rgba(255,255,255,0.05); color: var(--text-main); }
@@ -127,70 +129,21 @@
       border-left: 3px solid var(--primary);
     }
 
-    /* 2. Oszlop: Fő Tartalom */
+    /* 2. Fő Tartalom */
     .main-content {
       padding: 40px 60px;
-      max-width: 900px; /* Olvashatóság miatt ne legyen túl széles */
+      max-width: 900px;
       margin: 0 auto;
       width: 100%;
     }
 
-    /* Search Bar */
-    .search-wrapper {
-      margin-bottom: 40px;
-      position: relative;
-    }
-    .search-input {
-      width: 100%;
-      padding: 15px 20px 15px 50px;
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: white;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-    .search-input:focus { outline: none; border-color: var(--primary); }
-    .search-icon { position: absolute; left: 20px; top: 18px; color: var(--text-muted); }
-
-    /* Category Cards (Wiki Dashboard) */
-    .wiki-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-    .wiki-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      transition: transform 0.2s;
-      cursor: pointer;
-    }
-    .wiki-card:hover { transform: translateY(-3px); border-color: var(--primary); }
-    .wiki-card.highlight { border: 1px solid var(--primary); background: linear-gradient(to bottom, #1e1f22, #151618); }
-    .wiki-card i { font-size: 1.5rem; margin-bottom: 10px; color: var(--primary); }
-
-    /* Typography & Content Elements */
-    h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
-    h2 { font-size: 1.8rem; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); scroll-margin-top: 100px; }
+    /* Typography */
+    h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; color: white; }
+    h2 { font-size: 1.8rem; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); scroll-margin-top: 100px; color: var(--text-main); }
     h3 { font-size: 1.4rem; margin: 30px 0 15px; color: var(--text-main); }
     p { margin-bottom: 15px; color: #d0d3d8; font-size: 1.05rem; }
-
-    .header-actions { margin-bottom: 40px; display: flex; gap: 15px; align-items: center; }
-    .btn-download {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-download:hover { background-color: var(--primary); border-color: var(--primary); color: white; }
+    
+    .lead { font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-bottom: 30px; }
 
     /* Tables */
     .wiki-table {
@@ -201,43 +154,14 @@
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid var(--border);
+      font-size: 0.9rem;
     }
-    .wiki-table th, .wiki-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border); }
-    .wiki-table th { background-color: rgba(0,0,0,0.2); color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; }
-    .wiki-table code { background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; color: var(--accent); }
-
-    /* Code Blocks */
-    .code-wrapper {
-      position: relative;
-      margin: 25px 0;
-      background-color: #151618;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-    .code-header {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 15px;
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid var(--border);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .copy-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-    .copy-btn:hover { color: white; }
-    pre { padding: 15px; overflow-x: auto; margin: 0; }
-    code { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #dcdcdc; }
+    .wiki-table th, .wiki-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border); }
+    .wiki-table th { background-color: rgba(0,0,0,0.2); color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
+    .wiki-table tr:last-child td { border-bottom: none; }
+    .wiki-table tr:hover { background-color: rgba(255,255,255,0.02); }
     
-    /* Syntax Highlight Colors (Simplified) */
-    .yaml-key { color: #ff7b72; }
-    .yaml-val { color: #a5d6ff; }
-    .yaml-comment { color: #8b949e; font-style: italic; }
+    code { background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.85rem; }
 
     /* Callouts */
     .callout {
@@ -261,21 +185,49 @@
     .callout.tip { border-color: var(--tip-border); background-color: var(--tip-bg); }
     .callout.tip .callout-icon { color: var(--tip-border); }
 
-    /* Support Footer */
-    .docs-footer {
-      margin-top: 60px;
-      padding-top: 30px;
-      border-top: 1px solid var(--border);
-      text-align: center;
+    /* FAQ Details/Summary - Profi Stílus */
+    details {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
     }
-    .support-links {
+    
+    details[open] { border-color: var(--primary); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    
+    summary {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: 600;
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 15px;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      color: var(--text-main);
+    }
+    
+    summary::-webkit-details-marker { display: none; }
+    
+    summary:after {
+      content: '\f078'; /* FontAwesome Chevron Down */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      transition: transform 0.3s;
+    }
+    
+    details[open] summary:after { transform: rotate(180deg); color: var(--primary); }
+    
+    .faq-content {
+      padding: 0 20px 20px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+      padding-top: 15px;
     }
 
-    /* 3. Oszlop: Jobb oldali TOC (Tartalomjegyzék) */
+    /* 3. Jobb oldali Tartalomjegyzék (TOC) */
     .sidebar-right {
       padding: 40px 20px;
       position: sticky;
@@ -285,20 +237,33 @@
     }
     .toc-title { font-size: 0.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 15px; }
     .toc-list li { margin-bottom: 10px; }
-    .toc-list a { font-size: 0.85rem; color: var(--text-muted); }
-    .toc-list a:hover { color: var(--primary); }
+    .toc-list a { font-size: 0.85rem; color: var(--text-muted); display: block; border-left: 2px solid transparent; padding-left: 10px; }
+    .toc-list a:hover { color: var(--primary); border-left-color: var(--primary); }
+
+    /* Buttons */
+    .btn-download {
+      background: var(--gradient);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      transition: opacity 0.3s;
+    }
+    .btn-download:hover { opacity: 0.9; }
 
     /* Responsive */
     @media (max-width: 1200px) {
       .wiki-container { grid-template-columns: 240px 1fr; }
-      .sidebar-right { display: none; } /* Tableten eltűnik a TOC */
+      .sidebar-right { display: none; }
     }
     @media (max-width: 768px) {
       .wiki-container { display: block; padding: 20px; }
-      .sidebar-left { display: none; } /* Mobilon Hamburger menüben lenne */
+      .sidebar-left { display: none; } /* Mobil menü kellene ide */
       .main-content { padding: 0; }
-      .wiki-cards { grid-template-columns: 1fr; }
-      .header-actions { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -318,201 +283,366 @@
     
     <aside class="sidebar-left">
       <div class="sidebar-group">
-        <div class="sidebar-title">Kezdőlap</div>
-        <a href="#" class="sidebar-link">Bevezetés</a>
-        <a href="#" class="sidebar-link">Gyakori Kérdések</a>
-      </div>
-      
-      <div class="sidebar-group">
-        <div class="sidebar-title">CombinationsCore</div>
-        <a href="#" class="sidebar-link">Telepítés</a>
-        <a href="#" class="sidebar-link">Modulok</a>
-        <a href="#" class="sidebar-link">API</a>
+        <div class="sidebar-title">Áttekintés</div>
+        <a class="sidebar-link active" onclick="loadPage('intro')">Bevezetés (Core)</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-title">Ingyenes Pluginok</div>
-        <a href="#" class="sidebar-link active">PermiX</a> <a href="#" class="sidebar-link">OathBound</a>
-        <a href="#" class="sidebar-link">ChatManager</a>
+        <a class="sidebar-link" onclick="loadPage('skript')">CombinationsSkript</a>
+        <a class="sidebar-link" onclick="loadPage('permix')">PermiX</a>
+        <a class="sidebar-link" onclick="loadPage('oathbound')">OathBound</a>
       </div>
     </aside>
 
-    <main class="main-content">
-      
-      <div class="search-wrapper">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" class="search-input" placeholder="Hogyan segíthetünk? (pl. jogok, telepítés...)">
-      </div>
-
-      <div class="wiki-cards">
-        <div class="wiki-card highlight">
-          <i class="fas fa-cubes"></i>
-          <h4>CombinationsCore</h4>
-        </div>
-        <div class="wiki-card">
-          <i class="fas fa-gift"></i>
-          <h4>Ingyenes Pluginok</h4>
-        </div>
-        <div class="wiki-card">
-          <i class="fas fa-life-ring"></i>
-          <h4>Hibaelhárítás</h4>
-        </div>
-      </div>
-
-      <div class="content-body">
-        <h1 id="intro">PermiX Dokumentáció</h1>
-        <p class="lead">A PermiX egy ultrakönnyű, SQL-alapú jogosultságkezelő rendszer, amit kifejezetten nagy forgalmú szerverekre terveztünk a lag minimalizálása érdekében.</p>
-        
-        <div class="header-actions">
-          <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés (SpigotMC)</a>
-          <span style="color: var(--text-muted); font-size: 0.9rem;">Verzió: v1.4.2</span>
-        </div>
-
-        <div class="callout info">
-          <div class="callout-icon"><i class="fas fa-info-circle"></i></div>
-          <div>
-            <strong>Info:</strong> A plugin működéséhez szükséges a <code>PlaceholderAPI</code> és egy MySQL adatbázis kapcsolat.
-          </div>
-        </div>
-
-        <h2 id="install">Telepítés</h2>
-        <ol style="margin-left: 20px; color: var(--text-muted); margin-bottom: 30px;">
-          <li style="margin-bottom: 10px;">Töltsd le a <code>PermiX.jar</code> fájlt.</li>
-          <li style="margin-bottom: 10px;">Húzd be a szervered <code>/plugins</code> mappájába.</li>
-          <li style="margin-bottom: 10px;">Indítsd újra a szervert, majd nyisd meg a <code>config.yml</code> fájlt az adatbázis adatok megadásához.</li>
-        </ol>
-
-        <h2 id="commands">Parancsok és Jogok</h2>
-        <table class="wiki-table">
-          <thead>
-            <tr>
-              <th width="30%">Parancs</th>
-              <th width="30%">Jog (Permission)</th>
-              <th>Leírás</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>/permix user set</code></td>
-              <td><code>permix.admin</code></td>
-              <td>Rang beállítása egy játékosnak.</td>
-            </tr>
-            <tr>
-              <td><code>/permix group add</code></td>
-              <td><code>permix.admin</code></td>
-              <td>Új rang létrehozása.</td>
-            </tr>
-            <tr>
-              <td><code>/permix reload</code></td>
-              <td><code>permix.reload</code></td>
-              <td>Config fájlok újratöltése.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout warn">
-          <div class="callout-icon"><i class="fas fa-exclamation-triangle"></i></div>
-          <div>
-            <strong>Figyelem:</strong> Soha ne add meg a <code>permix.*</code> jogot olyan játékosnak, akiben nem bízol 100%-ig!
-          </div>
-        </div>
-
-        <h2 id="config">Konfiguráció</h2>
-        <p>Íme egy példa a <code>groups.yml</code> beállítására:</p>
-        
-        <div class="code-wrapper">
-          <div class="code-header">
-            <span>config.yml</span>
-            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Másolás</button>
-          </div>
-<pre><code><span class="yaml-key">groups:</span>
-  <span class="yaml-key">default:</span>
-    <span class="yaml-key">prefix:</span> <span class="yaml-val">"&7[Játékos] "</span>
-    <span class="yaml-key">default:</span> <span class="yaml-val">true</span>
-    <span class="yaml-key">permissions:</span>
-      <span class="yaml-comment"># Alapvető jogok</span>
-      - essentials.spawn
-      - essentials.msg
-  <span class="yaml-key">admin:</span>
-    <span class="yaml-key">prefix:</span> <span class="yaml-val">"&c[Admin] "</span>
-    <span class="yaml-key">permissions:</span>
-      - <span class="yaml-val">"*"</span></code></pre>
-        </div>
-
-        <div class="callout tip">
-          <div class="callout-icon"><i class="fas fa-check-circle"></i></div>
-          <div>
-            <strong>Tipp:</strong> Használd a <code>/permix gui</code> parancsot a rangok vizuális szerkesztéséhez játékon belül!
-          </div>
-        </div>
-
-        <h2 id="placeholders">Placeholderek</h2>
-        <p>Ezeket használhatod a Tab listán vagy a Scoreboardon:</p>
-        <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
-          <li><code>%permix_rank%</code> - Játékos rangjának neve</li>
-          <li><code>%permix_prefix%</code> - Játékos prefixe</li>
-          <li><code>%permix_suffix%</code> - Játékos suffixe</li>
-        </ul>
-
-      </div>
-
-      <footer class="docs-footer">
-        <h3>Nem találod a választ?</h3>
-        <p>Csapatunk készséggel áll rendelkezésedre.</p>
-        <div class="support-links">
-          <a href="#" class="btn-download" style="background: var(--primary); color: white; border: none;">
-            <i class="fab fa-discord"></i> Csatlakozz a Discordhoz
-          </a>
-          <a href="#" class="btn-download">
-            <i class="fas fa-envelope"></i> Jegy nyitása
-          </a>
-        </div>
-      </footer>
-
-    </main>
+    <main class="main-content" id="mainContent">
+      </main>
 
     <aside class="sidebar-right">
       <div class="toc-title">EZEN AZ OLDALON</div>
-      <ul class="toc-list">
-        <li><a href="#intro">Bevezetés</a></li>
-        <li><a href="#install">Telepítés</a></li>
-        <li><a href="#commands">Parancsok és Jogok</a></li>
-        <li><a href="#config">Konfiguráció</a></li>
-        <li><a href="#placeholders">Placeholderek</a></li>
-      </ul>
+      <ul class="toc-list" id="tocList">
+        </ul>
     </aside>
 
   </div>
 
   <script>
-    // Egyszerű másolás funkció a kódblokkokhoz
-    function copyCode(btn) {
-      // Megkeressük a gombhoz tartozó kódot
-      const codeBlock = btn.parentElement.nextElementSibling.innerText;
+    // --- ADATBÁZIS: Itt tároljuk a Wiki oldalak tartalmát ---
+    const wikiData = {
+      // 1. BEVEZETÉS (Intro + FAQ)
+      intro: {
+        content: `
+          <h1>🚀 Első lépések a CombinationsCore-ral</h1>
+          <p class="lead">Köszönjük, hogy a CombinationsCore-t választottad! Ez a rendszer azért jött létre, hogy levegye a válladról a technikai nehézségeket, és egy stabil, jól optimalizált alapot biztosítson a Minecraft szerverednek.</p>
+          <p>Ez az útmutató segít neked a plugin helyes telepítésében és az alapvető beállítások elvégzésében.</p>
+
+          <h2 id="requirements">📋 Előfeltételek</h2>
+          <p>Mielőtt elkezdenéd, győződj meg róla, hogy a szervered megfelel az alábbi követelményeknek:</p>
+          <ul style="margin-left:20px; margin-bottom:20px;">
+            <li><strong>Java verzió:</strong> Java 17 vagy újabb (ajánlott: Java 21).</li>
+            <li><strong>Szerver szoftver:</strong> PaperMC, Purpur vagy Spigot (ajánlott: <strong>PaperMC</strong> az optimalizáció miatt).</li>
+            <li><strong>Szükséges kiegészítők:</strong> <code>PlaceholderAPI</code> (a változók megjelenítéséhez).</li>
+            <li><strong>Opcionális:</strong> Litebans, Citizens, EssentialsX (ha a híd funkciókat is használni szeretnéd).</li>
+          </ul>
+
+          <h2 id="install">🛠️ Telepítési folyamat</h2>
+          <p>Kövesd ezt a pár egyszerű lépést a rendszer élesítéséhez:</p>
+          <ol style="margin-left:20px; color:var(--text-muted); margin-bottom:20px; line-height:1.8;">
+            <li><strong>Letöltés:</strong> Töltsd le a legfrissebb <code>CombinationsCore.jar</code> fájlt a vásárlás után kapott linken vagy a Discord szerverünkről.</li>
+            <li><strong>Feltöltés:</strong> Másold be a fájlt a szervered <code>/plugins/</code> mappájába.</li>
+            <li><strong>Indítás:</strong> Indítsd el (vagy indítsd újra) a szervert.</li>
+            <li><strong>Aktiválás:</strong> Első induláskor a konzol kérni fogja a licenckulcsodat. Ezt a <code>/plugins/CombinationsCore/config.yml</code> fájlban tudod megadni, vagy a játékon belül a <code>/combinations activate [kulcs]</code> paranccsal.</li>
+          </ol>
+          <div class="callout tip">
+            <div class="callout-icon"><i class="fas fa-lightbulb"></i></div>
+            <div><strong>Tipp:</strong> Mindig győződj meg róla, hogy a legfrissebb verziót használod, hogy elkerüld a kompatibilitási hibákat!</div>
+          </div>
+
+          <h2 id="config">⚙️ Az első beállítások</h2>
+          <p>A telepítés után a <code>/plugins/CombinationsCore/</code> mappában létrejönnek az alapértelmezett konfigurációs fájlok.</p>
+          <h3>Válaszd ki a játékmódodat:</h3>
+          <p>Nyisd meg a <code>config.yml</code> fájlt, és keresd meg a <code>server-mode</code> sort. Itt állíthatod be a kívánt sablont:</p>
+          <pre style="background:#111; padding:15px; border-radius:6px; border:1px solid var(--border);"><code>server-mode: BOXPVP
+server-mode: SURVIVAL
+server-mode: LIFESTEAL</code></pre>
+          <p style="margin-top:10px;">A módosítás után használd a <code>/combinations reload</code> parancsot a változtatások élesítéséhez.</p>
+
+          <h2 id="faq">🆘 Gyakori Kérdések & Segítség</h2>
+          
+          <details>
+            <summary>A CombinationsCore mennyire biztonságos?</summary>
+            <div class="faq-content">
+              A CombinationsCore folyamatos átgondolásokkal és többszintű biztonsági rendszerrel lett megalkotva. A kódunkat rendszeresen auditáljuk, és beépített védelemmel rendelkezik a gyakori exploitok (pl. Crasherek, NullPing) ellen. Így a sebességre és a biztonságra semmi aggodalmat nem válthat ki – a szervered nálunk jó kezekben van.
+            </div>
+          </details>
+
+          <details>
+            <summary>Mit tegyek, ha licenc hibát kapok?</summary>
+            <div class="faq-content">
+              Ellenőrizd, hogy a config.yml fájlban pontosan másoltad-e be a kulcsot, és nincs-e felesleges szóköz a végén. Ha a hiba továbbra is fennáll, nyiss egy jegyet Discordon, és ellenőrizzük a kulcsod státuszát.
+            </div>
+          </details>
+
+          <details>
+            <summary>Melyik verziókkal kompatibilis?</summary>
+            <div class="faq-content">
+              A rendszer teljes mértékben támogatja az 1.18-tól egészen a legújabb 1.21+ verziókig terjedő Minecraft kiadásokat. Régebbi (1.8 - 1.12) verziókhoz a Legacy ágat ajánljuk, de a fő fejlesztés az új verziókra fókuszál.
+            </div>
+          </details>
+
+          <p style="margin-top:30px;">
+            Még mindig kérdésed van? <a href="#" style="color:var(--primary); font-weight:bold;">Csatlakozz a Discord szerverünkhöz</a>, ahol a technikai support csapatunk készséggel segít.
+          </p>
+        `,
+        toc: [
+          { id: 'requirements', text: 'Előfeltételek' },
+          { id: 'install', text: 'Telepítés' },
+          { id: 'config', text: 'Konfiguráció' },
+          { id: 'faq', text: 'Gyakori Kérdések' }
+        ]
+      },
+
+      // 2. COMBINATIONS SKRIPT
+      skript: {
+        content: `
+          <h1>CombinationsSkript</h1>
+          <p class="lead">Egy vadonatúj, modern Skript, amelyet a szerverkezelés forradalmasítására terveztünk.</p>
+          <p>Egyszerű, mégis nagy tudású: alapvető moderációs eszközöket, játékoskezelést és kényelmi funkciókat biztosít – mindezt újragondolva a jobb teljesítmény és használhatóság érdekében.</p>
+
+          <div class="callout warn">
+            <div class="callout-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div>
+              <strong>Figyelem!</strong> A működéshez a következő kiegészítők (Addons) szükségesek, ezek nélkül a script nem fog működni:<br>
+              - Skbee<br>
+              - Skellett<br>
+              - skUtilities
+            </div>
+          </div>
+
+          <h2 id="features">✨ Főbb Jellemzők</h2>
+          <ul style="list-style: none; margin-left: 0;">
+            <li>✅ <strong>Gazdasági Rendszer</strong> – Teljeskörűen integrált pénzkezelés.</li>
+            <li>✅ <strong>Angol Támogatás</strong> – Mostantól elérhető angol nyelven is!</li>
+            <li>✅ <strong>Újragondolt Essentials</strong> – Klasszikus parancsok, modern megvalósításban.</li>
+            <li>✅ <strong>Home Rendszer</strong> – Egyszerű teleportálás testreszabható otthonokkal.</li>
+            <li>✅ <strong>Könnyű és Testreszabható</strong> – Könnyen módosítható a szervered igényei szerint.</li>
+            <li>✅ <strong>1.18+ Támogatás</strong> – Kompatibilis a modern Minecraft verziókkal.</li>
+            <li>✅ <strong>Testreszabható Prefixek</strong> – Egyszerű szerkesztéssel átírhatod a chat előtagokat.</li>
+          </ul>
+
+          <h2 id="install-skript">📥 Telepítés</h2>
+          <ol style="margin-left:20px; margin-bottom:20px;">
+            <li>Töltsd le a scriptet a "Download Now" gombbal.</li>
+            <li>Csomagold ki a .rar fájlt, és válaszd ki a nyelvet (HU/EN).</li>
+            <li>Helyezd a <code>combinations.sk</code> fájlt a <code>plugins/Skript/scripts/</code> mappába.</li>
+            <li>Indítsd újra a szervert, vagy használd a <code>/sk reload combinations</code> parancsot.</li>
+          </ol>
+
+          <h2 id="commands">⚙️ Parancsok és Jogok</h2>
+          <table class="wiki-table">
+            <thead>
+              <tr><th>Parancs</th><th>Jog (Permission)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>/economy</td><td>combinations.eco</td></tr>
+              <tr><td>/eco give</td><td>combinations.eco.give</td></tr>
+              <tr><td>/eco take</td><td>combinations.eco.take</td></tr>
+              <tr><td>/eco set</td><td>combinations.eco.set</td></tr>
+              <tr><td>/balance</td><td>combinations.balance.use</td></tr>
+              <tr><td>/pay</td><td>combinations.pay.use</td></tr>
+              <tr><td>/gamemode</td><td>combinations.gamemode.use</td></tr>
+              <tr><td>/spawn, /setspawn</td><td>combinations.spawn.use, combinations.setspawn</td></tr>
+              <tr><td>/broadcast, /alert</td><td>combinations.broadcast.use, combinations.alert</td></tr>
+              <tr><td>/msg, /msgtoggle</td><td>combinations.msg, combinations.msg.toggle</td></tr>
+              <tr><td>/ec (Enderchest)</td><td>combinations.enderchest</td></tr>
+              <tr><td>/clear</td><td>combinations.clearinventory</td></tr>
+              <tr><td>/fly</td><td>combinations.fly</td></tr>
+              <tr><td>/god</td><td>combinations.god</td></tr>
+              <tr><td>/speed</td><td>combinations.speed.use</td></tr>
+              <tr><td>/tp, /tphere, /tpall</td><td>combinations.tp.use, combinations.s.use, combinations.tpall.use</td></tr>
+              <tr><td>/invsee</td><td>combinations.invsee.use</td></tr>
+              <tr><td>/clearchat</td><td>combinations.clearchat.use</td></tr>
+              <tr><td>/heal, /feed</td><td>combinations.heal.use, combinations.feed.use</td></tr>
+              <tr><td>/kill, /killall</td><td>combinations.kill.use, combinations.killall.use</td></tr>
+              <tr><td>/time, /weather</td><td>combinations.time.use, combinations.weather.use</td></tr>
+              <tr><td>/combinations reload</td><td>combinations.system.use</td></tr>
+            </tbody>
+          </table>
+
+          <h2 id="why">Miért a Combinations?</h2>
+          <p>
+            ✨ <strong>Modern megközelítés:</strong> Hagyományos funkciók innovatív köntösben.<br>
+            ✨ <strong>Szerver-Optimalizált:</strong> Könnyűsúlyú kód a jobb teljesítményért.<br>
+            ✨ <strong>Jövőbiztos:</strong> Rendszeres frissítések új funkciókkal.
+          </p>
+
+          <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés most</a>
+        `,
+        toc: [
+          { id: 'features', text: 'Főbb Jellemzők' },
+          { id: 'install-skript', text: 'Telepítés' },
+          { id: 'commands', text: 'Parancsok és Jogok' },
+          { id: 'why', text: 'Miért válassz minket?' }
+        ]
+      },
+
+      // 3. PERMIX
+      permix: {
+        content: `
+          <h1>PermiX</h1>
+          <p class="lead">Egy feltörekvő rangkezelő és jogosultságkezelő rendszer, ahol csak a tudásod szab határt!</p>
+          <p>A rangok létrehozása ebben a pluginban rendkívül gördülékeny. Arra törekszünk, hogy egy igazán kifinomult és jól használható plugint tervezzünk játékosok és fejlesztők számára egyaránt.</p>
+
+          <div class="header-actions" style="margin-bottom:20px;">
+            <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés</a>
+          </div>
+
+          <h2 id="permix-commands">⚙️ Parancsok és Jogok</h2>
+
+          <h3>Fő parancs hozzáférés</h3>
+          <table class="wiki-table">
+            <tr><td><code>/permix</code></td><td><code>permix.command</code></td></tr>
+          </table>
+
+          <h3>Csoportkezelés (Group Management)</h3>
+          <table class="wiki-table">
+            <tbody>
+              <tr>
+                <td><code>/permix creategroup [név]</code></td>
+                <td><code>permix.creategroup</code></td>
+                <td>Új csoport létrehozása.</td>
+              </tr>
+              <tr>
+                <td><code>/permix deletegroup [név]</code></td>
+                <td><code>permix.deletegroup</code></td>
+                <td>Csoport törlése.</td>
+              </tr>
+              <tr>
+                <td><code>/permix group [csoport] [beállítás] set [érték]</code></td>
+                <td><code>permix.group</code></td>
+                <td>Prefix, suffix vagy jogok beállítása.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Felhasználó kezelés (User Management)</h3>
+          <table class="wiki-table">
+            <tbody>
+              <tr>
+                <td><code>/permix user [játékos] parent set [csoport]</code></td>
+                <td><code>permix.user</code></td>
+                <td>Játékos áthelyezése egy rangba.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Adminisztráció</h3>
+          <table class="wiki-table">
+            <tbody>
+              <tr>
+                <td><code>/permix reload</code></td>
+                <td><code>permix.reload</code></td>
+                <td>Config fájlok újratöltése.</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="callout tip">
+             <div class="callout-icon"><i class="fas fa-star"></i></div>
+             <div>Vagy használd egyszerűen a <code>permix.*</code> jogot a teljes hozzáféréshez!</div>
+          </div>
+        `,
+        toc: [
+          { id: 'permix-commands', text: 'Parancsok és Jogok' }
+        ]
+      },
+
+      // 4. OATHBOUND
+      oathbound: {
+        content: `
+          <h1>OathBound</h1>
+          <p class="lead">Hozz létre erős közösségeket, vezesd győzelemre a csapatodat, és hozd közelebb egymáshoz a játékosokat ezzel a modern klán pluginnal.</p>
+          <p>Teljes mértékben kompatibilis az <strong>1.18+</strong> verziókkal. Tökéletes választás kisebb közösségi szervereknek és nagy hálózatoknak egyaránt.</p>
+
+          <div class="header-actions" style="margin-bottom:20px;">
+            <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés</a>
+          </div>
+
+          <h2 id="features-oath">✨ Főbb Jellemzők</h2>
+          <ul style="list-style:none;">
+            <li>💬 <strong>Testreszabható Üzenetek:</strong> Minden üzenet igazítható a szervered stílusához.</li>
+            <li>⚔️ <strong>Teljes Klánkezelés:</strong> Olyan alapvető parancsok, mint a <code>promote</code>, <code>demote</code>, <code>kick</code>, <code>leave</code> és még sok más.</li>
+            <li>🛡️ <strong>Admin Kontroll:</strong> Speciális parancsok (<code>/clan dev add</code> & <code>/clan dev remove</code>), hogy az adminok könnyen kezelhessék a tagokat.</li>
+            <li>🩸 <strong>Klán PvP Kapcsoló:</strong> A játékosok a <code>/clan pvp</code> paranccsal engedélyezhetik vagy tilthatják a baráti tüzet.</li>
+            <li>🔒 <strong>Biztonságos Törlés:</strong> A klánok vagy a teljes adatbázis csak offline állapotban törölhető, megelőzve az adatvesztést.</li>
+          </ul>
+
+          <h2 id="placeholders-oath">🧩 Változók (Placeholders)</h2>
+          <table class="wiki-table">
+            <thead>
+              <tr><th>Placeholder</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>%kclan_name1%</code></td>
+                <td>Megjeleníti a klán nevét, ha van. Ha nincs, <strong>üres marad</strong> (tökéletes TAB-ra).</td>
+              </tr>
+              <tr>
+                <td><code>%kclan_name%</code></td>
+                <td>Megjeleníti a klán nevét. Ha nincs, <strong>"-"</strong> jelet mutat (Chatre ideális).</td>
+              </tr>
+              <tr>
+                <td><code>%kclan_name_top_1%</code></td>
+                <td>(1–10) Megjeleníti a <strong>Top 10 klán nevét</strong> (Hologramokhoz).</td>
+              </tr>
+              <tr>
+                <td><code>%kclan_kills_top_1%</code></td>
+                <td>(1–10) Megjeleníti a <strong>Top 10 klán ölésszámát</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        `,
+        toc: [
+          { id: 'features-oath', text: 'Főbb Jellemzők' },
+          { id: 'placeholders-oath', text: 'Placeholderek' }
+        ]
+      }
+    };
+
+    // --- FUNKCIÓK ---
+
+    function loadPage(pageId) {
+      const data = wikiData[pageId];
+      if (!data) return;
+
+      // 1. Tartalom cseréje
+      const mainContent = document.getElementById('mainContent');
+      // Kis animáció
+      mainContent.style.opacity = '0';
+      setTimeout(() => {
+        mainContent.innerHTML = data.content;
+        mainContent.style.opacity = '1';
+        // Smooth scroll a tartalom tetejére
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 200);
+
+      // 2. Tartalomjegyzék (TOC) frissítése
+      const tocList = document.getElementById('tocList');
+      tocList.innerHTML = ''; // Törlés
       
-      navigator.clipboard.writeText(codeBlock).then(() => {
-        // Gomb szövegének átírása
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Másolva!';
-        btn.style.color = 'var(--success)'; // Zöld szín
+      data.toc.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${item.id}`;
+        a.textContent = item.text;
         
-        // Visszaállítás 2 mp után
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-          btn.style.color = '';
-        }, 2000);
+        // Eseményfigyelő a sima görgetéshez az új elemeken
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetElement = document.getElementById(item.id);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
       });
+
+      // 3. Aktív menüpont kezelése a bal oldalon
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      // Megkeressük azt a linket, aminek az onclickjében szerepel a pageId
+      const activeLink = Array.from(document.querySelectorAll('.sidebar-link')).find(l => l.getAttribute('onclick').includes(pageId));
+      if (activeLink) activeLink.classList.add('active');
     }
 
-    // Smooth Scroll az oldalsó linkekhez
-    document.querySelectorAll('.toc-list a').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
+    // Kezdeti betöltés (Alapértelmezetten a bevezetés jön be)
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPage('intro');
     });
+
   </script>
 </body>
 </html>
