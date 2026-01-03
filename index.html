@@ -9,7 +9,7 @@
   
   <style>
     :root {
-      --primary: #5865F2; /* Discord Blurple */
+      --primary: #5865F2; /* Discord Blurple - Alap */
       --primary-hover: #4752c4;
       --accent: #a066ff;
       --dark-bg: #111214;
@@ -17,6 +17,7 @@
       --text-main: #f2f3f5;
       --text-muted: #b5bac1;
       --success: #3ba55c;
+      /* Ez a közös átmenet a logónak és a gomboknak */
       --gradient: linear-gradient(135deg, #5865F2 0%, #a066ff 100%);
     }
     
@@ -80,8 +81,9 @@
       color: var(--text-main);
     }
 
+    /* FRISSÍTVE: Átmenetes Discord gomb a fejlécben */
     .discord-btn-nav {
-      background-color: var(--primary);
+      background: var(--gradient); /* Átmenet használata */
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
@@ -89,12 +91,15 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.3s, transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(88, 101, 242, 0.3);
+      border: none;
     }
 
     .discord-btn-nav:hover {
-      background-color: var(--primary-hover);
       transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(160, 102, 255, 0.5); /* Lilásabb árnyék hoverkor */
+      opacity: 0.95;
     }
 
     /* Hamburger Menu (Mobile) */
@@ -151,6 +156,7 @@
       display: inline-block;
     }
 
+    /* Ez a fő gomb stílus, ami átmenetes */
     .btn-primary {
       background: var(--gradient);
       color: white;
@@ -160,7 +166,7 @@
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.6);
+      box-shadow: 0 8px 25px rgba(160, 102, 255, 0.6); /* Lilásabb árnyék */
     }
 
     .btn-outline {
@@ -385,7 +391,6 @@
     /* --- 7. Szekció: CTA Footer --- */
     .cta-footer {
       background: linear-gradient(rgba(17, 18, 20, 0.9), rgba(17, 18, 20, 0.9)), url('https://via.placeholder.com/1920x600/111214/5865F2'); 
-      /* Cseréld le a placeholder URL-t egy menő Minecraft háttérképre! */
       background-size: cover;
       background-position: center;
       padding: 100px 20px;
@@ -498,7 +503,8 @@
         A Combinations azért jött létre, hogy rendet tegyen. Olyan eszközöket fejlesztek, amikkel a tulajdonosoknak nem a hibakereséssel, hanem a játékélmény építésével kell foglalkozniuk. Legyen szó egyedi klánrendszerről (OathBound) vagy a szervered szívét jelentő CombinationsCore-ról, nálam a stabilitás és az átláthatóság nem opció, hanem alapkövetelmény.
       </p>
       <div class="about-signature">
-        <div class="avatar">C</div> <div>
+        <div class="avatar">C</div>
+        <div>
           <h4>Combinations Alapító</h4>
           <small style="color: var(--primary)">Lead Developer</small>
         </div>
