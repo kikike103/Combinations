@@ -3,708 +3,612 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Combinations - A történetünk</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Combinations - Professzionális Minecraft Megoldások</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --primary: #5865F2;
-      --dark: #1e1f22;
-      --darker: #111214;
-      --light: #f2f3f5;
-      --danger: #ed4245;
+      --primary: #5865F2; /* Discord Blurple */
+      --primary-hover: #4752c4;
+      --accent: #a066ff;
+      --dark-bg: #111214;
+      --card-bg: #1e1f22;
+      --text-main: #f2f3f5;
+      --text-muted: #b5bac1;
       --success: #3ba55c;
-      --highlight: #a066ff;
+      --gradient: linear-gradient(135deg, #5865F2 0%, #a066ff 100%);
     }
     
-    body {
-      background-color: var(--darker);
-      color: var(--light);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
     }
 
-    /* Mobilbarát navigáció */
-    .top-nav {
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* --- 1. Szekció: Sticky Navbar --- */
+    .navbar {
       position: fixed;
       top: 0;
-      right: 0;
-      padding: 20px;
-      z-index: 1000;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: rgba(17, 18, 20, 0.85);
+      backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
     }
 
-    .nav-links {
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-menu {
       display: flex;
+      gap: 30px;
     }
 
-    .top-nav a {
-      color: var(--light);
-      margin-left: 20px;
-      text-decoration: none;
+    .nav-menu a {
       font-weight: 600;
+      color: var(--text-muted);
       transition: color 0.3s;
-      padding: 5px 10px;
-      border-radius: 4px;
+      font-size: 0.95rem;
     }
 
-    .top-nav a:hover {
-      color: var(--primary);
-      background-color: rgba(88, 101, 242, 0.1);
+    .nav-menu a:hover {
+      color: var(--text-main);
     }
 
+    .discord-btn-nav {
+      background-color: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .discord-btn-nav:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Hamburger Menu (Mobile) */
     .hamburger {
       display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
+      font-size: 1.5rem;
       cursor: pointer;
-      padding: 0;
-      margin-left: 20px;
     }
 
-    .hamburger span {
-      width: 100%;
-      height: 3px;
-      background-color: var(--light);
-      border-radius: 2px;
-      transition: all 0.3s linear;
-    }
-
-    .logo {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      color: var(--primary);
-      z-index: 1000;
-    }
-
+    /* --- 2. Szekció: Hero Section --- */
     .hero {
-      background-color: var(--dark);
-      padding: 140px 20px 60px;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080');
-      background-size: cover;
-      background-position: center;
-      background-blend-mode: overlay;
+      padding: 0 20px;
+      position: relative;
+      background: radial-gradient(circle at top center, rgba(88, 101, 242, 0.15), transparent 60%);
     }
 
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
+      font-weight: 800;
+      max-width: 900px;
       margin-bottom: 20px;
-      color: white;
+      line-height: 1.1;
+      letter-spacing: -1px;
     }
 
     .hero p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 30px;
-      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
       display: inline-block;
-      padding: 12px 24px;
-      background-color: var(--primary);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
       color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: all 0.3s;
-      margin: 10px 5px;
+      border: none;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
     }
 
-    .btn:hover {
-      background-color: #4752c4;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.6);
     }
 
-    .container {
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text-main);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* --- 3. Szekció: Trust Bar --- */
+    .trust-bar {
+      background-color: rgba(0,0,0,0.3);
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .trust-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .trust-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .trust-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* --- 4. Szekció: About Me --- */
+    .section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-content {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 50px;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient);
+    }
+
+    .about-quote {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .about-text {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .about-signature {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary); /* Placeholder */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* --- 5. Szekció: Projekt Galéria --- */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
     }
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: var(--primary);
-      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+    
+    .section-subtitle {
+      color: var(--text-muted);
     }
 
-    .story-section {
-      background-color: var(--dark);
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
       padding: 30px;
-      border-radius: 10px;
-      margin-bottom: 40px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .story-section h2 {
-      color: var(--highlight);
-      margin-top: 0;
-      font-size: 1.8rem;
-    }
-
-    .creator-quote {
-      background-color: rgba(88, 101, 242, 0.1);
-      border-left: 4px solid var(--primary);
-      padding: 20px;
-      margin: 25px 0;
-      font-style: italic;
-      border-radius: 0 4px 4px 0;
-    }
-
-    /* Mobilbarát idővonal */
-    .timeline {
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
-      max-width: 1200px;
-      margin: 40px auto;
     }
 
-    .timeline::after {
-      content: '';
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border-color: rgba(88, 101, 242, 0.3);
+    }
+
+    .card-featured {
+      border: 1px solid var(--primary);
+      background: linear-gradient(to bottom, #1e1f22, #151618);
+    }
+
+    .featured-badge {
       position: absolute;
-      width: 6px;
-      background-color: var(--primary);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
-      border-radius: 3px;
+      top: -12px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
-    .timeline-item {
-      padding: 10px 40px;
-      position: relative;
-      width: 50%;
-      box-sizing: border-box;
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--text-main);
     }
 
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      right: -12px;
-      background-color: var(--highlight);
-      border: 4px solid var(--primary);
-      top: 15px;
-      border-radius: 50%;
-      z-index: 1;
+    .project-card p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
     }
 
-    .left {
-      left: 0;
-      text-align: right;
-    }
-
-    .right {
-      left: 50%;
-      text-align: left;
-    }
-
-    .timeline-content {
-      padding: 20px;
-      background-color: var(--dark);
-      position: relative;
-      border-radius: 6px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-
-    .timeline-content h3 {
-      color: var(--primary);
-      margin-top: 0;
-      font-size: 1.2rem;
-    }
-
-    .team {
+    .project-tags {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+
+    /* --- 6. Szekció: Miért a Combinations --- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
       margin-top: 40px;
     }
 
-    .team-member {
-      background-color: var(--dark);
-      padding: 20px;
-      border-radius: 10px;
-      width: 250px;
+    .feature-item {
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-	
-	.footer {
-      background-color: var(--dark);
-      padding: 30px 0;
-      text-align: center;
-      margin-top: 60px;
+      padding: 30px;
     }
 
-    .team-member img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--primary);
-      margin-bottom: 15px;
-    }
-
-    .team-member h3 {
-      color: var(--highlight);
-      margin-bottom: 5px;
-    }
-
-    .team-member p {
-      color: #aaa;
-      font-style: italic;
-    }
-
-    /* Betöltő animáció */
-    .loader-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--darker);
-      display: flex;
-      justify-content: center;
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      background: rgba(88, 101, 242, 0.1);
+      width: 80px;
+      height: 80px;
+      display: inline-flex;
       align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s, visibility 0.5s;
-    }
-
-    .loader {
-      width: 48px;
-      height: 48px;
-      border: 5px solid var(--primary);
-      border-bottom-color: transparent;
+      justify-content: center;
       border-radius: 50%;
-      display: inline-block;
-      box-sizing: border-box;
-      animation: rotation 1s linear infinite;
     }
 
-    @keyframes rotation {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+    .feature-item h4 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
     }
 
-    /* Nyelvválasztó stílusok */
-    .language-selector {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      z-index: 1000;
-      background-color: var(--dark);
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    
-    .language-selector select {
-      background-color: var(--darker);
-      color: var(--light);
-      border: 1px solid var(--primary);
-      padding: 5px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    
-    .language-selector select:focus {
-      outline: none;
-      border-color: var(--highlight);
+    .feature-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
-    /* Responsive design */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
-      .story-section h2 {
-        font-size: 1.6rem;
-      }
+    /* --- 7. Szekció: CTA Footer --- */
+    .cta-footer {
+      background: linear-gradient(rgba(17, 18, 20, 0.9), rgba(17, 18, 20, 0.9)), url('https://via.placeholder.com/1920x600/111214/5865F2'); 
+      /* Cseréld le a placeholder URL-t egy menő Minecraft háttérképre! */
+      background-size: cover;
+      background-position: center;
+      padding: 100px 20px;
+      text-align: center;
+      margin-top: 80px;
     }
 
+    .cta-footer h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-weight: 800;
+    }
+
+    .footer-links {
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Mobil Responsive */
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
+      .navbar { padding: 0 20px; }
       
-      .nav-links {
+      .nav-menu {
         position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 70%;
-        max-width: 300px;
-        background-color: var(--dark);
+        top: 80px;
+        left: -100%;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-        z-index: 999;
-      }
-      
-      .nav-links.active {
-        right: 0;
-      }
-      
-      .top-nav a {
-        margin: 15px 0;
-        font-size: 1.2rem;
-      }
-      
-      .hero {
-        padding: 120px 15px 50px;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .container {
-        padding: 30px 15px;
-      }
-      
-      .story-section {
-        padding: 20px;
-      }
-      
-      .timeline::after {
-        left: 31px;
-      }
-      
-      .timeline-item {
+        background-color: var(--card-bg);
         width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
+        padding: 40px;
+        transition: 0.3s;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
       }
       
-      .timeline-item::after {
-        left: 18px;
-      }
+      .nav-menu.active { left: 0; }
       
-      .left, .right {
-        left: 0;
-        text-align: left;
-      }
+      .discord-btn-nav span { display: none; } /* Csak ikon mobilon */
+      .hamburger { display: block; }
       
-      .language-selector {
-        top: 70px;
-        right: 10px;
-      }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .btn { width: 100%; text-align: center; }
       
-      .team-member {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .logo {
-        font-size: 20px;
-        top: 15px;
-        left: 15px;
-      }
-      
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .hero p {
-        font-size: 0.95rem;
-      }
-      
-      .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-      }
-      
-      .section-title {
-        font-size: 1.6rem;
-      }
-      
-      .story-section h2 {
-        font-size: 1.4rem;
-      }
-      
-      .creator-quote {
-        padding: 15px;
-        font-size: 0.95rem;
-      }
-      
-      .timeline-content h3 {
-        font-size: 1.1rem;
-      }
-      
-      .language-selector {
-        top: 65px;
-        right: 5px;
-        padding: 8px;
-      }
+      .about-content { padding: 30px; }
+      .about-quote { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Betöltő animáció -->
-  <div class="loader-wrapper" id="loader">
-    <div class="loader"></div>
-  </div>
 
-  <div class="logo">Combinations</div>
-  <nav class="top-nav">
-    <div class="nav-links" id="navLinks">
-      <a href="index.html">Kezdőlap</a>
-      <a href="skript.html">Minecraft Skript</a>
-      <a href="host.html">Minecraft HOST</a>
-      <a href="discord.html">Discord Bot</a>
+  <nav class="navbar">
+    <a href="#" class="nav-logo">Combinations</a>
+    <div class="nav-menu" id="navMenu">
+      <a href="#">Főoldal</a>
+      <a href="#projects">Projektek</a>
+      <a href="#">Wiki</a>
     </div>
-    <button class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="https://discord.gg/yourinvite" target="_blank" class="discord-btn-nav">
+        <i class="fab fa-discord"></i> <span>Discord</span>
+      </a>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
   </nav>
-  
-  <!-- Nyelvválasztó -->
-  <div class="language-selector">
-    <select id="language-select">
-      <option value="hu">Magyar</option>
-      <option value="en">English</option>
-    </select>
-  </div>
 
-  <section class="hero">
-    <h1 id="hero-title">A Combinations kezdete</h1>
-    <p id="hero-text">2024-ben egy személyes vágyból indult útjára a Combinations, hogy minőségi digitális eszközöket kínáljak a játékosok és közösségek számára.</p>
+  <header class="hero">
+    <h1>Vedd át az irányítást a<br>Minecraft szervered felett.</h1>
+    <p>Felejtsd el a konfigurációs káoszt. Professzionális megoldások 250+ szerver fejlesztési tapasztalatával.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-primary">CombinationsCore Felfedezése</a>
+      <a href="#projects" class="btn btn-outline">Ingyenes Projektek</a>
+    </div>
+  </header>
+
+  <section class="trust-bar">
+    <div class="trust-container">
+      <div class="trust-item">
+        <h3>250+</h3>
+        <p>Beállított szerver</p>
+      </div>
+      <div class="trust-item">
+        <h3>250+</h3>
+        <p>SpigotMC letöltés</p>
+      </div>
+      <div class="trust-item">
+        <h3>3+</h3>
+        <p>Év fejlesztői múlt</p>
+      </div>
+      <div class="trust-item">
+        <h3 style="color: var(--success)">100%</h3>
+        <p>Stabilitási garancia</p>
+      </div>
+    </div>
   </section>
 
-  <div class="container">
-    <section class="story-section">
-      <h2 id="story-title">Egy álom valósággá válik</h2>
-      <p id="story-text-1">A Combinations egy személyes vállalkozás, amely azzal a céllal jött létre, hogy minőségi és hasznos digitális eszközöket biztosítsak a Minecraft közösség, valamint a Discord szerverek számára. A projekt 2024-ben indult egy egyszerű, de szenvedélyes ötletből: mi lenne, ha egyetlen név alatt több kreatív megoldást is kínálhatnék? Innen indult a Combinations története.</p>
-      
-      <div class="creator-quote" id="quote-text">
-        "Mindig is szerettem volna valami egyedit alkotni, ami segíti a játékosokat és közösségeket. A Combinations ezen álom beteljesülése."
+  <section class="section" id="about">
+    <div class="about-content">
+      <div class="about-quote">
+        „250+ szerver fejlesztése után egy dolgot megtanultam: a káosz a legnagyobb ellenség.”
       </div>
-
-      <p id="story-text-2">Célom, hogy innovatív megoldásokat kínáljak, amelyek valódi értéket adnak a felhasználóimnak. Minden termék mögött órányi egyéni fejlesztés és tesztelés áll, hogy garantáljam a zökkenőmentes felhasználói élményt.</p>
-    </section>
-
-    <h2 class="section-title" id="timeline-title">Az út idővonalon</h2>
-    <div class="timeline">
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3 id="timeline-1-title">2024. január - Az ötlet születése</h3>
-          <p id="timeline-1-text">Egy éjszaka merült fel bennem az ötlet, hogy létrehozzak egy többfunkciós platformot, ami egyesíti a legjobb Minecraft és Discord eszközöket.</p>
-        </div>
-      </div>
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h3 id="timeline-2-title">2024. március - Első lépések</h3>
-          <p id="timeline-2-text">Megírtam az első Minecraft skriptjeimet, amelyeket saját szerveremen teszteltem. Ezek a skriptek váltak a későbbi alapjává a projektnek.</p>
-        </div>
-      </div>
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3 id="timeline-3-title">2024. június - Discord bot fejlesztés</h3>
-          <p id="timeline-3-text">Elkezdtem fejleszteni a Combinations Discord botot, ami kezdetben csak néhány alapvető funkciót tartalmazott.</p>
-        </div>
-      </div>
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h3 id="timeline-4-title">2024. szeptember - Launcher ötlet</h3>
-          <p id="timeline-4-text">Felismertem, hogy a játékosoknak szüksége van egy egyszerű megoldásra a modok kezelésére, így elkezdtem dolgozni a saját Minecraft Launcher ötletemen.</p>
-        </div>
-      </div>
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3 id="timeline-5-title">2025 - A jövő</h3>
-          <p id="timeline-5-text">További innovatív projekteken dolgozom, hogy még több értéket nyújthassak. Nagyobb, jobb és kreatívabb megoldások várnak!</p>
+      <p class="about-text">
+        Szia, <strong>[Neved/Nickneved]</strong> vagyok, a Combinations alapítója. Az elmúlt években több száz szervermotorral és ezerféle plugin-konfigurációval találkoztam. Láttam, ahogy ígéretes projektek omlanak össze a rossz optimalizálás és a szétszórt rendszerek miatt.
+      </p>
+      <p class="about-text">
+        A Combinations azért jött létre, hogy rendet tegyen. Olyan eszközöket fejlesztek, amikkel a tulajdonosoknak nem a hibakereséssel, hanem a játékélmény építésével kell foglalkozniuk. Legyen szó egyedi klánrendszerről (OathBound) vagy a szervered szívét jelentő CombinationsCore-ról, nálam a stabilitás és az átláthatóság nem opció, hanem alapkövetelmény.
+      </p>
+      <div class="about-signature">
+        <div class="avatar">C</div> <div>
+          <h4>Combinations Alapító</h4>
+          <small style="color: var(--primary)">Lead Developer</small>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="footer">
-    <p id="footer-text">&copy; 2024 Combinations. Minden jog fenntartva.</p>
+  <section class="section" id="projects">
+    <div class="section-header">
+      <h2 class="section-title">A Technológiánk</h2>
+      <p class="section-subtitle">Válassz a céljaidhoz illő eszközt.</p>
+    </div>
+
+    <div class="project-grid">
+      <div class="project-card card-featured">
+        <span class="featured-badge">Ajánlott</span>
+        <div class="project-tags">
+          <span class="tag">Core</span>
+          <span class="tag">Premium</span>
+        </div>
+        <h3>CombinationsCore</h3>
+        <p>A hibrid motor, ami mindent visz. BoxPvP, Survival és Lifesteal játékmódok egyetlen, optimalizált rendszerben integrálva.</p>
+        <a href="#" class="btn btn-primary" style="width:100%; text-align:center;">Megtekintés</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags">
+          <span class="tag">Clans</span>
+          <span class="tag">Free</span>
+        </div>
+        <h3>OathBound</h3>
+        <p>Ingyenes, végletekig skálázható klánrendszer. Szövetségek, háborúk és területfoglalás egyszerű configgal.</p>
+        <a href="#" class="btn btn-outline" style="width:100%; text-align:center; margin-top: auto;">Letöltés</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags">
+          <span class="tag">Permissions</span>
+          <span class="tag">Utility</span>
+        </div>
+        <h3>PermiX</h3>
+        <p>Gyors és stabil rangkezelés. Nincs több felesleges SQL lekérdezés, csak tiszta teljesítmény.</p>
+        <a href="#" class="btn btn-outline" style="width:100%; text-align:center;">Letöltés</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: rgba(0,0,0,0.2);">
+    <div class="section-header">
+      <h2 class="section-title">Miért a Combinations?</h2>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+        <h4>Központi Irányítás</h4>
+        <p>Nincs több 50 felé ágazó config fájl. Minden beállítás egyetlen, átlátható helyen.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
+        <h4>API Integráció</h4>
+        <p>Teljes összhang az ipari sztenderdekkel: Essentials, Litebans és Citizens támogatás.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-book"></i></div>
+        <h4>Profi Dokumentáció</h4>
+        <p>Saját Wiki oldal minden funkcióhoz, hogy soha ne maradj kérdésekkel magadra.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cta-footer">
+    <h2>Készen állsz a szintlépésre?</h2>
+    <p style="color: var(--text-muted); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Csatlakozz a közösséghez, kérj segítséget, vagy töltsd le a legújabb frissítéseket.
+    </p>
+    <a href="https://discord.gg/yourinvite" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">
+      <i class="fab fa-discord"></i> Csatlakozz a Discordhoz
+    </a>
+
+    <div class="footer-links">
+      <p>&copy; 2024 Combinations. Minden jog fenntartva.</p>
+    </div>
   </footer>
 
   <script>
-    // Betöltő animáció eltüntetése
-    window.addEventListener('load', function() {
-      const loader = document.getElementById('loader');
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-      }, 1000);
-    });
-
-    // Hamburger menü kezelése
+    // Mobil menü kezelés
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    
+    const navMenu = document.getElementById('navMenu');
+
     hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
 
-    // Kattintás a menüpontokra bezárja a menüt mobilon
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    // Menü bezárása kattintásra
+    document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
       });
     });
-  </script>
-  <script>
-    // Track page view
-    document.addEventListener('DOMContentLoaded', function() {
-        // Replace 'index.html' with the current page's filename for each page
-        trackVisit('index.html'); 
-    });
-    
-    function trackVisit(pageName) {
-        let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
-            totalVisits: 0,
-            uniqueVisitors: {},
-            pageVisits: {
-                'index.html': { count: 0, lastVisit: null },
-                'discord.html': { count: 0, lastVisit: null },
-                'skript.html': { count: 0, lastVisit: null },
-                'launcher.html': { count: 0, lastVisit: null }
-            },
-            dailyVisits: {}
-        };
-        
-        const visitorIp = 'simulated-ip'; // Simplified - in production use a real IP tracking method
-        
-        visitorData.totalVisits++;
-        visitorData.uniqueVisitors[visitorIp] = true;
-        
-        if (visitorData.pageVisits[pageName]) {
-            visitorData.pageVisits[pageName].count++;
-            visitorData.pageVisits[pageName].lastVisit = new Date().toISOString();
-        }
-        
-        const today = new Date().toISOString().split('T')[0];
-        visitorData.dailyVisits[today] = (visitorData.dailyVisits[today] || 0) + 1;
-        
-        localStorage.setItem('visitorData', JSON.stringify(visitorData));
-    }
-  </script>
-  
-  <script>
-    // Nyelvválasztó funkció
-    document.addEventListener('DOMContentLoaded', function() {
-      const languageSelect = document.getElementById('language-select');
-      
-      // Ellenőrizzük a mentett nyelvi beállítást
-      const savedLanguage = localStorage.getItem('language') || 'hu';
-      languageSelect.value = savedLanguage;
-      
-      // Eseményfigyelő a nyelvváltoztatáshoz
-      languageSelect.addEventListener('change', function() {
-        const selectedLanguage = this.value;
-        localStorage.setItem('language', selectedLanguage);
-        updateLanguage(selectedLanguage);
+
+    // Smooth Scroll minden hivatkozásra
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
-      
-      // Kezdeti nyelv betöltése
-      updateLanguage(savedLanguage);
     });
-    
-    // Nyelvi tartalmak frissítése
-    function updateLanguage(lang) {
-      const translations = {
-        hu: {
-          heroTitle: "A Combinations kezdete",
-          heroText: "2024-ben egy személyes vágyból indult útjára a Combinations, hogy minőségi digitális eszközöket kínáljak a játékosok és közösségek számára.",
-          storyTitle: "Egy álom valósággá válik",
-          storyText1: "A Combinations egy személyes vállalkozás, amely azzal a céllal jött létre, hogy minőségi és hasznos digitális eszközöket biztosítsak a Minecraft közösség, valamint a Discord szerverek számára. A projekt 2024-ben indult egy egyszerű, de szenvedélyes ötletből: mi lenne, ha egyetlen név alatt több kreatív megoldást is kínálhatnék? Innen indult a Combinations története.",
-          quoteText: "\"Mindig is szerettem volna valami egyedit alkotni, ami segíti a játékosokat és közösségeket. A Combinations ezen álom beteljesülése.\"",
-          storyText2: "Célom, hogy innovatív megoldásokat kínáljak, amelyek valódi értéket adnak a felhasználóimnak. Minden termék mögött órányi egyéni fejlesztés és tesztelés áll, hogy garantáljam a zökkenőmentes felhasználói élményt.",
-          timelineTitle: "Az út idővonalon",
-          timeline1Title: "2024. január - Az ötlet születése",
-          timeline1Text: "Egy éjszaka merült fel bennem az ötlet, hogy létrehozzak egy többfunkciós platformot, ami egyesíti a legjobb Minecraft és Discord eszközöket.",
-          timeline2Title: "2024. március - Első lépések",
-          timeline2Text: "Megírtam az első Minecraft skriptjeimet, amelyeket saját szerveremen teszteltem. Ezek a skriptek váltak a későbbi alapjává a projektnek.",
-          timeline3Title: "2024. június - Discord bot fejlesztés",
-          timeline3Text: "Elkezdtem fejleszteni a Combinations Discord botot, ami kezdetben csak néhány alapvető funkciót tartalmazott.",
-          timeline4Title: "2024. szeptember - Launcher ötlet",
-          timeline4Text: "Felismertem, hogy a játékosoknak szüksége van egy egyszerű megoldásra a modok kezelésére, így elkezdtem dolgozni a saját Minecraft Launcher ötletemen.",
-          timeline5Title: "2025 - A jövő",
-          timeline5Text: "További innovatív projekteken dolgozom, hogy még több értéket nyújthassak. Nagyobb, jobb és kreatívabb megoldások várnak!",
-          footerText: "© 2024 Combinations. Minden jog fenntartva."
-        },
-        en: {
-          heroTitle: "The Beginning of Combinations",
-          heroText: "In 2024, Combinations started from a personal desire to provide quality digital tools for gamers and communities.",
-          storyTitle: "A Dream Becoming Reality",
-          storyText1: "Combinations is a personal venture created with the goal of providing quality and useful digital tools for the Minecraft community and Discord servers. The project started in 2024 from a simple but passionate idea: what if I could offer multiple creative solutions under one name? This is how the story of Combinations began.",
-          quoteText: "\"I've always wanted to create something unique that helps players and communities. Combinations is the fulfillment of this dream.\"",
-          storyText2: "My goal is to offer innovative solutions that provide real value to my users. Behind each product are hours of individual development and testing to ensure a seamless user experience.",
-          timelineTitle: "Our Journey Timeline",
-          timeline1Title: "January 2024 - The Idea is Born",
-          timeline1Text: "One night, the idea came to me to create a multifunctional platform that combines the best Minecraft and Discord tools.",
-          timeline2Title: "March 2024 - First Steps",
-          timeline2Text: "I wrote my first Minecraft scripts, which I tested on my own server. These scripts later became the foundation of the project.",
-          timeline3Title: "June 2024 - Discord Bot Development",
-          timeline3Text: "I started developing the Combinations Discord bot, which initially only included a few basic features.",
-          timeline4Title: "September 2024 - Launcher Idea",
-          timeline4Text: "I realized that players needed a simple solution for managing mods, so I started working on my own Minecraft Launcher idea.",
-          timeline5Title: "2025 - The Future",
-          timeline5Text: "I'm working on more innovative projects to provide even more value. Bigger, better and more creative solutions are coming!",
-          footerText: "© 2024 Combinations. All rights reserved."
-        }
-      };
-      
-      // Minden szöveg frissítése a kiválasztott nyelven
-      document.getElementById('hero-title').textContent = translations[lang].heroTitle;
-      document.getElementById('hero-text').textContent = translations[lang].heroText;
-      document.getElementById('story-title').textContent = translations[lang].storyTitle;
-      document.getElementById('story-text-1').textContent = translations[lang].storyText1;
-      document.getElementById('quote-text').textContent = translations[lang].quoteText;
-      document.getElementById('story-text-2').textContent = translations[lang].storyText2;
-      document.getElementById('timeline-title').textContent = translations[lang].timelineTitle;
-      document.getElementById('timeline-1-title').textContent = translations[lang].timeline1Title;
-      document.getElementById('timeline-1-text').textContent = translations[lang].timeline1Text;
-      document.getElementById('timeline-2-title').textContent = translations[lang].timeline2Title;
-      document.getElementById('timeline-2-text').textContent = translations[lang].timeline2Text;
-      document.getElementById('timeline-3-title').textContent = translations[lang].timeline3Title;
-      document.getElementById('timeline-3-text').textContent = translations[lang].timeline3Text;
-      document.getElementById('timeline-4-title').textContent = translations[lang].timeline4Title;
-      document.getElementById('timeline-4-text').textContent = translations[lang].timeline4Text;
-      document.getElementById('timeline-5-title').textContent = translations[lang].timeline5Title;
-      document.getElementById('timeline-5-text').textContent = translations[lang].timeline5Text;
-      document.getElementById('footer-text').textContent = translations[lang].footerText;
-    }
   </script>
 </body>
 </html>
-
