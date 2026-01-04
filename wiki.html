@@ -36,7 +36,7 @@
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
     }
 
     a { text-decoration: none; color: inherit; transition: color 0.2s; }
@@ -132,15 +132,15 @@
     /* 2. Fő Tartalom */
     .main-content {
       padding: 40px 60px;
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
       width: 100%;
     }
 
     /* Typography */
     h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; color: white; }
-    h2 { font-size: 1.8rem; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); scroll-margin-top: 100px; color: var(--text-main); }
-    h3 { font-size: 1.4rem; margin: 30px 0 15px; color: var(--text-main); }
+    h2 { font-size: 1.8rem; margin: 50px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); scroll-margin-top: 100px; color: var(--text-main); }
+    h3 { font-size: 1.3rem; margin: 30px 0 15px; color: var(--accent); font-weight: 700; }
     p { margin-bottom: 15px; color: #d0d3d8; font-size: 1.05rem; }
     
     .lead { font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-bottom: 30px; }
@@ -162,6 +162,29 @@
     .wiki-table tr:hover { background-color: rgba(255,255,255,0.02); }
     
     code { background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.85rem; }
+
+    /* Keresőmező stílus */
+    .cmd-search-input {
+      width: 100%;
+      padding: 15px;
+      background-color: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      transition: border-color 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .cmd-search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .cmd-search-input::placeholder {
+      color: var(--text-muted);
+    }
 
     /* Callouts */
     .callout {
@@ -185,7 +208,7 @@
     .callout.tip { border-color: var(--tip-border); background-color: var(--tip-bg); }
     .callout.tip .callout-icon { color: var(--tip-border); }
 
-    /* FAQ Details/Summary - Profi Stílus */
+    /* FAQ */
     details {
       background-color: var(--card-bg);
       border: 1px solid var(--border);
@@ -211,7 +234,7 @@
     summary::-webkit-details-marker { display: none; }
     
     summary:after {
-      content: '\f078'; /* FontAwesome Chevron Down */
+      content: '\f078';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       transition: transform 0.3s;
@@ -223,11 +246,10 @@
       padding: 0 20px 20px;
       color: var(--text-muted);
       border-top: 1px solid var(--border);
-      margin-top: 0;
       padding-top: 15px;
     }
 
-    /* 3. Jobb oldali Tartalomjegyzék (TOC) */
+    /* 3. Jobb oldali TOC */
     .sidebar-right {
       padding: 40px 20px;
       position: sticky;
@@ -262,7 +284,7 @@
     }
     @media (max-width: 768px) {
       .wiki-container { display: block; padding: 20px; }
-      .sidebar-left { display: none; } /* Mobil menü kellene ide */
+      .sidebar-left { display: none; }
       .main-content { padding: 0; }
     }
   </style>
@@ -283,8 +305,8 @@
     
     <aside class="sidebar-left">
       <div class="sidebar-group">
-        <div class="sidebar-title">Áttekintés</div>
-        <a class="sidebar-link active" onclick="loadPage('intro')">Bevezetés (Core)</a>
+        <div class="sidebar-title">Prémium Pluginok</div>
+        <a class="sidebar-link active" onclick="loadPage('core')">CombinationsCore</a>
       </div>
 
       <div class="sidebar-group">
@@ -307,77 +329,158 @@
   </div>
 
   <script>
-    // --- ADATBÁZIS: Itt tároljuk a Wiki oldalak tartalmát ---
+    // --- ADATBÁZIS ---
     const wikiData = {
-      // 1. BEVEZETÉS (Intro + FAQ)
-      intro: {
+      
+      // 1. COMBINATIONS CORE
+      core: {
         content: `
-          <h1>🚀 Első lépések a CombinationsCore-ral</h1>
-          <p class="lead">Köszönjük, hogy a CombinationsCore-t választottad! Ez a rendszer azért jött létre, hogy levegye a válladról a technikai nehézségeket, és egy stabil, jól optimalizált alapot biztosítson a Minecraft szerverednek.</p>
-          <p>Ez az útmutató segít neked a plugin helyes telepítésében és az alapvető beállítások elvégzésében.</p>
+          <h1>🚀 CombinationsCore</h1>
+          <p class="lead">A szervered szíve. Egy stabil, jól optimalizált alap, amely egyesíti a legfontosabb funkciókat.</p>
+          
+          <p>Köszönjük, hogy a CombinationsCore-t választottad! Ez a rendszer azért jött létre, hogy levegye a válladról a technikai nehézségeket. Ez az útmutató segít neked a plugin helyes telepítésében, beállításában és a jogosultságok kezelésében.</p>
 
           <h2 id="requirements">📋 Előfeltételek</h2>
-          <p>Mielőtt elkezdenéd, győződj meg róla, hogy a szervered megfelel az alábbi követelményeknek:</p>
           <ul style="margin-left:20px; margin-bottom:20px;">
             <li><strong>Java verzió:</strong> Java 17 vagy újabb (ajánlott: Java 21).</li>
-            <li><strong>Szerver szoftver:</strong> PaperMC, Purpur vagy Spigot (ajánlott: <strong>PaperMC</strong> az optimalizáció miatt).</li>
-            <li><strong>Szükséges kiegészítők:</strong> <code>PlaceholderAPI</code> (a változók megjelenítéséhez).</li>
-            <li><strong>Opcionális:</strong> Litebans, Citizens, EssentialsX (ha a híd funkciókat is használni szeretnéd).</li>
+            <li><strong>Szerver szoftver:</strong> PaperMC, Purpur (ajánlott: <strong>PaperMC</strong>).</li>
+            <li><strong>Szükséges kiegészítők:</strong> <code>PlaceholderAPI</code>.</li>
           </ul>
 
           <h2 id="install">🛠️ Telepítési folyamat</h2>
-          <p>Kövesd ezt a pár egyszerű lépést a rendszer élesítéséhez:</p>
           <ol style="margin-left:20px; color:var(--text-muted); margin-bottom:20px; line-height:1.8;">
-            <li><strong>Letöltés:</strong> Töltsd le a legfrissebb <code>CombinationsCore.jar</code> fájlt a vásárlás után kapott linken vagy a Discord szerverünkről.</li>
-            <li><strong>Feltöltés:</strong> Másold be a fájlt a szervered <code>/plugins/</code> mappájába.</li>
-            <li><strong>Indítás:</strong> Indítsd el (vagy indítsd újra) a szervert.</li>
-            <li><strong>Aktiválás:</strong> Első induláskor a konzol kérni fogja a licenckulcsodat. Ezt a <code>/plugins/CombinationsCore/config.yml</code> fájlban tudod megadni, vagy a játékon belül a <code>/combinations activate [kulcs]</code> paranccsal.</li>
+            <li><strong>Letöltés:</strong> Töltsd le a legfrissebb <code>CombinationsCore.jar</code> fájlt.</li>
+            <li><strong>Feltöltés:</strong> Másold be a szervered <code>/plugins/</code> mappájába.</li>
+            <li><strong>Indítás:</strong> Indítsd újra a szervert.</li>
+            <li><strong>Aktiválás:</strong> Írd be a kulcsot a configba vagy használd a <code>/combinations activate [kulcs]</code> parancsot.</li>
           </ol>
-          <div class="callout tip">
-            <div class="callout-icon"><i class="fas fa-lightbulb"></i></div>
-            <div><strong>Tipp:</strong> Mindig győződj meg róla, hogy a legfrissebb verziót használod, hogy elkerüld a kompatibilitási hibákat!</div>
-          </div>
 
-          <h2 id="config">⚙️ Az első beállítások</h2>
-          <p>A telepítés után a <code>/plugins/CombinationsCore/</code> mappában létrejönnek az alapértelmezett konfigurációs fájlok.</p>
-          <h3>Válaszd ki a játékmódodat:</h3>
-          <p>Nyisd meg a <code>config.yml</code> fájlt, és keresd meg a <code>server-mode</code> sort. Itt állíthatod be a kívánt sablont:</p>
+          <h2 id="config">⚙️ Konfiguráció</h2>
+          <p>A telepítés után válaszd ki a játékmódodat a <code>config.yml</code> fájlban:</p>
           <pre style="background:#111; padding:15px; border-radius:6px; border:1px solid var(--border);"><code>server-mode: BOXPVP
 server-mode: SURVIVAL
 server-mode: LIFESTEAL</code></pre>
-          <p style="margin-top:10px;">A módosítás után használd a <code>/combinations reload</code> parancsot a változtatások élesítéséhez.</p>
 
-          <h2 id="faq">🆘 Gyakori Kérdések & Segítség</h2>
+          <h2 id="permissions">🔑 Jogosultságok és Parancsok</h2>
+          <p>Írd be a keresett parancsot vagy jogot a szűréshez:</p>
+          
+          <input type="text" id="cmdSearch" class="cmd-search-input" placeholder="Itt tudsz parancsra rákeresni..." onkeyup="filterCommands()">
+
+          <h3>Globális Admin / Utility</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+              <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.gamemode</code></td><td><code>/gamemode</code></td><td>Játékmód váltás (c, s, a, sp).</td></tr>
+              <tr><td><code>combinations.fly</code></td><td><code>/fly</code></td><td>Repülés mód kapcsolása.</td></tr>
+              <tr><td><code>combinations.god</code></td><td><code>/god</code></td><td>Halhatatlanság mód.</td></tr>
+              <tr><td><code>combinations.heal</code></td><td><code>/heal</code>, <code>/feed</code></td><td>Élet és éhség töltése.</td></tr>
+              <tr><td><code>combinations.repair</code></td><td><code>/repair</code></td><td>Tárgy javítása kézben.</td></tr>
+              <tr><td><code>combinations.disposal</code></td><td><code>/disposal</code></td><td>Szemetes (kuka) megnyitása.</td></tr>
+              <tr><td><code>combinations.invsee</code></td><td><code>/invsee</code></td><td>Más játékos inventoryjának megtekintése.</td></tr>
+              <tr><td><code>combinations.enderchest</code></td><td><code>/ec</code></td><td>Saját Enderchest megnyitása.</td></tr>
+              <tr><td><code>combinations.enderchest.others</code></td><td><code>/ec [név]</code></td><td>Más játékos Enderchestjének megnyitása.</td></tr>
+              <tr><td><code>combinations.speed</code></td><td><code>/speed</code></td><td>Repülési/sétálási sebesség állítása.</td></tr>
+              <tr><td><code>combinations.time</code></td><td><code>/time</code></td><td>Idő beállítása (nap/éj).</td></tr>
+              <tr><td><code>combinations.weather</code></td><td><code>/weather</code></td><td>Időjárás beállítása (napos/esős).</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Teleportálás és Warp</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.spawn</code></td><td><code>/spawn</code></td><td>Teleportálás a spawnra.</td></tr>
+              <tr><td><code>combinations.setspawn</code></td><td><code>/setspawn</code></td><td>Spawn pont áthelyezése.</td></tr>
+              <tr><td><code>combinations.tp</code></td><td><code>/tp</code></td><td>Teleportálás játékoshoz.</td></tr>
+              <tr><td><code>combinations.tpall</code></td><td><code>/tpall</code></td><td>Mindenki magadhoz teleportálása.</td></tr>
+              <tr><td><code>combinations.tptoggle</code></td><td><code>/tptoggle</code></td><td>TP kérések tiltása/engedélyezése.</td></tr>
+              <tr><td><code>combinations.warp</code></td><td><code>/warp</code></td><td>Teleportálás warpra.</td></tr>
+              <tr><td><code>combinations.setwarp</code></td><td><code>/setwarp</code></td><td>Új warp pont létrehozása.</td></tr>
+              <tr><td><code>combinations.delwarp</code></td><td><code>/delwarp</code></td><td>Warp törlése.</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Chat és Kommunikáció</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.msg</code></td><td><code>/msg</code></td><td>Privát üzenet küldése.</td></tr>
+              <tr><td><code>combinations.reply</code></td><td><code>/reply</code>, <code>/r</code></td><td>Válasz az utolsó üzenetre.</td></tr>
+              <tr><td><code>combinations.socialspy</code></td><td><code>/socialspy</code></td><td>Mások privát üzeneteinek látása (Admin).</td></tr>
+              <tr><td><code>combinations.helpop</code></td><td><code>/helpop</code></td><td>Segítségkérés a stafftól.</td></tr>
+              <tr><td><code>combinations.afk</code></td><td><code>/afk</code></td><td>Távollét jelzése.</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Economy (Pénz)</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.balancetop</code></td><td><code>/baltop</code></td><td>A leggazdagabb játékosok listája.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/eco ...</code></td><td>Teljes hozzáférés (give, take, set, reset).</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Moderáció (Büntetések)</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.kick</code></td><td><code>/kick</code></td><td>Játékos kirúgása.</td></tr>
+              <tr><td><code>combinations.warn</code></td><td><code>/warn</code></td><td>Figyelmeztetés küldése.</td></tr>
+              <tr><td><code>combinations.mute</code></td><td><code>/mute</code></td><td>Örök némítás.</td></tr>
+              <tr><td><code>combinations.tempmute</code></td><td><code>/tempmute</code></td><td>Időzített némítás.</td></tr>
+              <tr><td><code>combinations.ban</code></td><td><code>/ban</code></td><td>Örök kitiltás.</td></tr>
+              <tr><td><code>combinations.tempban</code></td><td><code>/tempban</code></td><td>Időzített kitiltás.</td></tr>
+              <tr><td><code>combinations.history</code></td><td><code>/history</code></td><td>Büntetési előzmények megtekintése.</td></tr>
+              <tr><td><code>combinations.staffhistory</code></td><td><code>/staffhistory</code></td><td>Staff aktivitás statisztika.</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Játékmód Specifikus</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.sell</code></td><td><code>/sell</code></td><td>Tárgyak eladása (BoxPvP).</td></tr>
+              <tr><td><code>combinations.setworth</code></td><td><code>/setworth</code></td><td>Tárgy árának beállítása (BoxPvP).</td></tr>
+              <tr><td><code>combinations.sethome</code></td><td><code>/sethome</code></td><td>Otthon mentése (Survival).</td></tr>
+              <tr><td><code>combinations.home</code></td><td><code>/home</code></td><td>Hazatérés (Survival).</td></tr>
+              <tr><td><code>combinations.rtp</code></td><td><code>/rtp</code></td><td>Véletlenszerű teleportálás (Survival).</td></tr>
+            </tbody>
+          </table>
+
+          <h2 id="faq">🆘 Gyakori Kérdések</h2>
           
           <details>
             <summary>A CombinationsCore mennyire biztonságos?</summary>
             <div class="faq-content">
-              A CombinationsCore folyamatos átgondolásokkal és többszintű biztonsági rendszerrel lett megalkotva. A kódunkat rendszeresen auditáljuk, és beépített védelemmel rendelkezik a gyakori exploitok (pl. Crasherek, NullPing) ellen. Így a sebességre és a biztonságra semmi aggodalmat nem válthat ki – a szervered nálunk jó kezekben van.
+              A CombinationsCore folyamatos átgondolásokkal és többszintű biztonsági rendszerrel lett megalkotva. A kódunkat rendszeresen auditáljuk, és beépített védelemmel rendelkezik a gyakori exploitok ellen.
             </div>
           </details>
 
           <details>
             <summary>Mit tegyek, ha licenc hibát kapok?</summary>
             <div class="faq-content">
-              Ellenőrizd, hogy a config.yml fájlban pontosan másoltad-e be a kulcsot, és nincs-e felesleges szóköz a végén. Ha a hiba továbbra is fennáll, nyiss egy jegyet Discordon, és ellenőrizzük a kulcsod státuszát.
+              Ellenőrizd, hogy a config.yml fájlban pontosan másoltad-e be a kulcsot, és nincs-e felesleges szóköz a végén. Ha a hiba továbbra is fennáll, nyiss egy jegyet Discordon.
             </div>
           </details>
-
-          <details>
-            <summary>Melyik verziókkal kompatibilis?</summary>
-            <div class="faq-content">
-              A rendszer teljes mértékben támogatja az 1.18-tól egészen a legújabb 1.21+ verziókig terjedő Minecraft kiadásokat. A régebbi verziókat jelenleg nem támogatjuk a késöbbi fejlesztések miatt.
-            </div>
-          </details>
-
-          <p style="margin-top:30px;">
-            Még mindig kérdésed van? <a href="#" style="color:var(--primary); font-weight:bold;">Csatlakozz a Discord szerverünkhöz</a>, ahol a technikai support csapatunk készséggel segít.
-          </p>
         `,
         toc: [
           { id: 'requirements', text: 'Előfeltételek' },
           { id: 'install', text: 'Telepítés' },
           { id: 'config', text: 'Konfiguráció' },
+          { id: 'permissions', text: 'Jogok és Parancsok' },
           { id: 'faq', text: 'Gyakori Kérdések' }
         ]
       },
@@ -386,17 +489,11 @@ server-mode: LIFESTEAL</code></pre>
       skript: {
         content: `
           <h1>CombinationsSkript</h1>
-          <p class="lead">Egy vadonatúj, modern Skript, amelyet a szerverkezelés forradalmasítására terveztünk.</p>
-          <p>Egyszerű, mégis nagy tudású: alapvető moderációs eszközöket, játékoskezelést és kényelmi funkciókat biztosít – mindezt újragondolva a jobb teljesítmény és használhatóság érdekében.</p>
-
+          <p class="lead">Egy modern Skript, amelyet a szerverkezelés forradalmasítására terveztünk.</p>
+          
           <div class="callout warn">
             <div class="callout-icon"><i class="fas fa-exclamation-triangle"></i></div>
-            <div>
-              <strong>Figyelem!</strong> A működéshez a következő kiegészítők (Addons) szükségesek, ezek nélkül a script nem fog működni:<br>
-              - Skbee<br>
-              - Skellett<br>
-              - skUtilities
-            </div>
+            <div><strong>Figyelem!</strong> A működéshez szükségesek: <strong>Skbee, Skellett, skUtilities</strong></div>
           </div>
 
           <h2 id="features">✨ Főbb Jellemzők</h2>
@@ -404,64 +501,41 @@ server-mode: LIFESTEAL</code></pre>
             <li>✅ <strong>Gazdasági Rendszer</strong> – Teljeskörűen integrált pénzkezelés.</li>
             <li>✅ <strong>Angol Támogatás</strong> – Mostantól elérhető angol nyelven is!</li>
             <li>✅ <strong>Újragondolt Essentials</strong> – Klasszikus parancsok, modern megvalósításban.</li>
-            <li>✅ <strong>Home Rendszer</strong> – Egyszerű teleportálás testreszabható otthonokkal.</li>
-            <li>✅ <strong>Könnyű és Testreszabható</strong> – Könnyen módosítható a szervered igényei szerint.</li>
-            <li>✅ <strong>1.18+ Támogatás</strong> – Kompatibilis a modern Minecraft verziókkal.</li>
-            <li>✅ <strong>Testreszabható Prefixek</strong> – Egyszerű szerkesztéssel átírhatod a chat előtagokat.</li>
+            <li>✅ <strong>Home Rendszer</strong> – Egyszerű teleportálás.</li>
+            <li>✅ <strong>1.18+ Támogatás</strong> – Kompatibilis a modern verziókkal.</li>
           </ul>
 
           <h2 id="install-skript">📥 Telepítés</h2>
           <ol style="margin-left:20px; margin-bottom:20px;">
-            <li>Töltsd le a scriptet a "Download Now" gombbal.</li>
-            <li>Csomagold ki a .rar fájlt, és válaszd ki a nyelvet (HU/EN).</li>
+            <li>Töltsd le a scriptet.</li>
+            <li>Csomagold ki és válaszd ki a nyelvet.</li>
             <li>Helyezd a <code>combinations.sk</code> fájlt a <code>plugins/Skript/scripts/</code> mappába.</li>
-            <li>Indítsd újra a szervert, vagy használd a <code>/sk reload combinations</code> parancsot.</li>
+            <li>Használd a <code>/sk reload combinations</code> parancsot.</li>
           </ol>
 
-          <h2 id="commands">⚙️ Parancsok és Jogok</h2>
+          <h2 id="commands">⚙️ Parancsok</h2>
           <table class="wiki-table">
             <thead>
               <tr><th>Parancs</th><th>Jog (Permission)</th></tr>
             </thead>
             <tbody>
-              <tr><td>/economy</td><td>combinations.eco</td></tr>
-              <tr><td>/eco give</td><td>combinations.eco.give</td></tr>
-              <tr><td>/eco take</td><td>combinations.eco.take</td></tr>
-              <tr><td>/eco set</td><td>combinations.eco.set</td></tr>
-              <tr><td>/balance</td><td>combinations.balance.use</td></tr>
-              <tr><td>/pay</td><td>combinations.pay.use</td></tr>
+              <tr><td>/economy, /pay, /bal</td><td>combinations.eco, combinations.pay.use</td></tr>
               <tr><td>/gamemode</td><td>combinations.gamemode.use</td></tr>
               <tr><td>/spawn, /setspawn</td><td>combinations.spawn.use, combinations.setspawn</td></tr>
-              <tr><td>/broadcast, /alert</td><td>combinations.broadcast.use, combinations.alert</td></tr>
-              <tr><td>/msg, /msgtoggle</td><td>combinations.msg, combinations.msg.toggle</td></tr>
-              <tr><td>/ec (Enderchest)</td><td>combinations.enderchest</td></tr>
-              <tr><td>/clear</td><td>combinations.clearinventory</td></tr>
-              <tr><td>/fly</td><td>combinations.fly</td></tr>
-              <tr><td>/god</td><td>combinations.god</td></tr>
-              <tr><td>/speed</td><td>combinations.speed.use</td></tr>
-              <tr><td>/tp, /tphere, /tpall</td><td>combinations.tp.use, combinations.s.use, combinations.tpall.use</td></tr>
-              <tr><td>/invsee</td><td>combinations.invsee.use</td></tr>
-              <tr><td>/clearchat</td><td>combinations.clearchat.use</td></tr>
-              <tr><td>/heal, /feed</td><td>combinations.heal.use, combinations.feed.use</td></tr>
-              <tr><td>/kill, /killall</td><td>combinations.kill.use, combinations.killall.use</td></tr>
-              <tr><td>/time, /weather</td><td>combinations.time.use, combinations.weather.use</td></tr>
-              <tr><td>/combinations reload</td><td>combinations.system.use</td></tr>
+              <tr><td>/fly, /god, /speed</td><td>combinations.fly, combinations.god, combinations.speed.use</td></tr>
+              <tr><td>/tp, /tphere</td><td>combinations.tp.use, combinations.s.use</td></tr>
+              <tr><td>/invsee, /clear</td><td>combinations.invsee.use, combinations.clearinventory</td></tr>
             </tbody>
           </table>
-
+          
           <h2 id="why">Miért a Combinations?</h2>
-          <p>
-            ✨ <strong>Modern megközelítés:</strong> Hagyományos funkciók innovatív köntösben.<br>
-            ✨ <strong>Szerver-Optimalizált:</strong> Könnyűsúlyú kód a jobb teljesítményért.<br>
-            ✨ <strong>Jövőbiztos:</strong> Rendszeres frissítések új funkciókkal.
-          </p>
-
+          <p>Modern megközelítés, szerver-optimalizált kód és rendszeres frissítések.</p>
           <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés most</a>
         `,
         toc: [
           { id: 'features', text: 'Főbb Jellemzők' },
           { id: 'install-skript', text: 'Telepítés' },
-          { id: 'commands', text: 'Parancsok és Jogok' },
+          { id: 'commands', text: 'Parancsok' },
           { id: 'why', text: 'Miért válassz minket?' }
         ]
       },
@@ -470,70 +544,29 @@ server-mode: LIFESTEAL</code></pre>
       permix: {
         content: `
           <h1>PermiX</h1>
-          <p class="lead">Egy feltörekvő rangkezelő és jogosultságkezelő rendszer, ahol csak a tudásod szab határt!</p>
-          <p>A rangok létrehozása ebben a pluginban rendkívül gördülékeny. Arra törekszünk, hogy egy igazán kifinomult és jól használható plugint tervezzünk játékosok és fejlesztők számára egyaránt.</p>
-
+          <p class="lead">Egy ultrakönnyű jogosultságkezelő rendszer.</p>
+          
           <div class="header-actions" style="margin-bottom:20px;">
             <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés</a>
           </div>
 
-          <h2 id="permix-commands">⚙️ Parancsok és Jogok</h2>
-
-          <h3>Fő parancs hozzáférés</h3>
-          <table class="wiki-table">
-            <tr><td><code>/permix</code></td><td><code>permix.command</code></td></tr>
-          </table>
-
-          <h3>Csoportkezelés (Group Management)</h3>
+          <h2 id="permix-commands">⚙️ Parancsok</h2>
           <table class="wiki-table">
             <tbody>
-              <tr>
-                <td><code>/permix creategroup [név]</code></td>
-                <td><code>permix.creategroup</code></td>
-                <td>Új csoport létrehozása.</td>
-              </tr>
-              <tr>
-                <td><code>/permix deletegroup [név]</code></td>
-                <td><code>permix.deletegroup</code></td>
-                <td>Csoport törlése.</td>
-              </tr>
-              <tr>
-                <td><code>/permix group [csoport] [beállítás] set [érték]</code></td>
-                <td><code>permix.group</code></td>
-                <td>Prefix, suffix vagy jogok beállítása.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h3>Felhasználó kezelés (User Management)</h3>
-          <table class="wiki-table">
-            <tbody>
-              <tr>
-                <td><code>/permix user [játékos] parent set [csoport]</code></td>
-                <td><code>permix.user</code></td>
-                <td>Játékos áthelyezése egy rangba.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h3>Adminisztráció</h3>
-          <table class="wiki-table">
-            <tbody>
-              <tr>
-                <td><code>/permix reload</code></td>
-                <td><code>permix.reload</code></td>
-                <td>Config fájlok újratöltése.</td>
-              </tr>
+              <tr><td><code>/permix creategroup</code></td><td><code>permix.creategroup</code></td><td>Új csoport létrehozása.</td></tr>
+              <tr><td><code>/permix group set</code></td><td><code>permix.group</code></td><td>Jogok és prefixek kezelése.</td></tr>
+              <tr><td><code>/permix user set</code></td><td><code>permix.user</code></td><td>Játékos rangjának beállítása.</td></tr>
+              <tr><td><code>/permix reload</code></td><td><code>permix.reload</code></td><td>Újratöltés.</td></tr>
             </tbody>
           </table>
           
           <div class="callout tip">
              <div class="callout-icon"><i class="fas fa-star"></i></div>
-             <div>Vagy használd egyszerűen a <code>permix.*</code> jogot a teljes hozzáféréshez!</div>
+             <div>Használd a <code>permix.*</code> jogot a teljes hozzáféréshez!</div>
           </div>
         `,
         toc: [
-          { id: 'permix-commands', text: 'Parancsok és Jogok' }
+          { id: 'permix-commands', text: 'Parancsok' }
         ]
       },
 
@@ -541,74 +574,51 @@ server-mode: LIFESTEAL</code></pre>
       oathbound: {
         content: `
           <h1>OathBound</h1>
-          <p class="lead">Hozz létre erős közösségeket, vezesd győzelemre a csapatodat, és hozd közelebb egymáshoz a játékosokat ezzel a modern klán pluginnal.</p>
-          <p>Teljes mértékben kompatibilis az <strong>1.18+</strong> verziókkal. Tökéletes választás kisebb közösségi szervereknek és nagy hálózatoknak egyaránt.</p>
+          <p class="lead">Hozd létre a legerősebb klánt és uralkodj a szerveren! 1.18+ kompatibilis.</p>
 
           <div class="header-actions" style="margin-bottom:20px;">
             <a href="#" class="btn-download"><i class="fas fa-download"></i> Letöltés</a>
           </div>
 
-          <h2 id="features-oath">✨ Főbb Jellemzők</h2>
-          <ul style="list-style:none;">
-            <li>💬 <strong>Testreszabható Üzenetek:</strong> Minden üzenet igazítható a szervered stílusához.</li>
-            <li>⚔️ <strong>Teljes Klánkezelés:</strong> Olyan alapvető parancsok, mint a <code>promote</code>, <code>demote</code>, <code>kick</code>, <code>leave</code> és még sok más.</li>
-            <li>🛡️ <strong>Admin Kontroll:</strong> Speciális parancsok (<code>/clan dev add</code> & <code>/clan dev remove</code>), hogy az adminok könnyen kezelhessék a tagokat.</li>
-            <li>🩸 <strong>Klán PvP Kapcsoló:</strong> A játékosok a <code>/clan pvp</code> paranccsal engedélyezhetik vagy tilthatják a baráti tüzet.</li>
-            <li>🔒 <strong>Biztonságos Törlés:</strong> A klánok vagy a teljes adatbázis csak offline állapotban törölhető, megelőzve az adatvesztést.</li>
+          <h2 id="features-oath">✨ Funkciók</h2>
+          <ul style="list-style:none; margin-bottom:30px;">
+            <li>💬 <strong>Üzenetek:</strong> Teljesen testreszabható chat.</li>
+            <li>⚔️ <strong>Klán PvP:</strong> Baráti tűz kapcsolása <code>/clan pvp</code>.</li>
+            <li>🛡️ <strong>Adminisztráció:</strong> Fejlett admin parancsok.</li>
           </ul>
 
-          <h2 id="placeholders-oath">🧩 Változók (Placeholders)</h2>
+          <h2 id="placeholders-oath">🧩 Változók</h2>
           <table class="wiki-table">
-            <thead>
-              <tr><th>Placeholder</th><th>Leírás</th></tr>
-            </thead>
+            <thead><tr><th>Placeholder</th><th>Leírás</th></tr></thead>
             <tbody>
-              <tr>
-                <td><code>%kclan_name1%</code></td>
-                <td>Megjeleníti a klán nevét, ha van. Ha nincs, <strong>üres marad</strong> (tökéletes TAB-ra).</td>
-              </tr>
-              <tr>
-                <td><code>%kclan_name%</code></td>
-                <td>Megjeleníti a klán nevét. Ha nincs, <strong>"-"</strong> jelet mutat (Chatre ideális).</td>
-              </tr>
-              <tr>
-                <td><code>%kclan_name_top_1%</code></td>
-                <td>(1–10) Megjeleníti a <strong>Top 10 klán nevét</strong> (Hologramokhoz).</td>
-              </tr>
-              <tr>
-                <td><code>%kclan_kills_top_1%</code></td>
-                <td>(1–10) Megjeleníti a <strong>Top 10 klán ölésszámát</strong>.</td>
-              </tr>
+              <tr><td><code>%kclan_name%</code></td><td>Klán neve (vagy "-").</td></tr>
+              <tr><td><code>%kclan_name_top_1%</code></td><td>Top 1 klán neve.</td></tr>
             </tbody>
           </table>
         `,
         toc: [
-          { id: 'features-oath', text: 'Főbb Jellemzők' },
-          { id: 'placeholders-oath', text: 'Placeholderek' }
+          { id: 'features-oath', text: 'Funkciók' },
+          { id: 'placeholders-oath', text: 'Változók' }
         ]
       }
     };
 
-    // --- FUNKCIÓK ---
-
+    // --- JS LOGIKA ---
     function loadPage(pageId) {
       const data = wikiData[pageId];
       if (!data) return;
 
-      // 1. Tartalom cseréje
       const mainContent = document.getElementById('mainContent');
-      // Kis animáció
       mainContent.style.opacity = '0';
+      
       setTimeout(() => {
         mainContent.innerHTML = data.content;
         mainContent.style.opacity = '1';
-        // Smooth scroll a tartalom tetejére
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 200);
 
-      // 2. Tartalomjegyzék (TOC) frissítése
       const tocList = document.getElementById('tocList');
-      tocList.innerHTML = ''; // Törlés
+      tocList.innerHTML = '';
       
       data.toc.forEach(item => {
         const li = document.createElement('li');
@@ -616,31 +626,63 @@ server-mode: LIFESTEAL</code></pre>
         a.href = `#${item.id}`;
         a.textContent = item.text;
         
-        // Eseményfigyelő a sima görgetéshez az új elemeken
         a.addEventListener('click', function(e) {
           e.preventDefault();
-          const targetElement = document.getElementById(item.id);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
+          const target = document.getElementById(item.id);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
         
         li.appendChild(a);
         tocList.appendChild(li);
       });
 
-      // 3. Aktív menüpont kezelése a bal oldalon
       document.querySelectorAll('.sidebar-link').forEach(link => {
         link.classList.remove('active');
       });
-      // Megkeressük azt a linket, aminek az onclickjében szerepel a pageId
       const activeLink = Array.from(document.querySelectorAll('.sidebar-link')).find(l => l.getAttribute('onclick').includes(pageId));
       if (activeLink) activeLink.classList.add('active');
     }
 
-    // Kezdeti betöltés (Alapértelmezetten a bevezetés jön be)
+    // --- KERESŐ FUNKCIÓ (Az összes táblázatban keres) ---
+    function filterCommands() {
+      // 1. A beírt szöveg lekérése
+      var input = document.getElementById("cmdSearch");
+      var filter = input.value.toUpperCase();
+      
+      // 2. Az összes releváns táblázat lekérése
+      var tables = document.querySelectorAll(".searchable-table");
+      
+      // 3. Végigmegyünk az összes táblázaton
+      tables.forEach(table => {
+        var tr = table.getElementsByTagName("tr");
+        
+        // Végigmegyünk a sorokon (0. sor a fejléc, azt kihagyjuk)
+        for (var i = 1; i < tr.length; i++) {
+          var tdPerm = tr[i].getElementsByTagName("td")[0]; // Jog oszlop
+          var tdCmd = tr[i].getElementsByTagName("td")[1];  // Parancs oszlop
+          var tdDesc = tr[i].getElementsByTagName("td")[2]; // Leírás oszlop
+          
+          if (tdPerm || tdCmd || tdDesc) {
+            var txtValuePerm = tdPerm.textContent || tdPerm.innerText;
+            var txtValueCmd = tdCmd.textContent || tdCmd.innerText;
+            var txtValueDesc = tdDesc.textContent || tdDesc.innerText;
+            
+            // Ha bármelyik oszlopban megtalálható a keresett szöveg
+            if (txtValuePerm.toUpperCase().indexOf(filter) > -1 || 
+                txtValueCmd.toUpperCase().indexOf(filter) > -1 ||
+                txtValueDesc.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = ""; // Mutasd
+            } else {
+              tr[i].style.display = "none"; // Rejtsd el
+            }
+          }       
+        }
+      });
+    }
+
+    // Kezdeti betöltés
     document.addEventListener('DOMContentLoaded', () => {
-      loadPage('intro');
+      loadPage('core');
     });
 
   </script>
