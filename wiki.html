@@ -181,10 +181,6 @@
       outline: none;
       border-color: var(--primary);
     }
-    
-    .cmd-search-input::placeholder {
-      color: var(--text-muted);
-    }
 
     /* Callouts */
     .callout {
@@ -277,6 +273,29 @@
     }
     .btn-download:hover { opacity: 0.9; }
 
+    /* BuiltByBit Gomb */
+    .btn-buy {
+      background: var(--gradient);
+      color: white;
+      padding: 15px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: transform 0.2s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-buy:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(160, 102, 255, 0.6);
+    }
+
     /* Responsive */
     @media (max-width: 1200px) {
       .wiki-container { grid-template-columns: 240px 1fr; }
@@ -286,6 +305,7 @@
       .wiki-container { display: block; padding: 20px; }
       .sidebar-left { display: none; }
       .main-content { padding: 0; }
+      .btn-buy { width: 100%; justify-content: center; font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -318,12 +338,12 @@
     </aside>
 
     <main class="main-content" id="mainContent">
-      </main>
+    </main>
 
     <aside class="sidebar-right">
       <div class="toc-title">EZEN AZ OLDALON</div>
       <ul class="toc-list" id="tocList">
-        </ul>
+      </ul>
     </aside>
 
   </div>
@@ -354,6 +374,14 @@
             <li><strong>Indítás:</strong> Indítsd újra a szervert.</li>
             <li><strong>Aktiválás:</strong> Írd be a kulcsot a configba vagy használd a <code>/combinations activate [kulcs]</code> parancsot.</li>
           </ol>
+
+          <div style="text-align: center; margin: 50px 0;">
+            <a href="https://builtbybit.com/your-resource-link" target="_blank" class="btn-buy">
+              <img src="https://avatars.githubusercontent.com/u/107560863?v=4" alt="BuiltByBit" style="width: 40px; height: 40px; border-radius: 6px;">
+              Vásárlás a BuiltByBit-en
+            </a>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);">Azonnali letöltés és automatikus licenc.</p>
+          </div>
 
           <h2 id="config">⚙️ Konfiguráció</h2>
           <p>A telepítés után válaszd ki a játékmódodat a <code>config.yml</code> fájlban:</p>
@@ -460,6 +488,52 @@ server-mode: LIFESTEAL</code></pre>
             </tbody>
           </table>
 
+          <h2 id="placeholders">🧩 Változók (Placeholders)</h2>
+          <p>A <strong>PlaceholderAPI</strong> segítségével az alábbi változókat használhatod (pl. Scoreboardon, Tabon, Hologramokon):</p>
+          
+          <table class="wiki-table">
+            <thead>
+              <tr><th width="40%">Placeholder</th><th width="35%">Leírás</th><th>Példa</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>%core_eco_player%</code></td>
+                <td>A játékos pontos, nyers egyenlege mindenféle formázás nélkül.</td>
+                <td>12500.55</td>
+              </tr>
+              <tr>
+                <td><code>%core_eco_player_formatted%</code></td>
+                <td>Rövidített összeg, tizedesjegyek nélkül. (K=Ezer, M=Millió, B=Milliárd).</td>
+                <td>12K</td>
+              </tr>
+              <tr>
+                <td><code>%core_eco_player_formatted_other%</code></td>
+                <td>Rövidített összeg, két tizedesjeggyel. Precízebb kijelzéshez.</td>
+                <td>12.50K</td>
+              </tr>
+              <tr>
+                <td><code>%core_eco_top_name_1-15%</code></td>
+                <td>A leggazdagabb játékos neve (1-től 15-ig).<br><small>Helyettesítsd a számot 1 és 15 között.</small></td>
+                <td>kikike10305</td>
+              </tr>
+              <tr>
+                <td><code>%core_eco_top_value_1-15%</code></td>
+                <td>A leggazdagabb játékos egyenlege formázva (1-től 15-ig).</td>
+                <td>150.2M</td>
+              </tr>
+              <tr>
+                <td><code>%core_homes_player%</code></td>
+                <td>Hány darab otthont (sethome) rakott le eddig a játékos.</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td><code>%core_homes_maxplayer%</code></td>
+                <td>Mennyi a maximálisan lerakható otthonok száma (configból).</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+
           <h2 id="faq">🆘 Gyakori Kérdések</h2>
           
           <details>
@@ -481,6 +555,7 @@ server-mode: LIFESTEAL</code></pre>
           { id: 'install', text: 'Telepítés' },
           { id: 'config', text: 'Konfiguráció' },
           { id: 'permissions', text: 'Jogok és Parancsok' },
+          { id: 'placeholders', text: 'Placeholderek' },
           { id: 'faq', text: 'Gyakori Kérdések' }
         ]
       },
