@@ -364,7 +364,7 @@
           <ul style="margin-left:20px; margin-bottom:20px;">
             <li><strong>Java verzió:</strong> Java 17 vagy újabb (ajánlott: Java 21).</li>
             <li><strong>Szerver szoftver:</strong> PaperMC, Purpur (ajánlott: <strong>PaperMC</strong>).</li>
-            <li><strong>Szükséges kiegészítők:</strong> <code>PlaceholderAPI</code>.</li>
+            <li><strong>Szükséges kiegészítők:</strong> <code>PlaceholderAPI, Vault</code>.</li>
           </ul>
 
           <h2 id="install">🛠️ Telepítési folyamat</h2>
@@ -412,6 +412,7 @@
               <tr><td><code>combinations.time</code></td><td><code>/time</code></td><td>Idő beállítása (nap/éj).</td></tr>
               <tr><td><code>combinations.weather</code></td><td><code>/weather</code></td><td>Időjárás beállítása (napos/esős).</td></tr>
               <tr><td><code>combinations.commandspy.use</code></td><td><code>/commandspy</code></td><td>Parancsfigyelés bekapcsolása (on/off).</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/combinations reload</code></td><td>A COmbinationsCore config fájljainak újratöltése.</td></tr>
             </tbody>
           </table>
 
@@ -429,6 +430,7 @@
               <tr><td><code>combinations.warp</code></td><td><code>/warp</code></td><td>Teleportálás warpra.</td></tr>
               <tr><td><code>combinations.setwarp</code></td><td><code>/setwarp</code></td><td>Új warp pont létrehozása.</td></tr>
               <tr><td><code>combinations.delwarp</code></td><td><code>/delwarp</code></td><td>Warp törlése.</td></tr>
+              <tr><td><code>combinations.tp.bypass</code></td><td><code>/delwarp</code></td><td>Letiltott /tptoggle esetin is képesa játékoshoz teleportálni.</td></tr>
             </tbody>
           </table>
 
@@ -438,12 +440,13 @@
                <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>combinations.crateadmin</code></td><td><code>/crate create [láda]</code></td><td>Láda létrehozása.</td></tr>
-              <tr><td><code>combinations.crateadmin</code></td><td><code>/crate edit [láda]</code></td><td>Láda szerkeztése.</td></tr>
-              <tr><td><code>combinations.crateadmin</code></td><td><code>/crate key [láda] [játékos] [Mennyiség]</code></td><td>Fizikai kulcs lehívása.</td></tr>
-              <tr><td><code>combinations.crateadmin</code></td><td><code>/crate vkey [láda] [játékos] [Mennyiség]</code></td><td>Virtuális kulcs lehívása.</td></tr>
-              <tr><td><code>combinations.crateadmin</code></td><td><code>/crate giveall [láda] [Mennyiség]</code></td><td>Kulcs adása mindenkinek.</td></tr>
-              <tr><td><code>combinations.crateadmin</code></td><td><code>/crate get</code></td><td>Láda lehívása tárgyként.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate create [láda]</code></td><td>Láda létrehozása.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate edit [láda]</code></td><td>Láda szerkeztése.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate key [láda] [játékos] [Mennyiség]</code></td><td>Fizikai kulcs lehívása.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate vkey [láda] [játékos] [Mennyiség]</code></td><td>Virtuális kulcs lehívása.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate giveall [láda] [Mennyiség]</code></td><td>Kulcs adása mindenkinek.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate get</code></td><td>Láda lehívása tárgyként.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/crate reload</code></td><td>Ládák, YML fájlok és hologramok újratöltése.</td></tr>
             </tbody>
           </table>
 
@@ -458,6 +461,8 @@
               <tr><td><code>combinations.socialspy</code></td><td><code>/socialspy</code></td><td>Mások privát üzeneteinek látása (Admin).</td></tr>
               <tr><td><code>combinations.helpop</code></td><td><code>/helpop</code></td><td>Segítségkérés a stafftól.</td></tr>
               <tr><td><code>combinations.afk</code></td><td><code>/afk</code></td><td>Távollét jelzése.</td></tr>
+              <tr><td><code>combinations.msg.bypass</code></td><td><code>-</code></td><td>Letiltott üzenetek ignorálása (tud írni annak is, aki letiltotta).</td></tr>
+              <tr><td><code>combinations.helpop.reveive</code></td><td><code>-</code></td><td>Jog a játékosok által beküldött /helpop üzenetek olvasásához.</td></tr>
             </tbody>
           </table>
 
@@ -469,6 +474,43 @@
             <tbody>
               <tr><td><code>combinations.balancetop</code></td><td><code>/baltop</code></td><td>A leggazdagabb játékosok listája.</td></tr>
               <tr><td><code>combinations.admin</code></td><td><code>/eco ...</code></td><td>Teljes hozzáférés (give, take, set, reset).</td></tr>
+            </tbody>
+          </table>
+          
+          <h3>Küldetések (Quest)</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>-</code></td><td><code>/quest</code></td><td>A napi küldetések és statisztikák GUI megnyitása.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/quest admin reset</code></td><td>Küldetés .yml fájlok azonnali újratöltése.</td></tr>
+              <tr><td><code>combinations.admin</code></td><td><code>/quest admin resetstat [all / játékos]</code></td><td>Mindenki, vagy egy adott játékos statisztikájának törlése.</td></tr>
+            </tbody>
+          </table>
+          
+          <h3>Kitek (Kits)</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>-</code></td><td><code>/kit, /kit help</code></td><td>Kitek főmenüjének és segítség menüjének megnyitása.</td></tr>
+              <tr><td><code>combinations.kit.admin</code></td><td><code>/kit admin</code></td><td>Kit Admin szerkesztő GUI megnyitása.</td></tr>
+              <tr><td><code>combinations.kit.admin</code></td><td><code>/kit create [név]</code></td><td>Új, üres kit létrehozása.</td></tr>
+            </tbody>
+          </table>
+          
+          <h3>Hologramok (Holograms)</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>combinations.holo.admin</code></td><td><code>/holo create / delete</code></td><td>Új hologram létrehozása, meglévő törlése.</td></tr>
+              <tr><td><code>combinations.holo.admin</code></td><td><code>/holo movehere</code></td><td>Hologram áthelyezése a te pozíciódra.</td></tr>
+              <tr><td><code>combinations.holo.admin</code></td><td><code>/holo addline / removeline</code></td><td>Sorok hozzáadása és törlése.</td></tr>
+              <tr><td><code>combinations.holo.admin</code></td><td><code>/holo reload</code></td><td>Hologramok újratöltése.</td></tr>
             </tbody>
           </table>
 
@@ -487,10 +529,24 @@
               <tr><td><code>combinations.history</code></td><td><code>/history</code></td><td>Büntetési előzmények megtekintése.</td></tr>
               <tr><td><code>combinations.staffhistory</code></td><td><code>/staffhistory</code></td><td>Staff aktivitás statisztika.</td></tr>
               <tr><td><code>combinations.staffhadmin</code></td><td><code>/staffhistoryadd /staffhistoryremove</code></td><td>Staff hozzáadása/eltávolítása staffhistoryhoz.</td></tr>
-              <tr><td><code>combinations.staffhadmin</code></td><td><code>/staffhreset [név]</code></td><td>Staffhistory resetelése.</td></tr>
               <tr><td><code>combinations.gban</code></td><td><code>/gban [név]</code></td><td>Ban menü megjelenítése.</td></tr>
               <tr><td><code>combinations.gmute</code></td><td><code>/gmute [név]</code></td><td>Mute menü megjelenítése.</td></tr>
               <tr><td><code>combinations.gkick</code></td><td><code>/gkick [név]</code></td><td>Kick menü megjelenítése.</td></tr>
+              <tr><td><code>combinations.gwarn</code></td><td><code>/gwarn [név]</code></td><td>Warn menü megjelenítése.</td></tr>
+              <tr><td><code>combinations.unban</code></td><td><code>/unban [név] <indok></code></td><td>Játékos kitiltásának feloldása indokkal.</td></tr>
+              <tr><td><code>combinations.unmute</code></td><td><code>/unmute [név] <indok></code></td><td>Játékos némításának feloldása indokkal.</td></tr>
+            </tbody>
+          </table>
+          
+          <h3>Tablista, Scoreboard (Tab & Scoreboard)</h3>
+          <table class="wiki-table searchable-table">
+            <thead>
+               <tr><th width="25%">Jog (Permission)</th><th width="20%">Parancs</th><th>Leírás</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>-</code></td><td><code>/sb, /scoreboard [on/off]</code></td><td>Scoreboard ki / be-kapcsolása magadnak.</td></tr>
+              <tr><td><code>-</code></td><td><code>/tab [on/off]</code></td><td>A tablista ki / be-kapcsolása magadnak.</td></tr>
+              <tr><td><code>combinations.tabsb.reload</code></td><td><code>/tabsb reload</code></td><td>Tablista, Scoreboard újratöltése.</td></tr>
             </tbody>
           </table>
 
